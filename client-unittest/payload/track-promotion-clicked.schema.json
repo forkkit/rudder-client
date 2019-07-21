@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "promotion_id": {
+      "type": "string"
+    },
+    "creative": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "promotion_id",
+    "creative",
+    "name",
+    "position"
+  ]
+}

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+    <ScrollView android:layout_width="0dp" android:layout_height="0dp"
+                android:scrollbars="none"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@+id/flushButton"
+                android:layout_marginBottom="16dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="16dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:text="blue hotpants"
+                      android:hint="query"
+                      android:id="@+id/queryField"/>
+
+            <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" android:id="@+id/productSearchBtn"
+                    android:text="PRODUCT SEARCH"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/productListViewBtn"
+                    android:text="PRODUCT LIST VIEWED"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/productListFilteredBtn"
+                    android:text="PRODUCT LIST FILTERED"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/promotionViewed"
+                    android:text="PROMOTION VIEWED"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/promotionClickedBtn"
+                    android:text="PROMOTION CLICKED"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/productClickedBtn"
+                    android:text="PRODUCT CLICKED"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/productViewedBtn"
+                    android:text="PRODUCT VIEWED"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/productAddedBtn"
+                    android:text="PRODUCT ADDED"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/productRemovedBtn"
+                    android:text="PRODUCT REMOVED"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/cartViewedBtn"
+                    android:text="Cart Viewed"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/checkoutStartedButton"
+                    android:text="Checkout Started"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/checkoutStepViewedBtn"
+                    android:text="Checkout Step Viewed"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/checkoutStepCompletedBtn"
+                    android:text="Checkout Step Completed"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/paymentInfoEnteredBtn"
+                    android:text="Payment Info Entered"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/orderUpdatedBtn"
+                    android:text="Order Updated"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/orderCompletedBtn"
+                    android:text="Order Completed"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/orderRefundedBtn"
+                    android:text="Order Refunded"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/orderCancelledBtn"
+                    android:text="Order Cancelled"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/couponEnteredBtn"
+                    android:text="Coupon Entered"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/couponAppliedBtn"
+                    android:text="Coupon Applied"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/couponDeniedBtn"
+                    android:text="Coupon Denied"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/couponRemovedBtn"
+                    android:text="Coupon Removed"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/addToWishListBtn"
+                    android:text="Product Added to Wishlist"/>
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/removeFromWishListBtn"
+                    android:text="Product Removed from Wishlist"/>
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/wishListToCartBtn"
+                    android:text="Wishlist Product Added to Cart"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/productSharedBtn"
+                    android:text="Product Shared"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/cartSharedBtn"
+                    android:text="Cart Shared"/>
+
+            <Button
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:id="@+id/productReviewdBtn"
+                    android:text="Product Reviewed"/>
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/screenViewBtn"
+                    android:text="Screen View Button"/>
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/pageViewBtn"
+                    android:text="Page View Button"/>
+        </LinearLayout>
+
+    </ScrollView>
+    <Button
+            android:text="@string/flush"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/flushButton"
+            android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

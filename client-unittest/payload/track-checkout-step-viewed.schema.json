@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "step": {
+      "type": "number"
+    },
+    "shipping_method": {
+      "type": "string"
+    },
+    "payment_method": {
+      "type": "string"
+    },
+    "checkout_id": {
+      "type": "string"
+    },
+    "order_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "step",
+    "shipping_method",
+    "payment_method",
+    "checkout_id",
+    "order_id"
+  ]
+}
