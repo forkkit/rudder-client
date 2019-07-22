@@ -20,8 +20,6 @@ internal class EventRepository {
         self.flushQueueSize = flushQueueSize
      
         EventRepository.eventTemplate = RudderEventTemplate.populate()
-        
-        initiateApiClient()
     }
     
     func getFlushQueueSize() -> Int {
@@ -42,8 +40,6 @@ internal class EventRepository {
     
     func setEndPointUri(endPointUri: String) {
         self.endPointUri = endPointUri
-        
-        initiateApiClient()
     }
     
     func dump(event: RudderEvent) {
@@ -67,55 +63,34 @@ internal class EventRepository {
     }
     
     private func flushEvents() {
-        let payload = RudderEventPayload(
-            batch: eventBuffer, sent_at: Date()
-        )
+        let payload = RudderEventPayload(batch: eventBuffer)
         
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "http"
-        urlComponents.host = endPointUri
-        urlComponents.path = "/test"
-        
-        guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
-        if (Constants.DEBUG) {
-            print("URL: " + url.absoluteString)
-        }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        
-        let encoder = JSONEncoder()
         do {
-            let jsonData = try encoder.encode(payload)
-            urlRequest.httpBody = jsonData
+            let url = endPointUri+"/hello"
             if (Constants.DEBUG) {
-                print("REQUEST: " , String(bytes: jsonData, encoding: .utf8) ?? "no request")
-            }
-        } catch {
-            print("Error: ", error.localizedDescription)
-        }
-        
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        let task = session.dataTask(with: urlRequest){ (responseData, response, responseError) in
-            guard responseError == nil else {
-                print("Error: " , responseError?.localizedDescription ?? "unknown error")
-                return
+                print("URL: " + url)
             }
             
-            if let data = responseData, let utf8Response = String(data: data, encoding: .utf8) {
-                print("RESPONSE: ", utf8Response)
-            } else {
-                print("no response")
-            }
+            Alamofire.request(url, method: .post, parameters: try payload.toDictionary() as Parameters, encoding: JSONEncoding.prettyPrinted, headers: nil)
+                .responseString { dataResponse in
+                    print("RESPONSE: " + dataResponse.description)
+                 
+                    if (dataResponse.error != nil) {
+                        print("ERROR: " + dataResponse.error!.localizedDescription)
+                    }
+                    
+                    self.eventBuffer.removeAll()
+                }
+        } catch {
+            print("ERROR: " + error.localizedDescription)
         }
-        task.resume()
-        
-        eventBuffer.removeAll()
     }
+}
     
-    private func initiateApiClient() {
-        // initiate api client for networking calls
-        
-    }
+extension DateFormatter {
+    static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy HH:mm:ssZ"
+        return formatter
+    }()
 }

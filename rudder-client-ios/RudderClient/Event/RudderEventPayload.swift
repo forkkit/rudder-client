@@ -10,5 +10,13 @@ import Foundation
 
 struct RudderEventPayload : Encodable {
     let batch: [RudderEvent]
-    let sent_at : Date
+    let sent_at : String = Date().toTimeStampString()
+    
+    func toDictionary() throws -> [String: AnyObject?] {
+        let data = try JSONEncoder().encode(self)
+        guard let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject?] else {
+            throw NSError()
+        }
+        return dictionary
+    }
 }

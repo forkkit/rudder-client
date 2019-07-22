@@ -145,4 +145,97 @@ class ECommercePropertyBuilder {
         property.addStringProperty(key: "position", value: self.promotionClicked!.position)
         return property
     }
+    
+//    PRODUCT_CLICKED
+    private var productClicked: ECommerceProduct? = nil
+    func addProductClicked(product: ECommerceProduct) -> ECommercePropertyBuilder {
+        self.productClicked = product
+        return self
+    }
+    
+    func buildProductClick() throws -> RudderProperty {
+        if (productClicked == nil) {
+            throw InvalidStateError(_message: "Product is not added")
+        }
+        let property = RudderProperty()
+        productClicked?.addProductToProerty(property: property)
+        return property
+    }
+    
+//    PRODUCT_VIEWED
+    private var productViewed: ECommerceProduct? = nil
+    func addProductViewed(product: ECommerceProduct) -> ECommercePropertyBuilder {
+        self.productViewed = product
+        return self
+    }
+    
+    func buildProductViewed() throws -> RudderProperty {
+        if (productViewed == nil) {
+            throw InvalidStateError(_message: "Product is not added")
+        }
+        let property = RudderProperty()
+        productViewed?.addProductToProerty(property: property)
+        return property
+    }
+    
+//    PRODUCT_ADDED
+    private var productAddedToCart: ECommerceProduct? = nil
+    func addProductToCart(product: ECommerceProduct) -> ECommercePropertyBuilder {
+        self.productAddedToCart = product
+        return self
+    }
+    
+    func buildProductAddedToCart(cartId: String) throws -> RudderProperty {
+        if (productAddedToCart == nil) {
+           throw InvalidStateError(_message: "Product is not added")
+        }
+        
+        let property = RudderProperty()
+        productAddedToCart?.addProductToProerty(property: property)
+        property.addStringProperty(key: "cart_id", value: cartId)
+        return property
+    }
+    
+//    PRODUCT_REMOVED
+    private var productRemovedFromCart: ECommerceProduct? = nil
+    func removeProductFromCart(product: ECommerceProduct) -> ECommercePropertyBuilder {
+        self.productRemovedFromCart = product
+        return self
+    }
+    
+    func buildProductRemovedFromCart(cartId: String) throws -> RudderProperty {
+        if (productRemovedFromCart == nil) {
+            throw InvalidStateError(_message: "Product action not perfomed")
+        }
+        let property = RudderProperty()
+        productRemovedFromCart?.addProductToProerty(property: property)
+        property.addStringProperty(key: "cart_id", value: cartId)
+        return property
+    }
+    
+//    CART_VIEWED
+    private var cartViewed: ECommerceCart? = nil
+    func createCart(cartId: String) -> ECommercePropertyBuilder {
+        self.cartViewed = ECommerceCart().setCartId(cartId: cartId)
+        return self
+    }
+    
+    func addProductsToCart(products: ECommerceProduct...) throws -> ECommercePropertyBuilder {
+        if (cartViewed == nil) {
+            throw InvalidStateError(_message: "Cart is not initialized")
+        }
+        self.cartViewed = self.cartViewed?.addProducts(products: products)
+        return self
+    }
+    
+    func buildForCartView() throws -> RudderProperty {
+        if (self.cartViewed == nil) {
+            throw InvalidStateError(_message: "Cart is not initialized")
+        } else if (self.cartViewed?.products.count == 0) {
+            throw InvalidStateError(_message: "Cart does not have any product")
+        }
+        let property = RudderProperty()
+        cartViewed!.addToProperty(property: property)
+        return property
+    }
  }

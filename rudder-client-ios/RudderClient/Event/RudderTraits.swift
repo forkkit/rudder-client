@@ -9,9 +9,9 @@
 import Foundation
 
 struct RudderTraits: Codable {
-    let anonymousId: String = UUID().uuidString.lowercased()
+    var anonymousId: String = ""
     
     enum CodingKeys: String, CodingKey {
-        case anonymousId = "anonymous_id"
+        case anonymousId = "rl_anonymous_id"
     }
 }

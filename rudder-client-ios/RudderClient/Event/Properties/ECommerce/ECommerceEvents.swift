@@ -14,7 +14,7 @@ enum ECommerceEvents : Encodable {
     public func getValue() -> String {
         switch self {
         case .PRODUCTS_SEARCHED:
-            return "Product Searched"
+            return "Products Searched"
         case .PRODUCT_LIST_VIEWED:
             return "Product List Viewed"
         case .PRODUCT_LIST_FILTERED:

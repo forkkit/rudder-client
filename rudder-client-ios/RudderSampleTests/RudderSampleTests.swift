@@ -23,6 +23,7 @@ class RudderSampleTests: BaseTests {
                 .build()
             rudderClient.track(event: rudderEvent)
             rudderClient.flush()
+            sleep(2)
         } catch {
             printError(_error: error)
         }
@@ -43,6 +44,7 @@ class RudderSampleTests: BaseTests {
                 .build()
             rudderClient.page(event: rudderEvent)
             rudderClient.flush()
+            sleep(2)
         } catch {
             printError(_error: error)
         }
@@ -58,6 +60,7 @@ class RudderSampleTests: BaseTests {
                 .build()
             rudderClient.screen(event: rudderEvent)
             rudderClient.flush()
+            sleep(2)
         } catch {
             printError(_error: error)
         }

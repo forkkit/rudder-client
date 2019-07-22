@@ -26,20 +26,20 @@ class ViewController: UIViewController {
     @IBAction func OnPostEvent(_ sender: Any, forEvent event: UIEvent) {
         appNameLabel.text = "Post Event Button clicked"
         do {
-            let dummyProduct = ECommerceProduct(
-                productId: "507f1f77bcf86cd799439011",
-                sku: "45790-32",
-                category: "Games",
-                name: "Monopoly: 3rd Edition",
-                brand: "Monopoly",
-                variant: "Single User",
-                price: 19,
-                quantity: 1,
-                coupon: "MAY_DEALS_3",
-                position: 1,
-                url: "https://www.example.com/product/path",
-                imageUrl: "https://www.example.com/product/path.jpg"
-            )
+//            let dummyProduct = ECommerceProduct(
+//                productId: "507f1f77bcf86cd799439011",
+//                sku: "45790-32",
+//                category: "Games",
+//                name: "Monopoly: 3rd Edition",
+//                brand: "Monopoly",
+//                variant: "Single User",
+//                price: 19,
+//                quantity: 1,
+//                coupon: "MAY_DEALS_3",
+//                position: 1,
+//                url: "https://www.example.com/product/path",
+//                imageUrl: "https://www.example.com/product/path.jpg"
+//            )
             
 //            var property: RudderProperty = try RudderPropertyBuilder().build()
 //            appDelegate.rudderClient?.track(event: RudderEventBuilder()
@@ -58,16 +58,16 @@ class ViewController: UIViewController {
             )
             
 //          PRODUCT_LIST_VIEWED
-            appDelegate.rudderClient?.track(event: RudderEventBuilder()
-                .setChannel(channel: "Test Channel")
-                .setEvent(event: ECommerceEvents.PRODUCT_LIST_VIEWED.getValue())
-                .setProperty(property: try ECommercePropertyBuilder()
-                    .addProductView(product: dummyProduct)
-                    .addProductView(product: dummyProduct)
-                    .addProductView(product: dummyProduct)
-                    .buildProductViewProperty(listId: "hot_deals_1", category: "Deals"))
-                .build()
-            )
+//            appDelegate.rudderClient?.track(event: RudderEventBuilder()
+//                .setChannel(channel: "Test Channel")
+//                .setEvent(event: ECommerceEvents.PRODUCT_LIST_VIEWED.getValue())
+//                .setProperty(property: try ECommercePropertyBuilder()
+//                    .addProductView(product: dummyProduct)
+//                    .addProductView(product: dummyProduct)
+//                    .addProductView(product: dummyProduct)
+//                    .buildProductViewProperty(listId: "hot_deals_1", category: "Deals"))
+//                .build()
+//            )
             
 //            PRODUCT_LIST_FILTERED
 //            appDelegate.rudderClient?.track(event: RudderEventBuilder()

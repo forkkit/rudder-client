@@ -11,4 +11,9 @@ import Foundation
 struct RudderLibraryInfo: Codable {
     let name: String = Constants.LIBRARY_NAME
     let version: String = Constants.LIBRARY_VERSION
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "rl_name"
+        case version = "rl_version"
+    }
 }

@@ -32,6 +32,12 @@ class RudderEventBuilder {
         return self
     }
     
+    internal var userId: String = ""
+    func setUserId(userId: String) -> RudderEventBuilder {
+        self.userId = userId
+        return self
+    }
+    
     func build() -> RudderEvent {
         return RudderEvent().fromBuilder(builder: self, template: EventRepository.eventTemplate!)
     }

@@ -11,4 +11,9 @@ import Foundation
 struct RudderOSInfo: Codable {
     var name: String = ""
     var version: String = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "rl_name"
+        case version = "rl_version"
+    }
 }

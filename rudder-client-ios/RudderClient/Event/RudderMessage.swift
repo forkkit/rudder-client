@@ -14,13 +14,15 @@ class RudderMessage : Encodable {
     let context : RudderContext = RudderContext()
     var type: String = ""
     let action: String = ""
-    let timestamp: String = String(Date().timeIntervalSince1970)
-    let anonymousId: String = UUID().uuidString.lowercased()
+    let timestamp: String = Date().toTimeStampString()
+    var anonymousId: String = ""
+    var userId: String = ""
     var event: String = ""
     var properties: RudderProperty = RudderProperty()
     var integrations: [String] = ["rudderlabs"]
     
     func initiate(template: RudderEventTemplate) {
+        self.anonymousId = template.deviceId
         self.context.initiate(template: template)
     }
     
@@ -29,16 +31,17 @@ class RudderMessage : Encodable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case messageId = "message_id"
-        case channel = "channel"
-        case context = "context"
-        case type = "type"
-        case action = "action"
-        case timestamp = "timestamp"
-        case anonymousId = "anonymous_id"
-        case event = "event"
-        case properties = "properties"
-        case integrations = "integrations"
+        case messageId = "rl_message_id"
+        case channel = "rl_channel"
+        case context = "rl_context"
+        case type = "rl_type"
+        case action = "rl_action"
+        case timestamp = "rl_timestamp"
+        case anonymousId = "rl_anonymous_id"
+        case userId = "rl_user_id"
+        case event = "rl_event"
+        case properties = "rl_properties"
+        case integrations = "rl_integrations"
     }
     
     func encode(to encoder: Encoder) throws {
@@ -50,6 +53,7 @@ class RudderMessage : Encodable {
         try container.encode(action, forKey: .action)
         try container.encode(timestamp, forKey: .timestamp)
         try container.encode(anonymousId, forKey: .anonymousId)
+        try container.encode(userId, forKey: .userId)
         try container.encode(event, forKey: .event)
         try container.encode(properties.property, forKey: .properties)
         try container.encode(integrations, forKey: .integrations)

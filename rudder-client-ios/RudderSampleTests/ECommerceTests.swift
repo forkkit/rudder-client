@@ -49,6 +49,7 @@ class ECommerceTests: BaseTests {
                 .build()
             rudderClient.track(event: rudderEvent)
             rudderClient.flush()
+            sleep(2)
         } catch {
             printError(_error: error)
         }
@@ -66,6 +67,7 @@ class ECommerceTests: BaseTests {
                 .build()
             rudderClient.track(event: rudderEvent)
             rudderClient.flush()
+            sleep(2)
         } catch {
             printError(_error: error)
         }
@@ -85,6 +87,7 @@ class ECommerceTests: BaseTests {
                 .build()
             rudderClient.track(event: rudderEvent)
             rudderClient.flush()
+            sleep(2)
         } catch {
             printError(_error: error)
         }
@@ -102,6 +105,7 @@ class ECommerceTests: BaseTests {
                 .build()
             rudderClient.track(event: rudderEvent)
             rudderClient.flush()
+            sleep(2)
         } catch {
             printError(_error: error)
         }
@@ -119,6 +123,98 @@ class ECommerceTests: BaseTests {
                 .build()
             rudderClient.track(event: rudderEvent)
             rudderClient.flush()
+            sleep(2)
+        } catch {
+            printError(_error: error)
+        }
+    }
+    
+//    PRODUCT_CLICKED
+    func testProductClicked() {
+        do {
+            let rudderEvent = RudderEventBuilder()
+                .setChannel(channel: "Test Channel")
+                .setEvent(event: ECommerceEvents.PRODUCT_CLICKED.getValue())
+                .setProperty(property: try ECommercePropertyBuilder()
+                    .addProductClicked(product: dummyProduct)
+                    .buildProductClick())
+                .build()
+            rudderClient.track(event: rudderEvent)
+            rudderClient.flush()
+            sleep(2)
+        } catch {
+            printError(_error: error)
+        }
+    }
+    
+//    PRODUCT_VIEWED
+    func testProductViewed() {
+        do {
+            let rudderEvent = RudderEventBuilder()
+                .setChannel(channel: "Test Channel")
+                .setEvent(event: ECommerceEvents.PRODUCT_VIEWED.getValue())
+                .setProperty(property: try ECommercePropertyBuilder()
+                    .addProductViewed(product: dummyProduct)
+                    .buildProductViewed())
+                .build()
+            rudderClient.track(event: rudderEvent)
+            rudderClient.flush()
+            sleep(2)
+        } catch {
+            printError(_error: error)
+        }
+    }
+    
+//    PRODUCT_ADDED
+    func testProductAdded() {
+        do {
+            let rudderEvent = RudderEventBuilder()
+                .setChannel(channel: "Test Channel")
+                .setEvent(event: ECommerceEvents.PRODUCT_ADDED.getValue())
+                .setProperty(property: try ECommercePropertyBuilder()
+                    .addProductToCart(product: dummyProduct)
+                    .buildProductAddedToCart(cartId: "skdjsidjsdkdj29j"))
+                .build()
+            rudderClient.track(event: rudderEvent)
+            rudderClient.flush()
+            sleep(2)
+        } catch {
+            printError(_error: error)
+        }
+    }
+    
+//    PRODUCT_REMOVED
+    func testProductRemoved() {
+        do {
+            let rudderEvent = RudderEventBuilder()
+                .setChannel(channel: "Test Channel")
+                .setEvent(event: ECommerceEvents.PRODUCT_REMOVED.getValue())
+                .setProperty(property: try ECommercePropertyBuilder()
+                    .removeProductFromCart(product: dummyProduct)
+                    .buildProductRemovedFromCart(cartId: "skdjsidjsdkdj29j"))
+                .build()
+            rudderClient.track(event: rudderEvent)
+            rudderClient.flush()
+            sleep(2)
+        } catch {
+            printError(_error: error)
+        }
+    }
+    
+//    CART_VIEWED
+    func testCartViewed() {
+        do {
+            let rudderEvent = RudderEventBuilder()
+                .setChannel(channel: "Test Channel")
+                .setEvent(event: ECommerceEvents.CART_VIEWED.getValue())
+                .setProperty(property: try ECommercePropertyBuilder()
+                    .createCart(cartId: "skdjsidjsdkdj29j")
+                    .addProductsToCart(products: dummyProduct, dummyProduct, dummyProduct)
+                    .buildForCartView())
+                .build()
+            rudderClient.track(event: rudderEvent)
+            rudderClient.flush()
+            sleep(2)
         } catch {
             printError(_error: error)
         }

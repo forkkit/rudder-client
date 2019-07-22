@@ -15,9 +15,9 @@ struct RudderApp: Codable {
     var version: String = ""
     
     enum CodingKeys: String, CodingKey {
-        case build = "build"
-        case name = "name"
-        case nameSpace = "namespace"
-        case version = "version"
+        case build = "rl_build"
+        case name = "rl_name"
+        case nameSpace = "rl_namespace"
+        case version = "rl_version"
     }
 }

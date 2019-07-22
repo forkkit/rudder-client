@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RudderContext: Codable {
+class RudderContext: Encodable {
     var app: RudderApp = RudderApp()
     var traits: RudderTraits = RudderTraits()
     var library: RudderLibraryInfo = RudderLibraryInfo()
@@ -24,6 +24,8 @@ class RudderContext: Codable {
         self.app.build = template.appBuild
         self.app.nameSpace = template.appNameSpace
         self.app.version = template.appVersion
+        
+        self.traits.anonymousId = template.deviceId
         
         self.os.name = template.osName
         self.os.version = template.osVersion
@@ -43,14 +45,14 @@ class RudderContext: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case app = "app"
-        case traits = "traits"
-        case library = "library"
-        case os = "os"
-        case screenInfo = "screen"
-        case userAgent = "user_agent"
-        case locale = "locale"
-        case deviceInfo = "device"
-        case network = "network"
+        case app = "rl_app"
+        case traits = "rl_traits"
+        case library = "rl_library"
+        case os = "rl_os"
+        case screenInfo = "rl_screen"
+        case userAgent = "rl_user_agent"
+        case locale = "rl_locale"
+        case deviceInfo = "rl_device"
+        case network = "rl_network"
     }
 }

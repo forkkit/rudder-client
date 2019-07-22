@@ -13,4 +13,11 @@ struct RudderDeviceInfo: Codable {
     var manufacturer: String = ""
     var model: String = ""
     var name: String = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "rl_id"
+        case manufacturer = "rl_manufacturer"
+        case model = "rl_model"
+        case name = "rl_name"
+    }
 }

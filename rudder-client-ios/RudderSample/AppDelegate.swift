@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        self.rudderClient = RudderClient().getInstance()
+        self.rudderClient = RudderClient().getInstance(endPointUri: "http://9cb63a34.ngrok.io", flushQueueSize: 10)
         return true
     }
 

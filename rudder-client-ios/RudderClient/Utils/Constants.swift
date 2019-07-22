@@ -7,7 +7,7 @@
 //
 
 class Constants {
-    static let END_POINT_URL: String = "28e967d8.ngrok.io"
+    static let END_POINT_URL: String = "beb12591.ngrok.io"
     static let FLUSH_QUEUE_SIZE: Int = 100
     static let LIBRARY_VERSION = "1.0"
     static let LIBRARY_NAME = "rudder-ios-client"

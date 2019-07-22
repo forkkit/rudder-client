@@ -8,6 +8,10 @@
 
 import Foundation
 
-struct RudderNetwork: Codable {
+struct RudderNetwork: Encodable {
     var carrier: String = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case carrier = "rl_carrier"
+    }
 }

@@ -14,8 +14,9 @@ def hello_world():
 
 @app.route('/hello', methods = ['POST'])
 def test_json() :
+	payload = request.get_json()
+	print(payload)
 	try :
-		payload = request.get_json()
 		with open('./payload/payload.schema.json') as f:
 			payload_schema = json.loads(f.read())
 		validate(instance = payload, schema = payload_schema)
@@ -34,8 +35,6 @@ def test_json() :
 			with open('./payload/'+schema_name) as f:
 				property_schema = json.loads(f.read())
 			validate(instance = event['rl_message']['rl_properties'], schema = property_schema)
-
-		print(payload)
 	except Exception as e:
 		print(e)
 		return "NOT OK", 400
