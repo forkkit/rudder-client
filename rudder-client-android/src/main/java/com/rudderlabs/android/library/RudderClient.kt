@@ -5,6 +5,9 @@ import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import com.rudderlabs.android.library.models.RudderEvent
+import com.rudderlabs.android.library.models.RudderEventBuilder
+import com.rudderlabs.android.library.models.RudderTraits
+import com.rudderlabs.android.library.models.porperties.RudderTraitsBuilder
 import com.rudderlabs.android.library.models.porperties.validateFor
 import com.rudderlabs.android.library.repository.EventRepository
 import com.rudderlabs.android.library.util.Constants
@@ -119,6 +122,26 @@ object RudderClient {
                 repository.dump(event.also { event -> event.message?.type = EventType.SCREEN.value })
             }
         }
+    }
+
+    /*
+    * api to fire identify event (traits)
+    * */
+    fun identify(traits: RudderTraits) {
+        repository.dump(
+                RudderEventBuilder()
+                        .setChannel("Identification Channel")
+                        .setEvent("Identify")
+                        .setUserId(traits.id!!)
+                        .build().also {
+                            it.message?.type = EventType.IDENTIFY.value
+                            it.message?.context?.traits = traits
+                        }
+        )
+    }
+
+    fun identify(traitsBuilder: RudderTraitsBuilder) {
+        this.identify(traitsBuilder.build())
     }
 
     /*

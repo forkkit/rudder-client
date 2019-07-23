@@ -1,9 +1,11 @@
 package com.rudderlabs.android.library.room
 
 import androidx.room.TypeConverter
+import com.google.gson.Gson
+import com.rudderlabs.android.library.models.TraitsAddress
+import com.rudderlabs.android.library.models.TraitsCompany
 import com.rudderlabs.android.library.models.porperties.RudderProperty
 import com.rudderlabs.android.library.util.fromJson
-import com.google.gson.Gson
 import java.util.*
 
 class DataTypeConverter {
@@ -35,5 +37,25 @@ class DataTypeConverter {
     @TypeConverter
     fun stringToIntegrationPlatforms(json: String): MutableList<String> {
         return Gson().fromJson(json)
+    }
+
+    @TypeConverter
+    fun traitsAddressToJson(traitsAddress: TraitsAddress) : String {
+        return Gson().toJson(traitsAddress)
+    }
+
+    @TypeConverter
+    fun jsonToTraitsAddress(json: String) : TraitsAddress {
+        return Gson().fromJson(json, TraitsAddress::class.java)
+    }
+
+    @TypeConverter
+    fun traitsCompanyToJson(traitsCompany: TraitsCompany) : String {
+        return  Gson().toJson(traitsCompany)
+    }
+
+    @TypeConverter
+    fun jsonToTraitsCompany(json: String) : TraitsCompany {
+        return Gson().fromJson(json, TraitsCompany::class.java)
     }
 }

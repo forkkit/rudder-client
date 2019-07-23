@@ -107,7 +107,7 @@ class RudderMessage {
     }
 
     fun populate(template: RudderEventTemplate): RudderMessage? {
-        this.anonymousId = template.deviceId // generate id based on context if needed
+        this.anonymousId = template.deviceId
         this.channel = "default_channel"
         this.context = RudderContext().populate(template)
         return this
@@ -152,7 +152,6 @@ class RudderContext {
     fun populate(template: RudderEventTemplate): RudderContext {
         return this.also {
             this.app = RudderApp().populate(template)
-            this.traits = RudderTraits().populate(template)
             this.library = RudderLibraryInfo().populate(template)
             this.os = RudderOSInfo().populate(template)
             this.screenInfo = RudderScreenInfo().populate(template)
@@ -188,13 +187,60 @@ class RudderApp {
 
 
 class RudderTraits {
-    @SerializedName("rl_anonymous_id")
-    var anonymousId: String = ""
+    @SerializedName("rl_address")
+    @TypeConverters(DataTypeConverter::class)
+    var address: TraitsAddress? = null
+    @SerializedName("rl_age")
+    var age: Int? = null
+    @SerializedName("rl_birthday")
+    var birthday: String? = null
+    @SerializedName("rl_company")
+    @TypeConverters(DataTypeConverter::class)
+    var company: TraitsCompany? = null
+    @SerializedName("rl_createdat")
+    var createdAt: String? = null
+    @SerializedName("rl_description")
+    var description: String? = null
+    @SerializedName("rl_email")
+    var email: String? = null
+    @SerializedName("rl_firstname")
+    var firstName: String? = null
+    @SerializedName("rl_gender")
+    var gender: String? = null
+    @SerializedName("rl_id")
+    var id: String? = null
+    @SerializedName("rl_lastname")
+    var lastName: String? = null
+    @SerializedName("rl_name")
+    var name: String? = null
+    @SerializedName("rl_phone")
+    var phone: String? = null
+    @SerializedName("rl_title")
+    var title: String? = null
+    @SerializedName("rl_username")
+    var userName: String? = null
+}
 
-    fun populate(template: RudderEventTemplate): RudderTraits {
-        this.anonymousId = template.deviceId
-        return this
-    }
+class TraitsAddress {
+    @SerializedName("rl_city")
+    var city: String = ""
+    @SerializedName("rl_country")
+    var country: String = ""
+    @SerializedName("rl_postalcode")
+    var postalCode: String = ""
+    @SerializedName("rl_state")
+    var state: String = ""
+    @SerializedName("rl_street")
+    var street: String = ""
+}
+
+class TraitsCompany {
+    @SerializedName("rl_name")
+    var name: String = ""
+    @SerializedName("rl_id")
+    var id: String = ""
+    @SerializedName("rl_industry")
+    var industry: String = ""
 }
 
 class RudderLibraryInfo {

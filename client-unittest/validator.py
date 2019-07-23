@@ -26,15 +26,22 @@ def test_json() :
 		for event in payload_batch:
 			validate(instance = event, schema = event_schema)
 			rl_type = event['rl_message']['rl_type']
-			if 'rl_event' in event['rl_message'].keys():
-				rl_event = event['rl_message']['rl_event']
-			else :
-				rl_event = ''
-			schema_name = rl_type + '-' + rl_event.lower().replace(' ', '-') + '.schema.json'
-			print(schema_name)
-			with open('./payload/'+schema_name) as f:
-				property_schema = json.loads(f.read())
-			validate(instance = event['rl_message']['rl_properties'], schema = property_schema)
+			if rl_type == 'identify' :
+				with open('./payload/traits.schema.json') as f:
+					traits_schema = json.loads(f.read())
+				validate(instance=event['rl_message']['rl_context']['rl_traits'], schema=traits_schema)
+			else:
+				if 'rl_properties' not in event['rl_message'].keys() :
+					return "NOT OK", 400
+				if 'rl_event' in event['rl_message'].keys():
+					rl_event = event['rl_message']['rl_event']
+				else :
+					rl_event = ''
+				schema_name = rl_type + '-' + rl_event.lower().replace(' ', '-') + '.schema.json'
+				print(schema_name)
+				with open('./payload/'+schema_name) as f:
+					property_schema = json.loads(f.read())
+				validate(instance = event['rl_message']['rl_properties'], schema = property_schema)
 	except Exception as e:
 		print(e)
 		return "NOT OK", 400
