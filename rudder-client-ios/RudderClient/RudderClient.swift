@@ -51,6 +51,19 @@ class RudderClient {
         eventRepository.dump(event: event.updateType(type: "screen"))
     }
     
+    func identify(traitsBuilder: RudderTraitsBuilder) {
+        self.identify(traits: traitsBuilder.build())
+    }
+    
+    func identify(traits: RudderTraits) {
+        let event = RudderEventBuilder()
+                        .setChannel(channel: "Identification Channel")
+                        .setEvent(event: "Identification")
+                        .setUserId(userId: traits.id!)
+                        .build()
+        eventRepository.dump(event: event.updateTraits(traits: traits))
+    }
+    
     func flush() {
         eventRepository.flush()
     }

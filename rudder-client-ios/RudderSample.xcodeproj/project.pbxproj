@@ -19,6 +19,9 @@
 		065509BB22CDC9450010F58B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 065509B922CDC9450010F58B /* LaunchScreen.storyboard */; };
 		065509C622CDC9450010F58B /* RudderSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065509C522CDC9450010F58B /* RudderSampleTests.swift */; };
 		065509D122CDC9450010F58B /* RudderSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065509D022CDC9450010F58B /* RudderSampleUITests.swift */; };
+		0678A23422E71FCB005D4DB5 /* TraitsAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0678A23322E71FCB005D4DB5 /* TraitsAddress.swift */; };
+		0678A23D22E71FE5005D4DB5 /* TraitsCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0678A23C22E71FE5005D4DB5 /* TraitsCompany.swift */; };
+		0678A23F22E72519005D4DB5 /* RudderTraitsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0678A23E22E72519005D4DB5 /* RudderTraitsBuilder.swift */; };
 		06BD921022D8E43E00CAFAD1 /* ECommerceProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BD920F22D8E43E00CAFAD1 /* ECommerceProperty.swift */; };
 		06C9910A22D5E500001DA0CB /* RudderMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C9910922D5E500001DA0CB /* RudderMessage.swift */; };
 		06D115BC22D84C2200EE78EE /* RudderContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D115BB22D84C2200EE78EE /* RudderContext.swift */; };
@@ -144,6 +147,9 @@
 		065509CC22CDC9450010F58B /* RudderSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RudderSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		065509D022CDC9450010F58B /* RudderSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudderSampleUITests.swift; sourceTree = "<group>"; };
 		065509D222CDC9450010F58B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0678A23322E71FCB005D4DB5 /* TraitsAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraitsAddress.swift; sourceTree = "<group>"; };
+		0678A23C22E71FE5005D4DB5 /* TraitsCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraitsCompany.swift; sourceTree = "<group>"; };
+		0678A23E22E72519005D4DB5 /* RudderTraitsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudderTraitsBuilder.swift; sourceTree = "<group>"; };
 		06B5ED0022CE19EB00D7EB94 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		06BD920F22D8E43E00CAFAD1 /* ECommerceProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECommerceProperty.swift; sourceTree = "<group>"; };
 		06C9910922D5E500001DA0CB /* RudderMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudderMessage.swift; sourceTree = "<group>"; };
@@ -368,6 +374,9 @@
 				06D115D022D84EE300EE78EE /* RudderDeviceInfo.swift */,
 				06D115D222D84F1F00EE78EE /* RudderNetwork.swift */,
 				06D115D422D864FA00EE78EE /* RudderEventTemplate.swift */,
+				0678A23322E71FCB005D4DB5 /* TraitsAddress.swift */,
+				0678A23C22E71FE5005D4DB5 /* TraitsCompany.swift */,
+				0678A23E22E72519005D4DB5 /* RudderTraitsBuilder.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -684,6 +693,7 @@
 				06D115D322D84F1F00EE78EE /* RudderNetwork.swift in Sources */,
 				06D115CB22D84E1A00EE78EE /* RudderLibraryInfo.swift in Sources */,
 				06FB3DB322CE27CD004CF8A7 /* RudderEventBuilder.swift in Sources */,
+				0678A23F22E72519005D4DB5 /* RudderTraitsBuilder.swift in Sources */,
 				06D82A6122DF051D00C5D7A2 /* ECommerceCartBuilder.swift in Sources */,
 				06D82A5D22DF050000C5D7A2 /* ECommercePromotion.swift in Sources */,
 				06D82A7022DF8E5100C5D7A2 /* TrackPropertyBuilder.swift in Sources */,
@@ -693,6 +703,8 @@
 				06D82A5722DF04C900C5D7A2 /* ECommerceOrder.swift in Sources */,
 				06BD921022D8E43E00CAFAD1 /* ECommerceProperty.swift in Sources */,
 				06D82A5322DF04B100C5D7A2 /* ECommerceCoupon.swift in Sources */,
+				0678A23D22E71FE5005D4DB5 /* TraitsCompany.swift in Sources */,
+				0678A23422E71FCB005D4DB5 /* TraitsAddress.swift in Sources */,
 				06D115BC22D84C2200EE78EE /* RudderContext.swift in Sources */,
 				06D82A4222DDA25800C5D7A2 /* PropertyObject.swift in Sources */,
 				065108A922CDF1F600C8B219 /* RudderClient.swift in Sources */,

@@ -25,6 +25,12 @@ class RudderEvent : Encodable {
         return self
     }
     
+    func updateTraits(traits: RudderTraits) -> RudderEvent {
+        self.message.context.traits = traits
+        self.message.type = "identify"
+        return self
+    }
+    
     enum CodingKeys: String, CodingKey {
         case message = "rl_message"
     }

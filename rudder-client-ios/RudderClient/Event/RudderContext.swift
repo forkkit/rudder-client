@@ -10,7 +10,7 @@ import Foundation
 
 class RudderContext: Encodable {
     var app: RudderApp = RudderApp()
-    var traits: RudderTraits = RudderTraits()
+    var traits: RudderTraits? = nil
     var library: RudderLibraryInfo = RudderLibraryInfo()
     var os: RudderOSInfo = RudderOSInfo()
     var screenInfo: RudderScreenInfo = RudderScreenInfo()
@@ -24,8 +24,6 @@ class RudderContext: Encodable {
         self.app.build = template.appBuild
         self.app.nameSpace = template.appNameSpace
         self.app.version = template.appVersion
-        
-        self.traits.anonymousId = template.deviceId
         
         self.os.name = template.osName
         self.os.version = template.osVersion

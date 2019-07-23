@@ -10,7 +10,7 @@ import XCTest
 @testable import RudderSample
 
 class BaseTests: XCTestCase {
-    let rudderClient: RudderClient = RudderClient().getInstance(endPointUri: "http://70e4b613.ngrok.io", flushQueueSize: 10)
+    let rudderClient: RudderClient = RudderClient().getInstance(endPointUri: "http://08cf8769.ngrok.io", flushQueueSize: 10)
     override func setUp() {
         Constants.DEBUG = true
     }

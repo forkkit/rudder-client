@@ -10,6 +10,34 @@ import XCTest
 @testable import RudderSample
 
 class RudderSampleTests: BaseTests {
+    func testIdentifyEvent() {
+        rudderClient.identify(traitsBuilder:
+            RudderTraitsBuilder()
+            .setCity(city: "New York")
+            .setCountry(country: "USA")
+            .setPostalCode(postalCode: "ZA22334")
+            .setState(state: "New York")
+            .setStreet(street: "Wall Street")
+            .setAge(age: 25)
+            .setBirthday(birthday: "05-09-1997")
+            .setCompanyName(companyName: "Rudder Labs")
+            .setCompanyId(companyId: "test--company--id")
+            .setIndustry(industry: "Software Engg")
+            .setDescription(description: "Rudder Labs Company")
+            .setEmail(email: "example@gmail.com")
+            .setFirstName(firstName: "Example")
+            .setGender(gender: "Female")
+            .setId(id: "8c3f46c6-2bab-4fa6-b59d-e8d3c8b4045f")
+            .setLastName(lastName: "Example")
+            .setName(name: "Example Traits")
+            .setPhone(phone: "9876543212")
+            .setTitle(title: "Mrs")
+            .setUserName(userName: "example_traits")
+        )
+        rudderClient.flush()
+        sleep(2)
+    }
+    
     func testSimpleTrackEvent() {
         do {
             let rudderEvent = RudderEventBuilder()
