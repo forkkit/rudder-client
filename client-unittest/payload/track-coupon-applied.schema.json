@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "coupon_name": {
+      "type": "string"
+    },
+    "discount": {
+      "type": "number"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "cart_id": {
+      "type": "string"
+    },
+    "order_id": {
+      "type": "string"
+    },
+    "coupon_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "coupon_name",
+    "discount",
+    "reason",
+    "cart_id",
+    "order_id",
+    "coupon_id"
+  ]
+}

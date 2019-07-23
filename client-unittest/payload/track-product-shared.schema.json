@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "brand": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number"
+    },
+    "quantity": {
+      "type": "number"
+    },
+    "coupon": {
+      "type": "string"
+    },
+    "position": {
+      "type": "number"
+    },
+    "url": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "share_via": {
+      "type": "string"
+    },
+    "share_message": {
+      "type": "string"
+    },
+    "recipient": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "product_id",
+    "sku",
+    "category",
+    "name",
+    "brand",
+    "variant",
+    "price",
+    "quantity",
+    "coupon",
+    "position",
+    "url",
+    "image_url",
+    "share_via",
+    "share_message",
+    "recipient"
+  ]
+}

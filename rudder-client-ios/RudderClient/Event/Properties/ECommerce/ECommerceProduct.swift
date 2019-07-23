@@ -49,7 +49,7 @@ extension ECommerceProduct {
 }
 
 extension ECommerceProduct {
-    func addProductToProerty(property: RudderProperty) {
+    func addProductToProperty(property: RudderProperty) {
         property.addStringProperty(key: CodingKeys.productId.rawValue, value: self.productId)
         property.addStringProperty(key: CodingKeys.sku.rawValue, value: self.sku)
         property.addStringProperty(key: CodingKeys.category.rawValue, value: self.category)

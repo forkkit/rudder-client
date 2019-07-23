@@ -27,15 +27,15 @@ class ECommerceTests: BaseTests {
     
     let dummyPromotion = ECommercePromotion(promotionId: "promo_1", creative: "top_banner_2", name: "75% store-wide shoe sale", position: "home_banner_top")
     
-    private func createCart(builder: ECommerceCartBuilder) {
+    private func createCart(builder: ECommercePropertyBuilder) {
         
     }
     
-    private func createOrder(builder: ECommerceCartBuilder) {
-        
+    private func createOrder(builder: ECommercePropertyBuilder) throws -> ECommercePropertyBuilder {
+        return try builder.createOrder(orderId: "50314b8e9bcf000000000000", affiliation: "Google Store", total: 0, value: 30, revenue: 25, shippingCost: 3, tax: 2, discount: 2.5, coupon: "hasbros", currency: "USD").addProductsToOrder(products: dummyProduct, dummyProduct, dummyProduct)
     }
     
-    private func updateOrder(builder: ECommerceCartBuilder) {
+    private func updateOrder(builder: ECommercePropertyBuilder) {
         
     }
     
@@ -218,5 +218,288 @@ class ECommerceTests: BaseTests {
         } catch {
             printError(_error: error)
         }
+    }
+    
+//    CHECKOUT_STARTED
+    func testCheckoutStarted() {
+        do {
+            var builder = ECommercePropertyBuilder()
+            builder = try createOrder(builder: builder)
+            let rudderEvent = RudderEventBuilder()
+                .setChannel(channel: "Test Channel")
+                .setEvent(event: ECommerceEvents.CHECKOUT_STARTED.getValue())
+                .setProperty(property: try builder.buildForOrderProperty())
+                .build()
+            rudderClient.track(event: rudderEvent)
+            rudderClient.flush()
+            sleep(2)
+        } catch {
+            printError(_error: error)
+        }
+    }
+    
+//    CHECKOUT_STEP_VIEWED
+    func testCheckoutStepViewed() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.CHECKOUT_STEP_VIEWED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForCheckoutProperty(step: 2, shippingMethod: "Fedex", paymentMethod: "Visa", checkoutId: "50314b8e9bcf000000000000", orderId: "50314b8e9bcf000000000000"))
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    CHECKOUT_STEP_COMPLETED
+    func testCheckoutStepCompleted() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.CHECKOUT_STEP_COMPLETED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForCheckoutProperty(step: 2, shippingMethod: "Fedex", paymentMethod: "Visa", checkoutId: "50314b8e9bcf000000000000", orderId: "50314b8e9bcf000000000000"))
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    PAYMENT_INFO_ENTERED
+    func testPaymentInfoEntered() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.PAYMENT_INFO_ENTERED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForCheckoutProperty(step: 2, shippingMethod: "Fedex", paymentMethod: "Visa", checkoutId: "50314b8e9bcf000000000000", orderId: "50314b8e9bcf000000000000"))
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    ORDER_UPDATED
+    func testOrderUpdated() {
+        do {
+            var builder = ECommercePropertyBuilder()
+            builder = try createOrder(builder: builder)
+            let rudderEvent = RudderEventBuilder()
+                .setChannel(channel: "Test Channel")
+                .setEvent(event: ECommerceEvents.ORDER_UPDATED.getValue())
+                .setProperty(property: try builder.buildForOrderProperty())
+                .build()
+            rudderClient.track(event: rudderEvent)
+            rudderClient.flush()
+            sleep(2)
+        } catch {
+            printError(_error: error)
+        }
+    }
+    
+//    ORDER_COMPLETED
+    func testOrderCompleted()  {
+        do {
+            var builder = ECommercePropertyBuilder()
+            builder = try createOrder(builder: builder)
+            let rudderEvent = RudderEventBuilder()
+                .setChannel(channel: "Test Channel")
+                .setEvent(event: ECommerceEvents.ORDER_COMPLETED.getValue())
+                .setProperty(property: try builder.buildForOrderProperty())
+                .build()
+            rudderClient.track(event: rudderEvent)
+            rudderClient.flush()
+            sleep(2)
+        } catch {
+            printError(_error: error)
+        }
+    }
+    
+//    ORDER_REFUNDED ==> FULL
+    func testOrderRefundedFull() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.ORDER_REFUNDED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForFullRefund( orderId: "50314b8e9bcf000000000000"))
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    ORDER_REFUNDED ==> PARTIAL
+    func testOrderRefundedPartial() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.ORDER_REFUNDED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForPartialRefund(orderId: "50314b8e9bcf000000000000", total: 30, currency: "USD", products: dummyProduct, dummyProduct)
+            )
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    ORDER_CANCELLED
+    func testOrderCancelled()  {
+        do {
+            var builder = ECommercePropertyBuilder()
+            builder = try createOrder(builder: builder)
+            let rudderEvent = RudderEventBuilder()
+                .setChannel(channel: "Test Channel")
+                .setEvent(event: ECommerceEvents.ORDER_CANCELLED.getValue())
+                .setProperty(property: try builder.buildForOrderProperty())
+                .build()
+            rudderClient.track(event: rudderEvent)
+            rudderClient.flush()
+            sleep(2)
+        } catch {
+            printError(_error: error)
+        }
+    }
+    
+//    COUPON_ENTERED
+    func testCouponEntered() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.COUPON_ENTERED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForCouponProperty(couponName: "May Deals", discount: 2, cartId: "skdjsidjsdkdj29j", orderId: "50314b8e9bcf000000000000", couponId: "may_deals_2016")
+            )
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    COUPON_APPLIED
+    func testCouponApplied() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.COUPON_APPLIED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForCouponProperty(couponName: "May Deals", discount: 2, cartId: "skdjsidjsdkdj29j", orderId: "50314b8e9bcf000000000000", couponId: "may_deals_2016")
+            )
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    COUPON_DENIED
+    func testCouponDenied() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.COUPON_DENIED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForCouponProperty(couponName: "May Deals 2016", discount: 2, reason: "expired", cartId: "skdjsidjsdkdj29j", orderId: "50314b8e9bcf000000000000", couponId: "may_deals_2016")
+            )
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    COUPON_REMOVED
+    func testCouponRemoved()  {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.COUPON_REMOVED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForCouponProperty(couponName: "May Deals", discount: 2, cartId: "skdjsidjsdkdj29j", orderId: "50314b8e9bcf000000000000", couponId: "may_deals_2016")
+            )
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    PRODUCT_ADDED_TO_WISH_LIST
+    func testProductAddedToWishList() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.PRODUCT_ADDED_TO_WISH_LIST.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForWishList(wishListId: "skdjsidjsdkdj29j", wishListName: "Loved Games", product: dummyProduct)
+            )
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    PRODUCT_REMOVED_FROM_WISH_LIST
+    func testProductRemovedFromWishList() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.PRODUCT_REMOVED_FROM_WISH_LIST.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForWishList(wishListId: "skdjsidjsdkdj29j", wishListName: "Loved Games", product: dummyProduct)
+            )
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    WISH_LIST_PRODUCT_ADDED_TO_CART
+    func testWishListProductAddedToCart() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.WISH_LIST_PRODUCT_ADDED_TO_CART.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForWishListToCart(wishListId: "skdjsidjsdkdj29j", wishListName: "Loved Games", cartId: "skdjsidjsdkdj29j", product: dummyProduct)
+            )
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    PRODUCT_SHARED
+    func testProductShared() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.PRODUCT_SHARED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForProductShared(shareVia: "email", shareMessage: "Hey, check out this item", recipient: "friend@gmail.com", product: dummyProduct)
+            )
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
+    }
+    
+//    CART_SHARED
+    func testCartShared()  {
+        do {
+            let rudderEvent = RudderEventBuilder()
+                .setChannel(channel: "Test Channel")
+                .setEvent(event: ECommerceEvents.CART_SHARED.getValue())
+                .setProperty(property: try ECommercePropertyBuilder()
+                    .createCart(cartId: "skdjsidjsdkdj29j")
+                    .addProductsToCart(products: dummyProduct, dummyProduct, dummyProduct)
+                    .buildForCartShared(shareVia: "email", shareMessage: "Hey, check out this item", recipient: "friend@gmail.com"))
+                .build()
+            rudderClient.track(event: rudderEvent)
+            rudderClient.flush()
+            sleep(2)
+        } catch {
+            printError(_error: error)
+        }
+    }
+    
+//    PRODUCT_REVIEWED
+    func testProductReviewed() {
+        let rudderEvent = RudderEventBuilder()
+            .setChannel(channel: "Test Channel")
+            .setEvent(event: ECommerceEvents.PRODUCT_REVIEWED.getValue())
+            .setProperty(property: ECommercePropertyBuilder()
+                .buildForProductReview(productId: dummyProduct.productId, reviewId: "kdfjrj39fj39jf3", reviewBody: "I love this product", rating: "5")
+            )
+            .build()
+        rudderClient.track(event: rudderEvent)
+        rudderClient.flush()
+        sleep(2)
     }
 }

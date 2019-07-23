@@ -158,7 +158,7 @@ class ECommercePropertyBuilder {
             throw InvalidStateError(_message: "Product is not added")
         }
         let property = RudderProperty()
-        productClicked?.addProductToProerty(property: property)
+        productClicked?.addProductToProperty(property: property)
         return property
     }
     
@@ -174,7 +174,7 @@ class ECommercePropertyBuilder {
             throw InvalidStateError(_message: "Product is not added")
         }
         let property = RudderProperty()
-        productViewed?.addProductToProerty(property: property)
+        productViewed?.addProductToProperty(property: property)
         return property
     }
     
@@ -191,7 +191,7 @@ class ECommercePropertyBuilder {
         }
         
         let property = RudderProperty()
-        productAddedToCart?.addProductToProerty(property: property)
+        productAddedToCart?.addProductToProperty(property: property)
         property.addStringProperty(key: "cart_id", value: cartId)
         return property
     }
@@ -208,7 +208,7 @@ class ECommercePropertyBuilder {
             throw InvalidStateError(_message: "Product action not perfomed")
         }
         let property = RudderProperty()
-        productRemovedFromCart?.addProductToProerty(property: property)
+        productRemovedFromCart?.addProductToProperty(property: property)
         property.addStringProperty(key: "cart_id", value: cartId)
         return property
     }
@@ -236,6 +236,144 @@ class ECommercePropertyBuilder {
         }
         let property = RudderProperty()
         cartViewed!.addToProperty(property: property)
+        return property
+    }
+    
+//    CHECKOUT_STARTED
+    private var order: ECommerceOrder? = nil
+    func createOrder(orderId: String, affiliation: String, total: Float, value: Float, revenue: Float, shippingCost: Float, tax: Float, discount: Float, coupon: String, currency: String) -> ECommercePropertyBuilder {
+        self.order = ECommerceOrder(orderId: orderId, affiliation: affiliation, total: total, value: value, revenue: revenue, shippingCost: shippingCost, tax: tax, discount: discount, coupon: coupon, currency: currency, products: [])
+        return self
+    }
+    
+    func updateOrder(orderId: String, affiliation: String, total: Float, value: Float, revenue: Float, shippingCost: Float, tax: Float, discount: Float, coupon: String, currency: String) throws -> ECommercePropertyBuilder {
+        if (self.order == nil) {
+            throw InvalidStateError(_message: "Order is not created")
+        }
+        self.order = ECommerceOrder(orderId: orderId, affiliation: affiliation, total: total, value: value, revenue: revenue, shippingCost: shippingCost, tax: tax, discount: discount, coupon: coupon, currency: currency, products: self.order!.products)
+        return self
+    }
+    
+    func addProductsToOrder(products: ECommerceProduct...) throws -> ECommercePropertyBuilder {
+        if (self.order == nil) {
+            
+        }
+        self.order!.addProducts(products: products)
+        return self
+    }
+    
+//    CHECKOUT_STARTED, ORDER_UPDATED, ORDER_COMPLETED
+    func buildForOrderProperty() throws -> RudderProperty {
+        if (self.order == nil) {
+            throw InvalidStateError(_message: "Order is not created")
+        }
+        
+        let property = RudderProperty()
+        self.order!.addToProperty(property: property)
+        return property
+    }
+    
+//    CHECKOUT_STEP_VIEWED, CHECKOUT_STEP_COMPLETED, PAYMENT_INFO_ENTERED
+    func buildForCheckoutProperty(step: Int, shippingMethod: String, paymentMethod: String, checkoutId: String, orderId: String) -> RudderProperty {
+        let property = RudderProperty()
+        
+        property.addIntProperty(key: "step", value: step)
+        property.addStringProperty(key: "shipping_method", value: shippingMethod)
+        property.addStringProperty(key: "payment_method", value: paymentMethod)
+        property.addStringProperty(key: "checkout_id", value: checkoutId)
+        property.addStringProperty(key: "order_id", value: orderId)
+        
+        return property
+    }
+    
+//    ORDER_REFUNDED
+    func buildForFullRefund(orderId: String) -> RudderProperty {
+        let property = RudderProperty()
+        
+        property.addStringProperty(key: "order_id", value: orderId)
+        
+        return property
+    }
+    
+    func buildForPartialRefund(orderId: String, total: Float, currency: String, products: ECommerceProduct...) -> RudderProperty {
+        let property = RudderProperty()
+        
+        var productArr:[PropertyObject] = []
+        for product in products {
+            productArr.append(product.toProperty())
+        }
+        
+        property.addStringProperty(key: "order_id", value: orderId)
+        property.addFloatProperty(key: "total", value: total)
+        property.addStringProperty(key: "currency", value: currency)
+        property.addListProperty(key: "products", value: productArr)
+        
+        return property
+    }
+    
+//    COUPON_ENTERED
+    func buildForCouponProperty(couponName: String, discount: Int, reason: String =  "", cartId: String, orderId: String, couponId: String) -> RudderProperty {
+        let property = RudderProperty()
+        property.addStringProperty(key: "coupon_name", value: couponName)
+        property.addIntProperty(key: "discount", value: discount)
+        property.addStringProperty(key: "reason", value: reason)
+        property.addStringProperty(key: "cart_id", value: cartId)
+        property.addStringProperty(key: "order_id", value: orderId)
+        property.addStringProperty(key: "coupon_id", value: couponId)
+        return property
+    }
+    
+//    PRODUCT_ADDED_TO_WISH_LIST
+    func buildForWishList(wishListId: String, wishListName: String, product: ECommerceProduct) -> RudderProperty {
+        let property = RudderProperty()
+        product.addProductToProperty(property: property)
+        property.addStringProperty(key: "wishlist_id", value: wishListId)
+        property.addStringProperty(key: "wishlist_name", value: wishListName)
+        return property
+    }
+    
+//    WISH_LIST_PRODUCT_ADDED_TO_CART
+    func buildForWishListToCart(wishListId: String, wishListName: String, cartId: String, product: ECommerceProduct) -> RudderProperty {
+        let property = RudderProperty()
+        product.addProductToProperty(property: property)
+        property.addStringProperty(key: "wishlist_id", value: wishListId)
+        property.addStringProperty(key: "wishlist_name", value: wishListName)
+        property.addStringProperty(key: "cart_id", value: cartId)
+        return property
+    }
+    
+//    PRODUCT_SHARED
+    func buildForProductShared(shareVia: String, shareMessage: String, recipient: String, product: ECommerceProduct) -> RudderProperty {
+        let property = RudderProperty()
+        product.addProductToProperty(property: property)
+        property.addStringProperty(key: "share_via", value: shareVia)
+        property.addStringProperty(key: "share_message", value: shareMessage)
+        property.addStringProperty(key: "recipient", value: recipient)
+        return property
+    }
+    
+//    CART_SHARED
+    func buildForCartShared(shareVia: String, shareMessage: String, recipient: String) throws -> RudderProperty {
+        if (self.cartViewed == nil) {
+            throw InvalidStateError(_message: "Cart is not initialized")
+        } else if (self.cartViewed?.products.count == 0) {
+            throw InvalidStateError(_message: "Cart does not have any product")
+        }
+        let property = RudderProperty()
+        self.cartViewed!.addToProperty(property: property)
+        property.addStringProperty(key: "share_via", value: shareVia)
+        property.addStringProperty(key: "share_message", value: shareMessage)
+        property.addStringProperty(key: "recipient", value: recipient)
+        return property
+    }
+    
+//    PRODUCT_REVIEWED
+    func buildForProductReview(productId: String, reviewId: String, reviewBody: String, rating: String) -> RudderProperty {
+        let property = RudderProperty()
+        property.addStringProperty(key: "product_id", value: productId)
+        property.addStringProperty(key: "review_id", value: reviewId)
+        property.addStringProperty(key: "review_body", value: reviewBody)
+        property.addStringProperty(key: "rating", value: rating)
         return property
     }
  }
