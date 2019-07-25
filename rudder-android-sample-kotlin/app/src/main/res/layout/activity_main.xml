@@ -173,6 +173,13 @@
                     android:layout_marginTop="16dp"
                     android:id="@+id/pageViewBtn"
                     android:text="Page View Button"/>
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/identifyBtn"
+                    android:text="Identify"/>
         </LinearLayout>
 
     </ScrollView>

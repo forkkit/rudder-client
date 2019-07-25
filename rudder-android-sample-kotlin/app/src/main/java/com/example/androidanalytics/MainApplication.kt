@@ -16,6 +16,6 @@ class MainApplication : Application() {
 
         instance = this
 
-        rudderInstance = RudderClient.getInstance(context = this, endPointUri = "http://10.24.21.170:8080/")
+        rudderInstance = RudderClient.getInstance(context = this, endPointUri = "http://04c20e28.ngrok.io/")
     }
 }

@@ -3,7 +3,7 @@ package com.example.androidanalytics
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.rudderlabs.android.library.models.RudderEventBuilder
-import com.rudderlabs.android.library.models.porperties.Property
+import com.rudderlabs.android.library.models.porperties.RudderTraitsBuilder
 import com.rudderlabs.android.library.models.porperties.TypeValuePair
 import com.rudderlabs.android.library.models.porperties.ecommerce.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,21 +16,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         screenViewBtn.setOnClickListener {
-            val rudderEvent = RudderEventBuilder()
-                .setEvent("screenview")
-                .setChannel("Android Test Channel")
-                .setType("screen")
-                .setProperty(Property().also {
-                    it.addProperty("name", "Home Screen View")
-                }).build()
-            MainApplication.instance?.getRudderInstance()?.track(event = rudderEvent)
+//            val rudderEvent = RudderEventBuilder()
+//                .setEvent("screenview")
+//                .setChannel("Android Test Channel")
+//                //.setType("screen")
+//                .setProperty(Property().also {
+//                    it.addProperty("name", "Home Screen View")
+//                }).build()
+//            MainApplication.instance?.getRudderInstance()?.track(event = rudderEvent)
         }
 
         productSearchBtn.setOnClickListener {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCTS_SEARCHED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(
                     ECommercePropertyBuilder()
                         .addQuery(queryField.text.toString())
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_LIST_VIEWED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(
                     ECommercePropertyBuilder()
                         .addListId("hot_deals_1")
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_LIST_FILTERED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(
                     ECommercePropertyBuilder()
                         .addListId("todays_deals_may_11_2016")
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PROMOTION_VIEWED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(
                     ECommercePropertyBuilder()
                         .addPromotion(
@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PROMOTION_CLICKED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(
                     ECommercePropertyBuilder()
                         .addPromotion(
@@ -164,7 +164,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_CLICKED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(
                     ECommercePropertyBuilder()
                         .addProductViewed(
@@ -192,7 +192,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_VIEWED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(
                     ECommercePropertyBuilder()
                         .addProductViewed(
@@ -239,7 +239,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_ADDED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildProductProperty())
                 .build()
 
@@ -271,7 +271,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_REMOVED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildProductProperty())
                 .build()
 
@@ -303,7 +303,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_REMOVED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildProductProperty())
                 .build()
 
@@ -333,7 +333,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.CART_VIEWED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildCartProperty())
                 .build()
 
@@ -375,7 +375,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.CART_VIEWED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildOrderProperty())
                 .build()
 
@@ -422,7 +422,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.CHECKOUT_STEP_VIEWED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildCheckoutProperty())
                 .build()
 
@@ -467,7 +467,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.CHECKOUT_STEP_COMPLETED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildCheckoutProperty())
                 .build()
 
@@ -513,7 +513,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PAYMENT_INFO_ENTERED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildCheckoutProperty())
                 .build()
 
@@ -565,7 +565,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.ORDER_UPDATED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildOrderProperty())
                 .build()
 
@@ -617,7 +617,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.ORDER_COMPLETED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildOrderProperty())
                 .build()
 
@@ -669,7 +669,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.ORDER_REFUNDED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildOrderProperty())
                 .build()
 
@@ -721,7 +721,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.ORDER_CANCELLED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildOrderProperty())
                 .build()
 
@@ -762,7 +762,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.COUPON_ENTERED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildCouponProperty())
                 .build()
 
@@ -803,7 +803,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.COUPON_APPLIED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildCouponProperty())
                 .build()
 
@@ -845,7 +845,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.COUPON_DENIED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildCouponProperty())
                 .build()
 
@@ -887,7 +887,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.COUPON_REMOVED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildCouponProperty())
                 .build()
 
@@ -916,7 +916,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_ADDED_TO_WISH_LIST.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildForWishList())
                 .build()
 
@@ -946,7 +946,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_REMOVED_FROM_WISH_LIST.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildForWishList())
                 .build()
 
@@ -978,7 +978,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.WISH_LIST_PRODUCT_ADDED_TO_CART.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(builder.buildForWishListCart())
                 .build()
 
@@ -1011,7 +1011,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_SHARED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(property)
                 .build()
 
@@ -1045,7 +1045,7 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.CART_SHARED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(property)
                 .build()
 
@@ -1078,11 +1078,39 @@ class MainActivity : AppCompatActivity() {
             val rudderEvent = RudderEventBuilder()
                 .setEvent(ECommerceEvents.PRODUCT_REVIEWED.value)
                 .setChannel("Test Channel")
-                .setType("Test Type")
+                //.setType("Test Type")
                 .setProperty(property)
                 .build()
 
             MainApplication.instance?.getRudderInstance()?.track(event = rudderEvent)
+        }
+
+        identifyBtn.setOnClickListener {
+            MainApplication.instance?.getRudderInstance()?.identify(
+                RudderTraitsBuilder()
+                    .setCity("New York")
+                    .setCountry("USA")
+                    .setPostalCode("ZA22334")
+                    .setState("New York")
+                    .setStreet("Wall Street")
+                    .setAge(25)
+                    .setBirthday("05-09-1997")
+                    .setCompanyName("Rudder Labs")
+                    .setCompanyId("test--company--id")
+                    .setIndustry("Software Engg")
+                    .setDescription("Rudder Labs Company")
+                    .setEmail("example@gmail.com")
+                    .setFirstName("Example")
+                    .setGender("Female")
+                    .setId("8c3f46c6-2bab-4fa6-b59d-e8d3c8b4045f")
+                    .setLastName("Traits")
+                    .setName("Example Traits")
+                    .setPhone("9876543212")
+                    .setTitle("Mrs")
+                    .setUserName("example_traits")
+                    .build()
+            )
+            MainApplication.instance?.getRudderInstance()?.flush()
         }
 
         flushButton.setOnClickListener {
