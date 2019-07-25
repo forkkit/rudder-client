@@ -41,10 +41,6 @@ open class RudderProperty {
         }
     }
 
-    fun hasProperty(key: String): Boolean {
-        return propertyMap.containsKey(key)
-    }
-
     fun <T> addAsMap(item: T) {
         addProperties(item.convertToMap())
     }

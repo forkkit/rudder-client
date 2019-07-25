@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sdk", "sdk", "{4DFDA147-9CDE-42EC-81A2-4D70D4596E77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rudder-unity-sdk", "sdk\rudder-unity-sdk\rudder-unity-sdk.csproj", "{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Debug|x64.Build.0 = Debug|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Debug|x86.Build.0 = Debug|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Release|x64.ActiveCfg = Release|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Release|x64.Build.0 = Release|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Release|x86.ActiveCfg = Release|Any CPU
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Release|x86.Build.0 = Release|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Debug|x64.Build.0 = Debug|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Debug|x86.Build.0 = Debug|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Release|x64.ActiveCfg = Release|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Release|x64.Build.0 = Release|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Release|x86.ActiveCfg = Release|Any CPU
+		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8} = {4DFDA147-9CDE-42EC-81A2-4D70D4596E77}
+	EndGlobalSection
+EndGlobal
