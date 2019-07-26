@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>com.rudderlabs.unity.library</RootNamespace>
   </PropertyGroup>
 
@@ -14,12 +14,15 @@
   <ItemGroup>
     <PackageReference Include="UnityEngine" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="ILMerge" Version="3.0.29" />
+    <PackageReference Include="MSBuild.ILMerge.Task" Version="1.0.5" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Newtonsoft.Json\Dynamic.snk" />
     <None Remove="Newtonsoft.Json\Newtonsoft.Json.ruleset" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="JSON\JsonProperty.cs" />
-  </ItemGroup>
+  <Target Name="ILMerge">
+    <!-- the ILMergePath property points to the location of ILMerge.exe console application -->
+    <Exec Command="$(ILMergeConsolePath) /out:../Assets/Merged.dll build/rudder-unity-client.dll Newsoft.Json.dll" />
+  </Target>
 </Project>
