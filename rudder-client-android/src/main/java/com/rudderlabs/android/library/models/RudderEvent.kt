@@ -41,6 +41,14 @@ class RudderEvent {
         message = RudderMessage().populate(template)
         return this
     }
+
+    fun addIntegrations(platforms: Array<RudderIntegrationPlatform>) {
+        message?.integrations?.addAll(platforms.map { it.value })
+    }
+
+    fun addIntegration(platform: RudderIntegrationPlatform) {
+        message?.integrations?.add(platform.value)
+    }
 }
 
 class RudderMessage {
@@ -97,14 +105,6 @@ class RudderMessage {
     @SerializedName("rl_integrations")
     @TypeConverters(DataTypeConverter::class)
     var integrations: MutableList<String> = mutableListOf(RudderIntegrationPlatform.RUDDERLABS.value)
-
-    fun addIntegrations(platforms: Array<RudderIntegrationPlatform>) {
-        integrations.addAll(platforms.map { it.value })
-    }
-
-    fun addIntegration(platform: RudderIntegrationPlatform) {
-        integrations.add(platform.value)
-    }
 
     fun populate(template: RudderEventTemplate): RudderMessage? {
         this.anonymousId = template.deviceId
