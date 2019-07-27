@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sdk", "sdk", "{4DFDA147-9CDE-42EC-81A2-4D70D4596E77}"
 EndProject
@@ -17,9 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,7 +44,13 @@ Global
 		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Release|x86.ActiveCfg = Release|Any CPU
 		{15EFF30F-8DD7-46DE-AB4C-401A17EBE70A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CA23AAE6-A0CD-4682-AE95-C1BB4376A7B8} = {4DFDA147-9CDE-42EC-81A2-4D70D4596E77}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0772E83C-6EB0-4A6F-BD78-9A45AFD5ECEC}
 	EndGlobalSection
 EndGlobal
