@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{F569CA23-59F1-6ECF-AE27-C9F8F92BABE6}</ProjectGuid>
+    <ProjectGuid>{94AFDC40-B996-F612-0988-5B6CA0411A39}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,6 +60,7 @@
      <Compile Include="Assets\sdk\Event\Property\PagePropertyBuilder.cs" />
      <Compile Include="Assets\sdk\Event\Property\RudderProperty.cs" />
      <Compile Include="Assets\sdk\Event\Property\RudderPropertyBuilder.cs" />
+     <Compile Include="Assets\sdk\Event\Property\RudderUserProperty.cs" />
      <Compile Include="Assets\sdk\Event\Property\ScreenPropertyBuilder.cs" />
      <Compile Include="Assets\sdk\Event\Property\TrackPropertyBuilder.cs" />
      <Compile Include="Assets\sdk\Event\RudderEvent.cs" />
@@ -71,25 +72,25 @@
      <Compile Include="Assets\sdk\EventRepository.cs" />
      <Compile Include="Assets\sdk\RudderClient.cs" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>/Users/arnab/Projects/LibTestProj/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>/Users/arnab/Projects/LibTestProj/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>/Users/arnab/Projects/LibTestProj/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>/Users/arnab/Projects/LibTestProj/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>/Users/arnab/Projects/LibTestProj/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>/Users/arnab/Projects/LibTestProj/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
- <HintPath>/Users/arnab/Projects/LibTestProj/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -275,16 +276,16 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>/Users/arnab/Projects/LibTestProj/Assets/sdk/Newtonsoft.Json.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Assets/sdk/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>/Users/arnab/Projects/LibTestProj/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>/Users/arnab/Projects/LibTestProj/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>/Users/arnab/Projects/LibTestProj/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>/Users/arnab/workspace/rudder-client/RudderUnitySdkProj/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
