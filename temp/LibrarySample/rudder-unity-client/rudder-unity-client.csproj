@@ -14,8 +14,10 @@
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="UnityEngine" Version="1.0.0" />
-    <PackageReference Include="ILMerge" Version="3.0.29" />
-    <PackageReference Include="MSBuild.ILMerge.Task" Version="1.0.5" />
+    <PackageReference Include="ILRepack" Version="2.0.17" />
+    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.17" />
+    <PackageReference Include="ILRepack.Lib.MSBuild" Version="2.1.7" />
+    <PackageReference Include="ILRepack.Lib" Version="2.0.17" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Newtonsoft.Json\Dynamic.snk" />
@@ -23,7 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\Newtonsoft.Json\Src\Newtonsoft.Json\bin\Release\Net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>$(OutputPath)../../../../../Newtonsoft.Json/Src/Newtonsoft.Json/bin/Release/net45/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
