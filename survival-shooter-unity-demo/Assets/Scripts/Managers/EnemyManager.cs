@@ -7,9 +7,9 @@ public class EnemyManager : MonoBehaviour
     public float spawnTime = 3f;
     public Transform[] spawnPoints;
 
-
     void Start ()
     {
+        Debug.Log("I have started");
         InvokeRepeating ("Spawn", spawnTime, spawnTime);
     }
 

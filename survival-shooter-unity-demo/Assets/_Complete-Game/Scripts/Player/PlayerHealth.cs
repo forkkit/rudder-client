@@ -2,19 +2,20 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using com.rudderlabs.unity.library.Event.Property;
+using com.rudderlabs.unity.library.Event;
 
 namespace CompleteProject
 {
     public class PlayerHealth : MonoBehaviour
     {
-        public int startingHealth = 100;                            // The amount of health the player starts the game with.
+        public int startingHealth = 1000;                            // The amount of health the player starts the game with.
         public int currentHealth;                                   // The current health the player has.
         public Slider healthSlider;                                 // Reference to the UI's health bar.
         public Image damageImage;                                   // Reference to an image to flash on the screen on being hurt.
         public AudioClip deathClip;                                 // The audio clip to play when the player dies.
         public float flashSpeed = 5f;                               // The speed the damageImage will fade at.
         public Color flashColour = new Color(1f, 0f, 0f, 0.1f);     // The colour the damageImage is set to, to flash.
-
 
         Animator anim;                                              // Reference to the Animator component.
         AudioSource playerAudio;                                    // Reference to the AudioSource component.
@@ -77,6 +78,17 @@ namespace CompleteProject
                 // ... it should die.
                 Death ();
             }
+
+            Debug.Log("Tracking Player TakeDamage");
+            RudderProperty rudderProperty = new RudderProperty();
+            rudderProperty.AddProperty("category", "TakeDamage");
+            rudderProperty.AddProperty("transform_position", transform.position.ToString());
+            RudderEvent rudderEvent = new RudderEventBuilder()
+            .SetChannel("Test Channel")
+            .SetEventName("PlayerHealth_TakeDamage")
+            .SetRudderProperty(rudderProperty)
+            .Build();
+            CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
         }
 
 
@@ -98,6 +110,17 @@ namespace CompleteProject
             // Turn off the movement and shooting scripts.
             playerMovement.enabled = false;
             playerShooting.enabled = false;
+
+            Debug.Log("Tracking Player Death");
+            RudderProperty rudderProperty = new RudderProperty();
+            rudderProperty.AddProperty("category", "Death");
+            rudderProperty.AddProperty("transform_position", transform.position.ToString());
+            RudderEvent rudderEvent = new RudderEventBuilder()
+            .SetChannel("Test Channel")
+            .SetEventName("PlayerHealth_Death")
+            .SetRudderProperty(rudderProperty)
+            .Build();
+            CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
         }
 
 

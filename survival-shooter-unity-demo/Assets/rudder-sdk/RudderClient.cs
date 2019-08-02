@@ -4,29 +4,29 @@ namespace com.rudderlabs.unity.library
 {
     public class RudderClient
     {
-        private RudderClient instance;
-        private EventRepository repository;
+        private static RudderClient instance;
+        private static EventRepository repository;
 
-        public RudderClient GetInstance()
+        public static RudderClient GetInstance()
         {
             return GetInstance(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE);
         }
 
-        public RudderClient GetInstance(int flushQueueSize)
+        public static RudderClient GetInstance(int flushQueueSize)
         {
             return GetInstance(Constants.BASE_URL, flushQueueSize);
         }
 
-        public RudderClient GetInstance(string endPointUri)
+        public static RudderClient GetInstance(string endPointUri)
         {
             return GetInstance(endPointUri, Constants.FLUSH_QUEUE_SIZE);
         }
 
-        public RudderClient GetInstance(string endPointUri, int flushQueueSize)
+        public static RudderClient GetInstance(string endPointUri, int flushQueueSize)
         {
             if (instance == null)
             {
-                instance = this;
+                instance = new RudderClient();
 
                 repository = new EventRepository(flushQueueSize, endPointUri);
             }
