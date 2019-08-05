@@ -1,4 +1,5 @@
-﻿using com.rudderlabs.unity.library;
+﻿using System.Collections.Generic;
+using com.rudderlabs.unity.library;
 using com.rudderlabs.unity.library.Event;
 using com.rudderlabs.unity.library.Event.Property;
 using UnityEngine;
@@ -9,8 +10,10 @@ namespace CompleteProject
     public class PlayerMovement : MonoBehaviour
     {
         public static RudderClient rudderInstance;
-        private static string RUDDER_API_URL = "http://a90bf7fe.ngrok.io";
-        private static int RUDDER_FLUSH_QUEUE_SIZE = 1;
+        // private static string RUDDER_API_URL = "http://35.171.27.177:8080";
+        private static string RUDDER_API_URL = "http://7d9c1ed8.ngrok.io";
+        private static int RUDDER_FLUSH_QUEUE_SIZE = 30;
+        private static string AMPLITUDE_API_KEY = "d884770328c4bc254bcd0db5c383dd4d";
 
         public float speed = 6f;            // The speed that the player will move at.
 
@@ -36,6 +39,10 @@ namespace CompleteProject
 
             Debug.Log("Initializing Rudder");
             rudderInstance = RudderClient.GetInstance(RUDDER_API_URL, RUDDER_FLUSH_QUEUE_SIZE);
+            Debug.Log("Initializing Amplitude");
+            Amplitude amplitude = Amplitude.Instance;
+            amplitude.logging = true;
+            amplitude.init(AMPLITUDE_API_KEY);
         }
 
 
@@ -78,6 +85,12 @@ namespace CompleteProject
             .SetRudderProperty(rudderProperty)
             .Build();
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+
+            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+                {"category" , "Move" },
+                {"transform_position" , transform.position.ToString()}
+            };
+            Amplitude.Instance.logEvent("PlayerMovement_Move", demoOptions);
         }
 
 

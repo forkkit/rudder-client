@@ -35,12 +35,10 @@ namespace com.rudderlabs.unity.library
             RudderEventPayload eventPayload = new RudderEventPayload(eventBuffer);
 
             string payloadString = JsonConvert.SerializeObject(eventPayload, 
-                                                            Formatting.Indented, 
+                                                            Formatting.None, 
                                                             new JsonSerializerSettings { 
                                                                 NullValueHandling = NullValueHandling.Ignore
                                                             });
-            
-            Debug.Log("REQUEST: "+ payloadString);
 
             PostEventToServer(this, payloadString);
 
@@ -53,9 +51,9 @@ namespace com.rudderlabs.unity.library
             {
                 using (var request = new HttpRequestMessage(HttpMethod.Post, instance.endPointUri+ "/hello"))
                 {
-                    request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+                    Debug.Log("REQUEST: "+ payload);
                     request.Content = new StringContent(payload, Encoding.UTF8, "application/json");
+                    Debug.Log("REQUEST LENGTH: "+ request.Content.ToString());
                     HttpResponseMessage response = await client.SendAsync(request);
                     string responseString = await response.Content.ReadAsStringAsync();
                     HttpStatusCode statusCode = response.StatusCode;

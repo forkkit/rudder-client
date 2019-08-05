@@ -1,4 +1,5 @@
-﻿using com.rudderlabs.unity.library.Event;
+﻿using System.Collections.Generic;
+using com.rudderlabs.unity.library.Event;
 using com.rudderlabs.unity.library.Event.Property;
 using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
@@ -138,6 +139,16 @@ namespace CompleteProject
             .SetRudderProperty(rudderProperty)
             .Build();
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+
+            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+                {"category" , "Shoot" },
+                {"transform_position" , transform.position.ToString()}
+            };
+            if (enemyHealth != null)
+            {
+                demoOptions.Add("enemy_health", enemyHealth.currentHealth);
+            }
+            Amplitude.Instance.logEvent("PlayerShooting_Shoot", demoOptions);
         }
     }
 }

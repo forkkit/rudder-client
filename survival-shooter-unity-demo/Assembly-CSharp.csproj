@@ -76,6 +76,8 @@
      <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerShooting.cs" />
+     <Compile Include="Assets\Amplitude\Amplitude.cs" />
+     <Compile Include="Assets\Amplitude\MiniJSON.cs" />
      <Compile Include="Assets\rudder-sdk\Constants.cs" />
      <Compile Include="Assets\rudder-sdk\Event\Property\PagePropertyBuilder.cs" />
      <Compile Include="Assets\rudder-sdk\Event\Property\RudderProperty.cs" />

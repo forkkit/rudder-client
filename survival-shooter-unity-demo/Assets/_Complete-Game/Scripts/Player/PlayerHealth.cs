@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using com.rudderlabs.unity.library.Event.Property;
 using com.rudderlabs.unity.library.Event;
+using System.Collections.Generic;
 
 namespace CompleteProject
 {
@@ -25,23 +26,23 @@ namespace CompleteProject
         bool damaged;                                               // True when the player gets damaged.
 
 
-        void Awake ()
+        void Awake()
         {
             // Setting up the references.
-            anim = GetComponent <Animator> ();
-            playerAudio = GetComponent <AudioSource> ();
-            playerMovement = GetComponent <PlayerMovement> ();
-            playerShooting = GetComponentInChildren <PlayerShooting> ();
+            anim = GetComponent<Animator>();
+            playerAudio = GetComponent<AudioSource>();
+            playerMovement = GetComponent<PlayerMovement>();
+            playerShooting = GetComponentInChildren<PlayerShooting>();
 
             // Set the initial health of the player.
             currentHealth = startingHealth;
         }
 
 
-        void Update ()
+        void Update()
         {
             // If the player has just been damaged...
-            if(damaged)
+            if (damaged)
             {
                 // ... set the colour of the damageImage to the flash colour.
                 damageImage.color = flashColour;
@@ -50,7 +51,7 @@ namespace CompleteProject
             else
             {
                 // ... transition the colour back to clear.
-                damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+                damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
             }
 
             // Reset the damaged flag.
@@ -58,7 +59,7 @@ namespace CompleteProject
         }
 
 
-        public void TakeDamage (int amount)
+        public void TakeDamage(int amount)
         {
             // Set the damaged flag so the screen will flash.
             damaged = true;
@@ -70,13 +71,13 @@ namespace CompleteProject
             healthSlider.value = currentHealth;
 
             // Play the hurt sound effect.
-            playerAudio.Play ();
+            playerAudio.Play();
 
             // If the player has lost all it's health and the death flag hasn't been set yet...
-            if(currentHealth <= 0 && !isDead)
+            if (currentHealth <= 0 && !isDead)
             {
                 // ... it should die.
-                Death ();
+                Death();
             }
 
             Debug.Log("Tracking Player TakeDamage");
@@ -89,23 +90,29 @@ namespace CompleteProject
             .SetRudderProperty(rudderProperty)
             .Build();
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+
+            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+                {"category" , "TakeDamage" },
+                {"transform_position" , transform.position.ToString()}
+            };
+            Amplitude.Instance.logEvent("PlayerHealth_TakeDamage", demoOptions);
         }
 
 
-        void Death ()
+        void Death()
         {
             // Set the death flag so this function won't be called again.
             isDead = true;
 
             // Turn off any remaining shooting effects.
-            playerShooting.DisableEffects ();
+            playerShooting.DisableEffects();
 
             // Tell the animator that the player is dead.
-            anim.SetTrigger ("Die");
+            anim.SetTrigger("Die");
 
             // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
             playerAudio.clip = deathClip;
-            playerAudio.Play ();
+            playerAudio.Play();
 
             // Turn off the movement and shooting scripts.
             playerMovement.enabled = false;
@@ -121,13 +128,19 @@ namespace CompleteProject
             .SetRudderProperty(rudderProperty)
             .Build();
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+
+            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+                {"category" , "Death" },
+                {"transform_position" , transform.position.ToString()}
+            };
+            Amplitude.Instance.logEvent("PlayerHealth_Death", demoOptions);
         }
 
 
-        public void RestartLevel ()
+        public void RestartLevel()
         {
             // Reload the level that is currently loaded.
-            SceneManager.LoadScene (0);
+            SceneManager.LoadScene(0);
         }
     }
 }
