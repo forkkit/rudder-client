@@ -9,9 +9,7 @@ namespace CompleteProject
     {
         public PlayerHealth playerHealth;       // Reference to the player's health.
 
-
         Animator anim;                          // Reference to the animator component.
-
 
         void Awake()
         {
@@ -19,7 +17,7 @@ namespace CompleteProject
             anim = GetComponent<Animator>();
         }
 
-
+        private bool gameOverTracked = false;
         void Update()
         {
             // If the player has run out of health...
@@ -28,21 +26,25 @@ namespace CompleteProject
                 // ... tell the animator the game is over.
                 anim.SetTrigger("GameOver");
 
-                Debug.Log("Tracking GameOver");
-                RudderProperty rudderProperty = new RudderProperty();
-                rudderProperty.AddProperty("category", "GameOver");
-                rudderProperty.AddProperty("transform_position", transform.position.ToString());
-                RudderEvent rudderEvent = new RudderEventBuilder()
-                .SetEventName("GameOverManager_GameOver")
-                .SetRudderProperty(rudderProperty)
-                .Build();
-                CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+                if (!gameOverTracked)
+                {
+                    Debug.Log("Tracking GameOver");
+                    RudderProperty rudderProperty = new RudderProperty();
+                    rudderProperty.AddProperty("category", "GameOver");
+                    rudderProperty.AddProperty("transform_position", transform.position.ToString());
+                    RudderEvent rudderEvent = new RudderEventBuilder()
+                    .SetEventName("GameOverManager_GameOver")
+                    .SetRudderProperty(rudderProperty)
+                    .Build();
+                    CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
-                Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-                    {"category" , "GameOver" },
-                    {"transform_position" , transform.position.ToString()}
-                };
-                Amplitude.Instance.logEvent("GameOverManager_GameOver Direct", demoOptions);
+                    Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+                        {"category" , "GameOver" },
+                        {"transform_position" , transform.position.ToString()}
+                    };
+                    Amplitude.Instance.logEvent("GameOverManager_GameOver Direct", demoOptions);
+                    gameOverTracked = true;
+                }
             }
         }
     }
