@@ -134,7 +134,6 @@ namespace CompleteProject
                 rudderProperty.AddProperty("enemy_health", enemyHealth.currentHealth);
             }
             RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetChannel("Test Channel")
             .SetEventName("PlayerShooting_Shoot")
             .SetRudderProperty(rudderProperty)
             .Build();
@@ -148,7 +147,7 @@ namespace CompleteProject
             {
                 demoOptions.Add("enemy_health", enemyHealth.currentHealth);
             }
-            Amplitude.Instance.logEvent("PlayerShooting_Shoot", demoOptions);
+            Amplitude.Instance.logEvent("PlayerShooting_Shoot Direct", demoOptions);
         }
     }
 }

@@ -11,12 +11,11 @@ namespace CompleteProject
     {
         public static RudderClient rudderInstance;
         // private static string RUDDER_API_URL = "http://35.171.27.177:8080";
-        private static string RUDDER_API_URL = "http://7d9c1ed8.ngrok.io";
+        private static string RUDDER_API_URL = "http://torpedo.rudderlabs.com:8080";
         private static int RUDDER_FLUSH_QUEUE_SIZE = 30;
         private static string AMPLITUDE_API_KEY = "d884770328c4bc254bcd0db5c383dd4d";
 
         public float speed = 6f;            // The speed that the player will move at.
-
 
         Vector3 movement;                   // The vector to store the direction of the player's movement.
         Animator anim;                      // Reference to the animator component.
@@ -38,7 +37,7 @@ namespace CompleteProject
             playerRigidbody = GetComponent<Rigidbody>();
 
             Debug.Log("Initializing Rudder");
-            rudderInstance = RudderClient.GetInstance(RUDDER_API_URL, RUDDER_FLUSH_QUEUE_SIZE);
+            rudderInstance = RudderClient.GetInstance(RUDDER_API_URL, RUDDER_FLUSH_QUEUE_SIZE, true);
             Debug.Log("Initializing Amplitude");
             Amplitude amplitude = Amplitude.Instance;
             amplitude.logging = true;
@@ -75,22 +74,21 @@ namespace CompleteProject
             playerRigidbody.MovePosition(transform.position + movement);
 
 
-            Debug.Log("Tracking Player Movement");
-            RudderProperty rudderProperty = new RudderProperty();
-            rudderProperty.AddProperty("category", "Move");
-            rudderProperty.AddProperty("transform_position", transform.position.ToString());
-            RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetChannel("Test Channel")
-            .SetEventName("PlayerMovement_Move")
-            .SetRudderProperty(rudderProperty)
-            .Build();
-            CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+            // Debug.Log("Tracking Player Movement");
+            // RudderProperty rudderProperty = new RudderProperty();
+            // rudderProperty.AddProperty("category", "Move");
+            // rudderProperty.AddProperty("transform_position", transform.position.ToString());
+            // RudderEvent rudderEvent = new RudderEventBuilder()
+            // .SetEventName("PlayerMovement_Move")
+            // .SetRudderProperty(rudderProperty)
+            // .Build();
+            // CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
-            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-                {"category" , "Move" },
-                {"transform_position" , transform.position.ToString()}
-            };
-            Amplitude.Instance.logEvent("PlayerMovement_Move", demoOptions);
+            // Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+            //     {"category" , "Move" },
+            //     {"transform_position" , transform.position.ToString()}
+            // };
+            // Amplitude.Instance.logEvent("PlayerMovement_Move Direct", demoOptions);
         }
 
 

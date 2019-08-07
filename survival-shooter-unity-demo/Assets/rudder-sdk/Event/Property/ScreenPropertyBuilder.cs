@@ -1,4 +1,6 @@
 ﻿using System;
+using com.rudderlabs.unity.library.Errors;
+
 namespace com.rudderlabs.unity.library.Event.Property
 {
     public class ScreenPropertyBuilder : RudderPropertyBuilder
@@ -14,7 +16,7 @@ namespace com.rudderlabs.unity.library.Event.Property
         {
             if (name == null)
             {
-                throw new Exception("Key \"name\" is required in properties");
+                throw new RudderException("Key \"name\" is required in properties");
             }
             RudderProperty rudderProperty = new RudderProperty();
             rudderProperty.AddProperty("name", name);

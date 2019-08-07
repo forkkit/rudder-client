@@ -4,105 +4,120 @@ namespace com.rudderlabs.unity.library
 {
     public class RudderClient
     {
+        // singleton instnace of the client
         private static RudderClient instance;
+        // instance for event repository (to be used internally)
         private static EventRepository repository;
 
+        private RudderClient() {
+            // prevent instance creation through constructor
+        }
+
+        // instance initialization method
         public static RudderClient GetInstance()
         {
-            return GetInstance(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE);
+            return GetInstance(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, false);
         }
 
+        // instance initialization method
         public static RudderClient GetInstance(int flushQueueSize)
         {
-            return GetInstance(Constants.BASE_URL, flushQueueSize);
+            return GetInstance(Constants.BASE_URL, flushQueueSize, false);
         }
 
+        // instance initialization method
         public static RudderClient GetInstance(string endPointUri)
         {
-            return GetInstance(endPointUri, Constants.FLUSH_QUEUE_SIZE);
+            return GetInstance(endPointUri, Constants.FLUSH_QUEUE_SIZE, false);
         }
 
-        public static RudderClient GetInstance(string endPointUri, int flushQueueSize)
+        // instance initialization method
+        public static RudderClient GetInstance(string endPointUri, int flushQueueSize) {
+            return GetInstance(endPointUri, flushQueueSize, false);
+        }
+
+        // instance initialization method
+        public static RudderClient GetInstance(string endPointUri, int flushQueueSize, bool loggingEnabled)
         {
             if (instance == null)
             {
                 instance = new RudderClient();
 
-                repository = new EventRepository(flushQueueSize, endPointUri);
+                repository = new EventRepository(flushQueueSize, endPointUri, loggingEnabled);
             }
             return instance;
         }
 
+        // getter & setter for endPointUri
         public string GetEndPointUri()
         {
-            return repository.GetEndPointUri();
+            return EventRepository.endPointUri;
+        }
+        public void SetEndPointUri(string _endPointUri)
+        {
+            EventRepository.endPointUri = _endPointUri;
         }
 
+        // getter & setter for flushQueueSize
         public int GetFlushQueueSize()
         {
-            return repository.GetFlushQueueSize();
+            return EventRepository.flushQueueSize;
         }
-
-        public void SetEndPointUri(string endPointUri)
+        public void SetFlushQueueSize(int _flushQueueSize)
         {
-            repository.SetEndPointUri(endPointUri);
+            EventRepository.flushQueueSize = _flushQueueSize;
         }
 
-        public void SetFlushQueueSize(int flushQueueSize)
-        {
-            repository.SetFlushQueueSize(flushQueueSize);
-        }
-
+        // end point for track events
         public void Track(RudderEvent rudderEvent)
         {
-            rudderEvent.SetEventType("track");
+            rudderEvent.message.type = RudderEventType.TRACK.value;
             repository.Dump(rudderEvent);
         }
-
         public void Track(RudderEventBuilder builder)
         {
             this.Track(builder.Build());
         }
 
+        // end point for page events
         public void Page(RudderEvent rudderEvent)
         {
-            rudderEvent.SetEventType("page");
+            rudderEvent.message.type = RudderEventType.PAGE.value;
             repository.Dump(rudderEvent);
         }
-
         public void Page(RudderEventBuilder builder)
         {
             this.Page(builder.Build());
         }
 
+        // end point for screen events
         public void Screen(RudderEvent rudderEvent)
         {
-            rudderEvent.SetEventType("screen");
+            rudderEvent.message.type = RudderEventType.PAGE.value;
             repository.Dump(rudderEvent);
         }
-
         public void Screen(RudderEventBuilder builder)
         {
             this.Screen(builder.Build());
         }
 
+        // end point for identify calls
         public void Identify(RudderTraits rudderTraits)
         {
             RudderEvent rudderEvent = new RudderEventBuilder()
-                .SetChannel("Identification Channel")
                 .SetEventName("Identify")
                 .SetUseId(rudderTraits.id)
                 .Build();
-            rudderEvent.SetEventType("identify");
-            rudderEvent.SetRudderTraits(rudderTraits);
+            rudderEvent.message.type = RudderEventType.IDENTIFY.value;
+            rudderEvent.message.context.traits = rudderTraits;
             repository.Dump(rudderEvent);
         }
-
         public void Identify(RudderTraitsBuilder builder)
         {
             Identify(builder.Build());
         }
 
+        // end point for flushing events
         public void Flush()
         {
             repository.FlushEventsAsync();

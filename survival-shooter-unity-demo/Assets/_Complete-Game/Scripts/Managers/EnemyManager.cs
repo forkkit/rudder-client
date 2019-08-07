@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using com.rudderlabs.unity.library.Event;
+using com.rudderlabs.unity.library.Event.Property;
+using UnityEngine;
 
 namespace CompleteProject
 {
@@ -31,6 +34,22 @@ namespace CompleteProject
 
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
             Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+
+            Debug.Log("Tracking Spawn");
+            RudderProperty rudderProperty = new RudderProperty();
+            rudderProperty.AddProperty("category", "Spawn");
+            rudderProperty.AddProperty("transform_position", transform.position.ToString());
+            RudderEvent rudderEvent = new RudderEventBuilder()
+            .SetEventName("EnemyManager_Spawn")
+            .SetRudderProperty(rudderProperty)
+            .Build();
+            CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+
+            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+                {"category" , "Spawn" },
+                {"transform_position" , transform.position.ToString()}
+            };
+            Amplitude.Instance.logEvent("EnemyManager_Spawn Direct", demoOptions);
         }
     }
 }

@@ -10,32 +10,36 @@ namespace com.rudderlabs.unity.library.Event
     {
         [JsonProperty(PropertyName = "rl_message")]
         internal RudderMessage message = new RudderMessage();
-
-        internal void SetEventType(string eventType)
+        // API for setting event level integrations
+        // Useful if the developer wants to set additional integration platform 
+        // for a particular set of events
+        public void AddIntegrations(RudderIntegrationPlatform platform)
         {
-            message.type = eventType;
+            message.integrations.Add(platform.value);
+        }
+        // API for setting event level properties
+        // throws exception if "." is present in the key name
+        public void SetProperties(Dictionary<string, object> _properties)
+        {
+            foreach (string key in _properties.Keys)
+            {
+                if (key.Contains(".")) {
+                    throw RudderException("\".\" can not be used as a key name for properties");
+                }
+            }
+            message.properties = _properties;
         }
 
-        internal void SetRudderTraits(RudderTraits rudderTraits)
+        private Exception RudderException(string v)
         {
-            message.context.traits = rudderTraits;
-        }
-
-        internal void SetProperty(RudderProperty property)
-        {
-            message.properties = property.GetPropertyMap();
-        }
-
-        internal void SetUserProperty(RudderUserProperty userProperty) 
-        {
-            message.userProperty = userProperty.GetPropertyMap();
+            throw new NotImplementedException();
         }
     }
 
     public class RudderMessage
     {
         [JsonProperty(PropertyName = "rl_channel")]
-        internal string channel;
+        internal string channel = "mobile";
         [JsonProperty(PropertyName = "rl_context")]
         internal RudderContext context = new RudderContext();
         [JsonProperty(PropertyName = "rl_type")]
@@ -61,7 +65,7 @@ namespace com.rudderlabs.unity.library.Event
 
         internal RudderMessage()
         {
-            integrations.Add("rudderlabs");
+            integrations.Add(RudderIntegrationPlatform.GOOGLE_ANALYTICS.value);
             anonymousId = SystemInfo.deviceUniqueIdentifier.ToLower();
         }
     }
@@ -119,7 +123,7 @@ namespace com.rudderlabs.unity.library.Event
     class RudderScreenInfo
     {
         [JsonProperty(PropertyName = "rl_density")]
-        internal int density = (int) Screen.dpi;
+        internal int density = (int)Screen.dpi;
         [JsonProperty(PropertyName = "rl_width")]
         internal int width = Screen.width;
         [JsonProperty(PropertyName = "rl_height")]
@@ -143,24 +147,24 @@ namespace com.rudderlabs.unity.library.Event
         [JsonProperty(PropertyName = "rl_carrier")]
         internal string carrier = "unavailable";
 
-        #if UNITY_IPHONE
-        [DllImport ("__Internal")]
-        private static extern string _GetNetworkInfoIOS();
-        #endif
+        // #if UNITY_IPHONE
+        // [DllImport ("__Internal")]
+        // private static extern string _GetNetworkInfoIOS();
+        // #endif
 
-        #if UNITY_ANDROID
-        private static extern string _GetNetworkInfoAndroid();
-        #endif
+        // #if UNITY_ANDROID
+        // private static extern string _GetNetworkInfoAndroid();
+        // #endif
 
-        public RudderNetwork() 
+        public RudderNetwork()
         {
-            #if UNITY_IPHONE
-            carrier = _GetNetworkInfoIOS();
-            #endif
+            // #if UNITY_IPHONE
+            // carrier = _GetNetworkInfoIOS();
+            // #endif
 
-            #if UNITY_ANDROID
-            carrier = _GetNetworkInfoAndroid();
-            #endif
+            // #if UNITY_ANDROID
+            // carrier = _GetNetworkInfoAndroid();
+            // #endif
         }
     }
 }

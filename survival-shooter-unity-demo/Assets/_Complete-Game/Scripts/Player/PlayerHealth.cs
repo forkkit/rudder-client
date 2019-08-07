@@ -85,7 +85,6 @@ namespace CompleteProject
             rudderProperty.AddProperty("category", "TakeDamage");
             rudderProperty.AddProperty("transform_position", transform.position.ToString());
             RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetChannel("Test Channel")
             .SetEventName("PlayerHealth_TakeDamage")
             .SetRudderProperty(rudderProperty)
             .Build();
@@ -95,7 +94,7 @@ namespace CompleteProject
                 {"category" , "TakeDamage" },
                 {"transform_position" , transform.position.ToString()}
             };
-            Amplitude.Instance.logEvent("PlayerHealth_TakeDamage", demoOptions);
+            Amplitude.Instance.logEvent("PlayerHealth_TakeDamage Direct", demoOptions);
         }
 
 
@@ -123,7 +122,6 @@ namespace CompleteProject
             rudderProperty.AddProperty("category", "Death");
             rudderProperty.AddProperty("transform_position", transform.position.ToString());
             RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetChannel("Test Channel")
             .SetEventName("PlayerHealth_Death")
             .SetRudderProperty(rudderProperty)
             .Build();
@@ -133,7 +131,7 @@ namespace CompleteProject
                 {"category" , "Death" },
                 {"transform_position" , transform.position.ToString()}
             };
-            Amplitude.Instance.logEvent("PlayerHealth_Death", demoOptions);
+            Amplitude.Instance.logEvent("PlayerHealth_Death Direct", demoOptions);
         }
 
 

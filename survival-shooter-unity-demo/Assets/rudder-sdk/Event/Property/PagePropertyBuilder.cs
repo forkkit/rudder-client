@@ -1,4 +1,6 @@
 ﻿using System;
+using com.rudderlabs.unity.library.Errors;
+
 namespace com.rudderlabs.unity.library.Event.Property
 {
     public class PagePropertyBuilder : RudderPropertyBuilder
@@ -49,7 +51,7 @@ namespace com.rudderlabs.unity.library.Event.Property
         {
             if (url == null)
             {
-                throw new Exception("Key \"url\" is required for track event");
+                throw new RudderException("Key \"url\" is required for track event");
             }
 
             RudderProperty rudderProperty = new RudderProperty();

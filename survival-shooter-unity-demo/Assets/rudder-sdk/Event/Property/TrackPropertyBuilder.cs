@@ -1,4 +1,6 @@
 ﻿using System;
+using com.rudderlabs.unity.library.Errors;
+
 namespace com.rudderlabs.unity.library.Event.Property
 {
     public class TrackPropertyBuilder : RudderPropertyBuilder
@@ -28,7 +30,7 @@ namespace com.rudderlabs.unity.library.Event.Property
         {
             if (category == null)
             {
-                throw new Exception("Key \"category\" is required for track event");
+                throw new RudderException("Key \"category\" is required for track event");
             }
 
             RudderProperty rudderProperty = new RudderProperty();
