@@ -29,17 +29,11 @@ public class FPSManager : MonoBehaviour
         Debug.Log("Tracking FPS ");
         RudderProperty rudderProperty = new RudderProperty();
         rudderProperty.AddProperty("category", "TrackFPS");
-        rudderProperty.AddProperty("transform_position", transform.position.ToString());
+        rudderProperty.AddProperty("FPS", text);
         RudderEvent rudderEvent = new RudderEventBuilder()
         .SetEventName("Track_FPS")
         .SetRudderProperty(rudderProperty)
         .Build();
         CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
-
-        // Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-        //         {"category" , "Track_FPS" },
-        //         {"transform_position" , transform.position.ToString()}
-        //     };
-        // Amplitude.Instance.logEvent("Track_FPS");
     }
 }
