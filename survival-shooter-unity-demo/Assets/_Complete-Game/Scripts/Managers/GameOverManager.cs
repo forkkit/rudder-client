@@ -31,6 +31,7 @@ namespace CompleteProject
                     Debug.Log("Tracking GameOver");
                     RudderProperty rudderProperty = new RudderProperty();
                     rudderProperty.AddProperty("category", "GameOver");
+                    rudderProperty.AddProperty("total_payments", ScoreManager.score);
                     rudderProperty.AddProperty("transform_position", transform.position.ToString());
                     RudderEvent rudderEvent = new RudderEventBuilder()
                     .SetEventName("GameOverManager_GameOver")
@@ -40,7 +41,9 @@ namespace CompleteProject
 
                     Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                         {"category" , "GameOver" },
-                        {"transform_position" , transform.position.ToString()}
+                        {"total_payments" , ScoreManager.score },
+                        {"transform_position" , transform.position.ToString()},
+                        {"insert_id" , rudderEvent.message.messageId}
                     };
                     Amplitude.Instance.logEvent("GameOverManager_GameOver Direct", demoOptions);
                     gameOverTracked = true;

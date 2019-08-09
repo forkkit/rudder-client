@@ -1,14 +1,14 @@
 ﻿using com.rudderlabs.unity.library.Event;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using Newtonsoft.Json;
 using UnityEngine;
-using System.Net;
 using Mono.Data.Sqlite;
 using System.Data;
 using System;
+using System.Threading.Tasks;
+using System.Text;
+using System.Net;
 
 namespace com.rudderlabs.unity.library
 {
@@ -20,9 +20,11 @@ namespace com.rudderlabs.unity.library
         // internal buffer for events which will be cleared upon successful transmission of events to server
         private List<RudderEvent> eventBuffer = new List<RudderEvent>();
 
-        private int bufferCount = 0;
+        private static SqliteConnection conn;
 
-        private string dbPath;
+        private static string dbPath;
+
+        private int totalEvents = 0;
 
         internal EventRepository(int _flushQueueSize, string _endPointUri, bool _loggingEnabled)
         {
@@ -31,29 +33,43 @@ namespace com.rudderlabs.unity.library
             loggingEnabled = _loggingEnabled;
 
             dbPath = "URI=file:" + Application.persistentDataPath + "/persistance.db";
+            if (conn == null)
+            {
+                CreateConnection();
+            }
+
+            totalEvents = 0;
+
             CreateSchema();
+        }
+
+        private static void CreateConnection()
+        {
+            Debug.Log("EventRepository: creating connection");
+            conn = new SqliteConnection(dbPath);
         }
 
         private void CreateSchema()
         {
-            using (var conn = new SqliteConnection(dbPath))
+            if (conn == null)
             {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
+                CreateConnection();
+            }
+
+            conn.Open();
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "CREATE TABLE IF NOT EXISTS 'events' ( " +
+                                  "  'id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                  "  'event' TEXT NOT NULL, " +
+                                  "  'updated' INTEGER NOT NULL" +
+                                  ");";
+                var result = cmd.ExecuteNonQuery();
+                if (loggingEnabled)
                 {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "CREATE TABLE IF NOT EXISTS 'events' ( " +
-                                      "  'id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                      "  'event' TEXT NOT NULL, " +
-                                      "  'updated' INTEGER NOT NULL" +
-                                      ");";
-                    var result = cmd.ExecuteNonQuery();
-                    if (loggingEnabled)
-                    {
-                        Debug.Log("create schema: " + result);
-                    }
+                    Debug.Log("create schema: " + result);
                 }
-                conn.Close();
             }
         }
 
@@ -65,41 +81,10 @@ namespace com.rudderlabs.unity.library
             // add incoming event to buffer 
             eventBuffer.Add(rudderEvent);
 
-            bufferCount += 1;
-            string eventJson = JsonConvert.SerializeObject(rudderEvent, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            using (var conn = new SqliteConnection(dbPath))
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "INSERT INTO events (event, updated) " +
-                                      "VALUES (@Event, @Updated);";
-
-                    cmd.Parameters.Add(new SqliteParameter
-                    {
-                        ParameterName = "Event",
-                        Value = eventJson
-                    });
-
-                    cmd.Parameters.Add(new SqliteParameter
-                    {
-                        ParameterName = "Updated",
-                        Value = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds
-                    });
-
-                    var result = cmd.ExecuteNonQuery();
-                    if (loggingEnabled)
-                    {
-                        Debug.Log("insert event: " + result);
-                    }
-                    conn.Close();
-                }
-            }
-
             // if flushQueueSize is full flush the events to server
-            if (bufferCount == flushQueueSize)
+            if (eventBuffer.Count == flushQueueSize)
             {
+                totalEvents += eventBuffer.Count;
                 FlushEventsAsync();
             }
         }
@@ -117,41 +102,148 @@ namespace com.rudderlabs.unity.library
                                                                 NullValueHandling = NullValueHandling.Ignore
                                                             });
 
+            // TOTAL EVENT Count
+            Debug.Log(
+                "++++++++++++++++++++++++++++++++++++++++++++" +
+                "TOTAL EVENT COUNT: " + totalEvents +
+                "++++++++++++++++++++++++++++++++++++++++++++"
+            );
+
             // make network request to flush the events 
             PostEventToServer(payloadString);
-
-            // TODO: implement retry logic
-
+            Debug.Log("EventRepository : event posted");
             // empty buffer
             eventBuffer.RemoveRange(0, eventBuffer.Count);
-            bufferCount = 0;
         }
 
-        private static async void PostEventToServer(string payload)
+        private static void PostEventToServer(string payload)
         {
+            Task.Run(() =>
+            {
+                Debug.Log("EventRepository : event db dump started");
+                // dump events to persistance DB first
+                PersistEvents(payload);
+                Debug.Log("EventRepository : event db dump completed");
+
+                Debug.Log("EventRepository : event network dump started");
+                // flush Events from DB to server
+                SendEventsToServer();
+                Debug.Log("EventRepository : event network dump completed");
+            });
+        }
+
+        private static async void SendEventsToServer()
+        {
+            Debug.Log("EventRepository : event network dump in func started");
             using (var client = new HttpClient())
             {
                 using (var request = new HttpRequestMessage(HttpMethod.Post, endPointUri + "/hello"))
                 {
+                    Debug.Log("EventRepository : client and request present");
+                    if (conn == null)
+                    {
+                        CreateConnection();
+                        conn.Open();
+                    }
+                    string payload = null;
+                    int batchId = -1;
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT * FROM events ORDER BY updated ASC LIMIT 1;";
+
+                        var reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            batchId = reader.GetInt32(0);
+                            payload = reader.GetString(1);
+                            break;
+                        }
+                    }
+
+                    if (payload == null || batchId == -1)
+                    {
+                        Debug.Log("EventRepository : payload, batchId null");
+                        return;
+                    }
+
                     if (loggingEnabled)
                     {
-                        Debug.Log("REQUEST: " + payload);
+                        Debug.Log("EventRepository : REQUEST: " + payload);
                     }
                     request.Content = new StringContent(payload, Encoding.UTF8, "application/json");
                     if (loggingEnabled)
                     {
-                        Debug.Log("REQUEST LENGTH: " + request.Content.ToString());
+                        Debug.Log("EventRepository : REQUEST LENGTH: " + request.Content.ToString());
                     }
                     HttpResponseMessage response = await client.SendAsync(request);
                     string responseString = await response.Content.ReadAsStringAsync();
                     HttpStatusCode statusCode = response.StatusCode;
                     if (loggingEnabled)
                     {
-                        Debug.Log("RESPONSE STATUS_CODE: " + statusCode);
-                        Debug.Log("RESPONSE BODY: " + responseString);
+                        Debug.Log("EventRepository : RESPONSE STATUS_CODE: " + statusCode);
+                        Debug.Log("EventRepository : RESPONSE BODY: " + responseString);
                     }
 
+                    if (statusCode == HttpStatusCode.OK)
+                    {
+                        if (loggingEnabled)
+                        {
+                            Debug.Log("EventRepository : EVENTS FLUSHED");
+                        }
+
+                        // remove batch from local DB
+                        using (var cmd = conn.CreateCommand())
+                        {
+                            cmd.CommandType = CommandType.Text;
+                            cmd.CommandText = "DELETE FROM events WHERE id = @BatchId";
+
+                            cmd.Parameters.Add(new SqliteParameter
+                            {
+                                ParameterName = "BatchId",
+                                Value = batchId
+                            });
+
+                            var result = cmd.ExecuteNonQuery();
+                        }
+
+                        // call again for more events
+                        SendEventsToServer();
+                    }
                 }
+            }
+        }
+
+        private static void PersistEvents(string payload)
+        {
+
+            Debug.Log("EventRepository: persistance task started");
+            if (conn == null)
+            {
+                CreateConnection();
+            }
+            using (var cmd = conn.CreateCommand())
+            {
+                Debug.Log("EventRepository: db insertion started");
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "INSERT INTO events (event, updated) " +
+                                  "VALUES (@Event, @Updated);";
+
+                cmd.Parameters.Add(new SqliteParameter
+                {
+                    ParameterName = "Event",
+                    Value = payload
+                });
+
+                cmd.Parameters.Add(new SqliteParameter
+                {
+                    ParameterName = "Updated",
+                    Value = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds
+                });
+
+                var result = cmd.ExecuteNonQuery();
+                Debug.Log("EventRepository: insert query" + cmd.ToString());
+                Debug.Log("EventRepository: insert event: " + result);
             }
         }
     }

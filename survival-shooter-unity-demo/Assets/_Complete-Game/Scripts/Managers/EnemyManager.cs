@@ -47,7 +47,8 @@ namespace CompleteProject
 
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                 {"category" , "Spawn" },
-                {"transform_position" , transform.position.ToString()}
+                {"transform_position" , transform.position.ToString()},
+                {"insert_id" , rudderEvent.message.messageId}
             };
             Amplitude.Instance.logEvent("EnemyManager_Spawn Direct", demoOptions);
         }

@@ -11,9 +11,11 @@ namespace CompleteProject
     {
         public static RudderClient rudderInstance;
         // private static string RUDDER_API_URL = "http://35.171.27.177:8080";
-        private static string RUDDER_API_URL = "http://torpedo.rudderlabs.com:8080";
+        // private static string RUDDER_API_URL = "http://torpedo.rudderlabs.com:8080";
+        private static string RUDDER_API_URL = "http://192.168.43.51:9393";
+        // private static string RUDDER_API_URL = "http://364df678.ngrok.io";
         private static int RUDDER_FLUSH_QUEUE_SIZE = 30;
-        private static string AMPLITUDE_API_KEY = "d884770328c4bc254bcd0db5c383dd4d";
+        private static string AMPLITUDE_API_KEY = "e985feb69f09e7d9cb9b88d9febd699c";
 
         public float speed = 6f;            // The speed that the player will move at.
 
@@ -42,6 +44,7 @@ namespace CompleteProject
             Amplitude amplitude = Amplitude.Instance;
             amplitude.logging = true;
             amplitude.init(AMPLITUDE_API_KEY);
+            amplitude.setUserId(SystemInfo.deviceUniqueIdentifier.ToLower());
         }
 
 
@@ -86,7 +89,8 @@ namespace CompleteProject
 
             // Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
             //     {"category" , "Move" },
-            //     {"transform_position" , transform.position.ToString()}
+            //     {"transform_position" , transform.position.ToString()},
+            //     {"insert_id" , rudderEvent.message.messageId}
             // };
             // Amplitude.Instance.logEvent("PlayerMovement_Move Direct", demoOptions);
         }

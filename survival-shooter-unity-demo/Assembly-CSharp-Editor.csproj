@@ -279,8 +279,26 @@
  <Reference Include="UnityEditor.Android.Extensions">
  <HintPath>/Applications/Unity/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions">
+ <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
+ </Reference>
  <Reference Include="Newtonsoft.Json">
  <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Newtonsoft.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Configuration">
+ <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/System.Configuration.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.Sqlite">
+ <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/Mono.Data.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="System.EnterpriseServices">
+ <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/System.EnterpriseServices.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Security">
+ <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/System.Security.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.SqliteClient">
+ <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/Mono.Data.SqliteClient.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Advertisements.Editor">
  <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
@@ -303,20 +321,11 @@
  <Reference Include="UnityEditor.Purchasing">
  <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
  </Reference>
- <Reference Include="Mono.Data.SqliteClient">
- <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/Mono.Data.SqliteClient.dll</HintPath>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
- <Reference Include="Mono.Data.Sqlite">
- <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/Mono.Data.Sqlite.dll</HintPath>
- </Reference>
- <Reference Include="System.EnterpriseServices">
- <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/System.EnterpriseServices.dll</HintPath>
- </Reference>
- <Reference Include="System.Security">
- <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/System.Security.dll</HintPath>
- </Reference>
- <Reference Include="System.Configuration">
- <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/System.Configuration.dll</HintPath>
+ <Reference Include="UnityEditor.iOS.Extensions.Common">
+ <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
