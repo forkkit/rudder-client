@@ -1,13 +1,16 @@
 ﻿using Newtonsoft.Json;
+using UnityEngine;
 
 namespace com.rudderlabs.unity.library.Event
 {
     public class RudderTraits
     {
+        [JsonProperty(PropertyName = "rl_anonymous_id")]
+        internal string anonymousId = SystemInfo.deviceUniqueIdentifier.ToLower();
         [JsonProperty(PropertyName = "rl_address")]
         internal TraitsAddress address;
         [JsonProperty(PropertyName = "rl_age")]
-        internal int age;
+        internal string age;
         [JsonProperty(PropertyName = "rl_birthday")]
         internal string birthday;
         [JsonProperty(PropertyName = "rl_company")]
@@ -35,7 +38,12 @@ namespace com.rudderlabs.unity.library.Event
         [JsonProperty(PropertyName = "rl_username")]
         internal string userName;
 
-        public RudderTraits(TraitsAddress address, int age, string birthday, TraitsCompany traitsCompany, string createdAt, string description, string email, string firstName, string gender, string id, string lastName, string name, string phone, string title, string userName)
+        internal RudderTraits()
+        {
+
+        }
+
+        public RudderTraits(TraitsAddress address, string age, string birthday, TraitsCompany traitsCompany, string createdAt, string description, string email, string firstName, string gender, string id, string lastName, string name, string phone, string title, string userName)
         {
             this.address = address;
             this.age = age;

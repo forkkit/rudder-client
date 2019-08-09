@@ -9,8 +9,8 @@ namespace com.rudderlabs.unity.library.Event
         }
         public string value { get; private set; }
 
-        public static RudderIntegrationPlatform RUDDER_LABS { get { return new RudderIntegrationPlatform("rudderlabs"); } }
-        public static RudderIntegrationPlatform GOOGLE_ANALYTICS { get { return new RudderIntegrationPlatform("ga"); } }
-        public static RudderIntegrationPlatform AMPLITUDE { get { return new RudderIntegrationPlatform("amplitude"); } }
+        public static RudderIntegrationPlatform RUDDER_LABS { get { return new RudderIntegrationPlatform("RUDDER"); } }
+        public static RudderIntegrationPlatform GOOGLE_ANALYTICS { get { return new RudderIntegrationPlatform("GA"); } }
+        public static RudderIntegrationPlatform AMPLITUDE { get { return new RudderIntegrationPlatform("AM"); } }
     }
 }

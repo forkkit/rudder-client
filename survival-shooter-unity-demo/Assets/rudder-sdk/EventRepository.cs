@@ -16,6 +16,7 @@ namespace com.rudderlabs.unity.library
     {
         internal static bool loggingEnabled = true;
         internal static int flushQueueSize;
+        internal static string writeKey;
         internal static string endPointUri { get; set; }
         // internal buffer for events which will be cleared upon successful transmission of events to server
         private List<RudderEvent> eventBuffer = new List<RudderEvent>();
@@ -26,8 +27,9 @@ namespace com.rudderlabs.unity.library
 
         private int totalEvents = 0;
 
-        internal EventRepository(int _flushQueueSize, string _endPointUri, bool _loggingEnabled)
+        internal EventRepository(string _writeKey, int _flushQueueSize, string _endPointUri, bool _loggingEnabled)
         {
+            writeKey = _writeKey;
             endPointUri = _endPointUri;
             flushQueueSize = _flushQueueSize;
             loggingEnabled = _loggingEnabled;
@@ -92,7 +94,7 @@ namespace com.rudderlabs.unity.library
         internal void FlushEventsAsync()
         {
             // consturuct payload with "sent_at" and "batch" 
-            RudderEventPayload eventPayload = new RudderEventPayload(eventBuffer);
+            RudderEventPayload eventPayload = new RudderEventPayload(writeKey, eventBuffer);
 
             // serialize payload to JSON string
             string payloadString = JsonConvert.SerializeObject(eventPayload,
@@ -104,9 +106,9 @@ namespace com.rudderlabs.unity.library
 
             // TOTAL EVENT Count
             Debug.Log(
-                "++++++++++++++++++++++++++++++++++++++++++++" +
-                "TOTAL EVENT COUNT: " + totalEvents +
-                "++++++++++++++++++++++++++++++++++++++++++++"
+                "\n++++++++++++++++++++++++++++++++++++++++++++" +
+                "\nTOTAL EVENT COUNT: " + totalEvents +
+                "\n++++++++++++++++++++++++++++++++++++++++++++"
             );
 
             // make network request to flush the events 

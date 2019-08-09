@@ -12,12 +12,13 @@ namespace com.rudderlabs.unity.library.Event
         internal List<RudderEvent> events;
 
         [JsonProperty(PropertyName = "writeKey")]
-        internal string writeKey = "1P6q8fcXrkmekovCdk0a3gFq30X";
+        internal string writeKey;
 
-        internal RudderEventPayload(List<RudderEvent> events)
+        internal RudderEventPayload(string _writeKey, List<RudderEvent> _events)
         {
             timestamp = DateTime.UtcNow.ToString("u");
-            this.events = events;
+            events = _events;
+            writeKey = _writeKey;
         }
     }
 }

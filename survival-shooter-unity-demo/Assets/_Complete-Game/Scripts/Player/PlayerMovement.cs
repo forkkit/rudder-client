@@ -12,10 +12,11 @@ namespace CompleteProject
         public static RudderClient rudderInstance;
         // private static string RUDDER_API_URL = "http://35.171.27.177:8080";
         // private static string RUDDER_API_URL = "http://torpedo.rudderlabs.com:8080";
-        private static string RUDDER_API_URL = "http://192.168.43.51:9393";
-        // private static string RUDDER_API_URL = "http://364df678.ngrok.io";
+        // private static string RUDDER_API_URL = "http://192.168.43.51:9393";
+        private static string RUDDER_API_URL = "http://76319fcf.ngrok.io";
+        private static string RUDDER_WRITE_KEY = "1P6q8fcXrkmekovCdk0a3gFq30X";
         private static int RUDDER_FLUSH_QUEUE_SIZE = 30;
-        private static string AMPLITUDE_API_KEY = "e985feb69f09e7d9cb9b88d9febd699c";
+        private static string AMPLITUDE_API_KEY = ""; //"e985feb69f09e7d9cb9b88d9febd699c";
 
         public float speed = 6f;            // The speed that the player will move at.
 
@@ -39,7 +40,7 @@ namespace CompleteProject
             playerRigidbody = GetComponent<Rigidbody>();
 
             Debug.Log("Initializing Rudder");
-            rudderInstance = RudderClient.GetInstance(RUDDER_API_URL, RUDDER_FLUSH_QUEUE_SIZE, true);
+            rudderInstance = RudderClient.GetInstance(RUDDER_WRITE_KEY, RUDDER_API_URL, RUDDER_FLUSH_QUEUE_SIZE, true);
             Debug.Log("Initializing Amplitude");
             Amplitude amplitude = Amplitude.Instance;
             amplitude.logging = true;
