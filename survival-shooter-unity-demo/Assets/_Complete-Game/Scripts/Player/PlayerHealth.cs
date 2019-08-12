@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using com.rudderlabs.unity.library.Event.Property;
 using com.rudderlabs.unity.library.Event;
 using System.Collections.Generic;
+using Firebase;
+using Firebase.Analytics;
 
 namespace CompleteProject
 {
@@ -89,7 +91,8 @@ namespace CompleteProject
             .SetRudderProperty(rudderProperty)
             .Build();
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
-
+            Firebase.Analytics.FirebaseAnalytics
+                .LogEvent("progress", "percent", 0.4f);
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                 {"category" , "TakeDamage" },
                 {"transform_position" , transform.position.ToString()}
