@@ -12,11 +12,11 @@ namespace CompleteProject
         public static RudderClient rudderInstance;
         // private static string RUDDER_API_URL = "http://35.171.27.177:8080";
         // private static string RUDDER_API_URL = "http://torpedo.rudderlabs.com:8080";
-        // private static string RUDDER_API_URL = "http://192.168.43.51:9393";
-        private static string RUDDER_API_URL = "http://76319fcf.ngrok.io";
+        private static string RUDDER_API_URL = "http://192.168.43.51:8080";
+        // private static string RUDDER_API_URL = "http://cf689cfe.ngrok.io";
         private static string RUDDER_WRITE_KEY = "1P6q8fcXrkmekovCdk0a3gFq30X";
         private static int RUDDER_FLUSH_QUEUE_SIZE = 30;
-        private static string AMPLITUDE_API_KEY = ""; //"e985feb69f09e7d9cb9b88d9febd699c";
+        private static string AMPLITUDE_API_KEY = "2145e7008d1b1c4857017005340a16ac";
 
         public float speed = 6f;            // The speed that the player will move at.
 

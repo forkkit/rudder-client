@@ -29,21 +29,22 @@ namespace CompleteProject
                 if (!gameOverTracked)
                 {
                     Debug.Log("Tracking GameOver");
+                    RudderEvent rudderEvent = new RudderEventBuilder()
+                    .SetEventName("GameOverManager_GameOver")
+                    .Build();
                     RudderProperty rudderProperty = new RudderProperty();
                     rudderProperty.AddProperty("category", "GameOver");
                     rudderProperty.AddProperty("total_payments", ScoreManager.score);
                     rudderProperty.AddProperty("transform_position", transform.position.ToString());
-                    RudderEvent rudderEvent = new RudderEventBuilder()
-                    .SetEventName("GameOverManager_GameOver")
-                    .SetRudderProperty(rudderProperty)
-                    .Build();
+                    rudderProperty.AddProperty("rl_message_id", rudderEvent.message.messageId);
+                    rudderEvent.SetProperties(rudderProperty);
                     CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
                     Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                         {"category" , "GameOver" },
                         {"total_payments" , ScoreManager.score },
                         {"transform_position" , transform.position.ToString()},
-                        {"insert_id" , rudderEvent.message.messageId}
+                        {"rl_message_id" , rudderEvent.message.messageId}
                     };
                     Amplitude.Instance.logEvent("GameOverManager_GameOver Direct", demoOptions);
                     gameOverTracked = true;

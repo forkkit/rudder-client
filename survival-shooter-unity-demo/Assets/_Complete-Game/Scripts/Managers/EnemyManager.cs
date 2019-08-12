@@ -36,19 +36,20 @@ namespace CompleteProject
             Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
 
             Debug.Log("Tracking Spawn");
+            RudderEvent rudderEvent = new RudderEventBuilder()
+            .SetEventName("EnemyManager_Spawn")
+            .Build();
             RudderProperty rudderProperty = new RudderProperty();
             rudderProperty.AddProperty("category", "Spawn");
             rudderProperty.AddProperty("transform_position", transform.position.ToString());
-            RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetEventName("EnemyManager_Spawn")
-            .SetRudderProperty(rudderProperty)
-            .Build();
+            rudderProperty.AddProperty("rl_message_id", rudderEvent.message.messageId);
+            rudderEvent.SetProperties(rudderProperty);
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                 {"category" , "Spawn" },
                 {"transform_position" , transform.position.ToString()},
-                {"insert_id" , rudderEvent.message.messageId}
+                {"rl_message_id" , rudderEvent.message.messageId}
             };
             Amplitude.Instance.logEvent("EnemyManager_Spawn Direct", demoOptions);
         }

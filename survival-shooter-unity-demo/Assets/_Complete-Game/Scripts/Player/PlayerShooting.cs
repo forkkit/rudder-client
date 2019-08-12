@@ -126,6 +126,9 @@ namespace CompleteProject
             }
 
             Debug.Log("Tracking Shoot");
+            RudderEvent rudderEvent = new RudderEventBuilder()
+            .SetEventName("PlayerShooting_Shoot")
+            .Build();
             RudderProperty rudderProperty = new RudderProperty();
             rudderProperty.AddProperty("category", "Shoot");
             rudderProperty.AddProperty("transform_position", transform.position.ToString());
@@ -133,16 +136,14 @@ namespace CompleteProject
             {
                 rudderProperty.AddProperty("enemy_health", enemyHealth.currentHealth);
             }
-            RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetEventName("PlayerShooting_Shoot")
-            .SetRudderProperty(rudderProperty)
-            .Build();
+            rudderProperty.AddProperty("rl_message_id", rudderEvent.message.messageId);
+            rudderEvent.SetProperties(rudderProperty);
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                 {"category" , "Shoot" },
                 {"transform_position" , transform.position.ToString()},
-                {"insert_id" , rudderEvent.message.messageId}
+                {"rl_message_id" , rudderEvent.message.messageId}
             };
             if (enemyHealth != null)
             {

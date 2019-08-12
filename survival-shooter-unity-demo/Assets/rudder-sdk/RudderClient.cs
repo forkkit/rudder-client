@@ -1,4 +1,5 @@
-﻿using com.rudderlabs.unity.library.Event;
+﻿using com.rudderlabs.unity.library.Errors;
+using com.rudderlabs.unity.library.Event;
 
 namespace com.rudderlabs.unity.library
 {
@@ -16,36 +17,37 @@ namespace com.rudderlabs.unity.library
         // instance initialization method
         public static RudderClient GetInstance(string writeKey)
         {
-            return GetInstance(writeKey, Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, false);
+            return GetInstance(writeKey, Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE);
         }
 
         // instance initialization method
         public static RudderClient GetInstance(string writeKey, int flushQueueSize)
         {
-            return GetInstance(writeKey, Constants.BASE_URL, flushQueueSize, false);
+            return GetInstance(writeKey, Constants.BASE_URL, flushQueueSize);
         }
 
         // instance initialization method
         public static RudderClient GetInstance(string writeKey, string endPointUri)
         {
-            return GetInstance(writeKey, endPointUri, Constants.FLUSH_QUEUE_SIZE, false);
+            return GetInstance(writeKey, endPointUri, Constants.FLUSH_QUEUE_SIZE);
         }
 
         // instance initialization method
         public static RudderClient GetInstance(string writeKey, string endPointUri, int flushQueueSize) {
-            return GetInstance(writeKey, endPointUri, flushQueueSize, false);
-        }
-
-        // instance initialization method
-        public static RudderClient GetInstance(string writeKey, string endPointUri, int flushQueueSize, bool loggingEnabled)
-        {
             if (instance == null)
             {
                 instance = new RudderClient();
 
-                repository = new EventRepository(writeKey, flushQueueSize, endPointUri, loggingEnabled);
+                repository = new EventRepository(writeKey, flushQueueSize, endPointUri);
             }
             return instance;
+        }
+
+        public void enableLog(bool _logging) {
+            if (repository == null) {
+                throw new RudderException("Client is not initialized");
+            }
+            repository.enableLogging(_logging);
         }
 
         // getter & setter for endPointUri

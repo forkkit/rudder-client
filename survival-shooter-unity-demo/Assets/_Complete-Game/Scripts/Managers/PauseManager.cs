@@ -37,19 +37,20 @@ public class PauseManager : MonoBehaviour
         Lowpass();
 
         Debug.Log("Tracking Pause");
-        RudderProperty rudderProperty = new RudderProperty();
-        rudderProperty.AddProperty("category", "GameOver");
-        rudderProperty.AddProperty("transform_position", transform.position.ToString());
         RudderEvent rudderEvent = new RudderEventBuilder()
         .SetEventName("PauseManager_Pause")
-        .SetRudderProperty(rudderProperty)
         .Build();
+        RudderProperty rudderProperty = new RudderProperty();
+        rudderProperty.AddProperty("category", "Pause");
+        rudderProperty.AddProperty("transform_position", transform.position.ToString());
+        rudderProperty.AddProperty("rl_message_id", rudderEvent.message.messageId);
+        rudderEvent.SetProperties(rudderProperty);
         CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
         Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                     {"category" , "Pause" },
                     {"transform_position" , transform.position.ToString()},
-                    {"insert_id" , rudderEvent.message.messageId}
+                    {"rl_message_id" , rudderEvent.message.messageId}
                 };
         Amplitude.Instance.logEvent("PauseManager_Pause Direct", demoOptions);
     }

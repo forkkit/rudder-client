@@ -85,20 +85,21 @@ namespace CompleteProject
                 playerHealth.TakeDamage(attackDamage);
             }
 
-            Debug.Log("Tracking Attack");
+            Debug.Log("Tracking Attack");            
+            RudderEvent rudderEvent = new RudderEventBuilder()
+            .SetEventName("EnemyAttack_Attack")
+            .Build();
             RudderProperty rudderProperty = new RudderProperty();
             rudderProperty.AddProperty("category", "Attack");
             rudderProperty.AddProperty("transform_position", transform.position.ToString());
-            RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetEventName("EnemyAttack_Attack")
-            .SetRudderProperty(rudderProperty)
-            .Build();
+            rudderProperty.AddProperty("rl_message_id", rudderEvent.message.messageId);
+            rudderEvent.SetProperties(rudderProperty);
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                     {"category" , "Attack" },
                     {"transform_position" , transform.position.ToString()},
-                    {"insert_id" , rudderEvent.message.messageId}
+                    {"rl_message_id" , rudderEvent.message.messageId}
                 };
             Amplitude.Instance.logEvent("EnemyAttack_Attack Direct", demoOptions);
         }

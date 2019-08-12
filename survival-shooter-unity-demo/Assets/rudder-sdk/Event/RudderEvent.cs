@@ -30,6 +30,11 @@ namespace com.rudderlabs.unity.library.Event
             message.properties = _properties;
         }
 
+        public void SetProperties(RudderProperty _properties)
+        {
+            this.SetProperties(_properties.GetPropertyMap());
+        }
+
         private Exception RudderException(string v)
         {
             throw new NotImplementedException();
@@ -74,6 +79,8 @@ namespace com.rudderlabs.unity.library.Event
     {
         [JsonProperty(PropertyName = "rl_app")]
         internal RudderApp rudderApp = new RudderApp();
+        [JsonProperty(PropertyName="rl_platform")]
+        internal string platform = Application.platform.ToString();
         [JsonProperty(PropertyName = "rl_traits")]
         internal RudderTraits traits = new RudderTraits();
         [JsonProperty(PropertyName = "rl_library")]
@@ -107,7 +114,7 @@ namespace com.rudderlabs.unity.library.Event
     class RudderLibraryInfo
     {
         [JsonProperty(PropertyName = "rl_name")]
-        internal string name = "rudder-unity-client";
+        internal string name = "com.rudderlabs.unity.client";
         [JsonProperty(PropertyName = "rl_version")]
         internal string version = "1.0.0";
     }

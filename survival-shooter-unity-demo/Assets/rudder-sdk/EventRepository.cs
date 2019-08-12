@@ -27,12 +27,12 @@ namespace com.rudderlabs.unity.library
 
         private int totalEvents = 0;
 
-        internal EventRepository(string _writeKey, int _flushQueueSize, string _endPointUri, bool _loggingEnabled)
+        internal EventRepository(string _writeKey, int _flushQueueSize, string _endPointUri)
         {
             writeKey = _writeKey;
             endPointUri = _endPointUri;
             flushQueueSize = _flushQueueSize;
-            loggingEnabled = _loggingEnabled;
+            loggingEnabled = false;
 
             dbPath = "URI=file:" + Application.persistentDataPath + "/persistance.db";
             if (conn == null)
@@ -43,6 +43,10 @@ namespace com.rudderlabs.unity.library
             totalEvents = 0;
 
             CreateSchema();
+        }
+
+        internal void enableLogging(bool _isEnabled) {
+            loggingEnabled = _isEnabled;
         }
 
         private static void CreateConnection()

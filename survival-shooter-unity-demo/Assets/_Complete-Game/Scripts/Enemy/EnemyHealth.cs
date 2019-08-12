@@ -90,19 +90,20 @@ namespace CompleteProject
             enemyAudio.Play();
 
             Debug.Log("Tracking Enemy Death");
+            RudderEvent rudderEvent = new RudderEventBuilder()
+            .SetEventName("EnemyHealth_Death")
+            .Build();
             RudderProperty rudderProperty = new RudderProperty();
             rudderProperty.AddProperty("category", "Enemy Death");
             rudderProperty.AddProperty("transform_position", transform.position.ToString());
-            RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetEventName("EnemyHealth_Death")
-            .SetRudderProperty(rudderProperty)
-            .Build();
+            rudderProperty.AddProperty("rl_message_id", rudderEvent.message.messageId);
+            rudderEvent.SetProperties(rudderProperty);
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                     {"category" , "Pause" },
                     {"transform_position" , transform.position.ToString()},
-                    {"insert_id" , rudderEvent.message.messageId}
+                    {"rl_message_id" , rudderEvent.message.messageId}
                 };
             Amplitude.Instance.logEvent("EnemyHealth_Death Direct", demoOptions);
         }
