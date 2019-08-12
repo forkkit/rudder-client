@@ -91,6 +91,7 @@ namespace CompleteProject
             .SetRudderProperty(rudderProperty)
             .Build();
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+            // Sample firebase analytics event
             Firebase.Analytics.FirebaseAnalytics
                 .LogEvent("progress", "percent", 0.4f);
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
