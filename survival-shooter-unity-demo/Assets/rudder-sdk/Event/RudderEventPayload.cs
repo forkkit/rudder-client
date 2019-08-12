@@ -11,10 +11,14 @@ namespace com.rudderlabs.unity.library.Event
         [JsonProperty(PropertyName = "batch")]
         internal List<RudderEvent> events;
 
-        internal RudderEventPayload(List<RudderEvent> events)
+        [JsonProperty(PropertyName = "writeKey")]
+        internal string writeKey;
+
+        internal RudderEventPayload(string _writeKey, List<RudderEvent> _events)
         {
             timestamp = DateTime.UtcNow.ToString("u");
-            this.events = events;
+            events = _events;
+            writeKey = _writeKey;
         }
     }
 }

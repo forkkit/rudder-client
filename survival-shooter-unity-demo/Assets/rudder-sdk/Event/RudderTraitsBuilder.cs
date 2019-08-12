@@ -160,7 +160,7 @@ namespace com.rudderlabs.unity.library.Event
                     this.postalCode,
                     this.state,
                     this.street),
-                this.age,
+                this.age.ToString(),
                 this.birthday,
                 new TraitsCompany(
                     this.companyName,

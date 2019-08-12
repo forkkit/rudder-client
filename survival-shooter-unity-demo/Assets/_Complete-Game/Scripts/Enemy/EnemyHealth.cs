@@ -101,7 +101,8 @@ namespace CompleteProject
 
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                     {"category" , "Pause" },
-                    {"transform_position" , transform.position.ToString()}
+                    {"transform_position" , transform.position.ToString()},
+                    {"insert_id" , rudderEvent.message.messageId}
                 };
             Amplitude.Instance.logEvent("EnemyHealth_Death Direct", demoOptions);
         }

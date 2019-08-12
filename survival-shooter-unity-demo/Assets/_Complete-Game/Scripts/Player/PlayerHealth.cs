@@ -12,7 +12,7 @@ namespace CompleteProject
 {
     public class PlayerHealth : MonoBehaviour
     {
-        public int startingHealth = 1000;                            // The amount of health the player starts the game with.
+        public int startingHealth = 100000;                            // The amount of health the player starts the game with.
         public int currentHealth;                                   // The current health the player has.
         public Slider healthSlider;                                 // Reference to the UI's health bar.
         public Image damageImage;                                   // Reference to an image to flash on the screen on being hurt.
@@ -67,7 +67,7 @@ namespace CompleteProject
             damaged = true;
 
             // Reduce the current health by the damage amount.
-            currentHealth -= amount;
+            currentHealth -= amount / 2;
 
             // Set the health bar's value to the current health.
             healthSlider.value = currentHealth;
@@ -95,7 +95,8 @@ namespace CompleteProject
                 .LogEvent("progress", "percent", 0.4f);
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                 {"category" , "TakeDamage" },
-                {"transform_position" , transform.position.ToString()}
+                {"transform_position" , transform.position.ToString()},
+                {"insert_id" , rudderEvent.message.messageId}
             };
             Amplitude.Instance.logEvent("PlayerHealth_TakeDamage Direct", demoOptions);
         }
@@ -132,7 +133,8 @@ namespace CompleteProject
 
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                 {"category" , "Death" },
-                {"transform_position" , transform.position.ToString()}
+                {"transform_position" , transform.position.ToString()},
+                {"insert_id" , rudderEvent.message.messageId}
             };
             Amplitude.Instance.logEvent("PlayerHealth_Death Direct", demoOptions);
         }

@@ -141,7 +141,8 @@ namespace CompleteProject
 
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                 {"category" , "Shoot" },
-                {"transform_position" , transform.position.ToString()}
+                {"transform_position" , transform.position.ToString()},
+                {"insert_id" , rudderEvent.message.messageId}
             };
             if (enemyHealth != null)
             {

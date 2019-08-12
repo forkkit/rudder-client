@@ -15,7 +15,7 @@ namespace com.rudderlabs.unity.library.Event
         // for a particular set of events
         public void AddIntegrations(RudderIntegrationPlatform platform)
         {
-            message.integrations.Add(platform.value);
+            message.integrations.Add(platform.value, true);
         }
         // API for setting event level properties
         // throws exception if "." is present in the key name
@@ -61,11 +61,11 @@ namespace com.rudderlabs.unity.library.Event
         [JsonProperty(PropertyName = "rl_user_properties")]
         internal Dictionary<string, object> userProperty;
         [JsonProperty(PropertyName = "rl_integrations")]
-        internal List<string> integrations = new List<string>();
+        internal Dictionary<string, bool> integrations = new Dictionary<string, bool>();
 
         internal RudderMessage()
         {
-            integrations.Add(RudderIntegrationPlatform.GOOGLE_ANALYTICS.value);
+            integrations.Add(RudderIntegrationPlatform.GOOGLE_ANALYTICS.value, true);
             anonymousId = SystemInfo.deviceUniqueIdentifier.ToLower();
         }
     }
@@ -75,7 +75,7 @@ namespace com.rudderlabs.unity.library.Event
         [JsonProperty(PropertyName = "rl_app")]
         internal RudderApp rudderApp = new RudderApp();
         [JsonProperty(PropertyName = "rl_traits")]
-        internal RudderTraits traits;
+        internal RudderTraits traits = new RudderTraits();
         [JsonProperty(PropertyName = "rl_library")]
         internal RudderLibraryInfo libraryInfo = new RudderLibraryInfo();
         [JsonProperty(PropertyName = "rl_os")]

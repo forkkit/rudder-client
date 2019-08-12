@@ -14,36 +14,36 @@ namespace com.rudderlabs.unity.library
         }
 
         // instance initialization method
-        public static RudderClient GetInstance()
+        public static RudderClient GetInstance(string writeKey)
         {
-            return GetInstance(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, false);
+            return GetInstance(writeKey, Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, false);
         }
 
         // instance initialization method
-        public static RudderClient GetInstance(int flushQueueSize)
+        public static RudderClient GetInstance(string writeKey, int flushQueueSize)
         {
-            return GetInstance(Constants.BASE_URL, flushQueueSize, false);
+            return GetInstance(writeKey, Constants.BASE_URL, flushQueueSize, false);
         }
 
         // instance initialization method
-        public static RudderClient GetInstance(string endPointUri)
+        public static RudderClient GetInstance(string writeKey, string endPointUri)
         {
-            return GetInstance(endPointUri, Constants.FLUSH_QUEUE_SIZE, false);
+            return GetInstance(writeKey, endPointUri, Constants.FLUSH_QUEUE_SIZE, false);
         }
 
         // instance initialization method
-        public static RudderClient GetInstance(string endPointUri, int flushQueueSize) {
-            return GetInstance(endPointUri, flushQueueSize, false);
+        public static RudderClient GetInstance(string writeKey, string endPointUri, int flushQueueSize) {
+            return GetInstance(writeKey, endPointUri, flushQueueSize, false);
         }
 
         // instance initialization method
-        public static RudderClient GetInstance(string endPointUri, int flushQueueSize, bool loggingEnabled)
+        public static RudderClient GetInstance(string writeKey, string endPointUri, int flushQueueSize, bool loggingEnabled)
         {
             if (instance == null)
             {
                 instance = new RudderClient();
 
-                repository = new EventRepository(flushQueueSize, endPointUri, loggingEnabled);
+                repository = new EventRepository(writeKey, flushQueueSize, endPointUri, loggingEnabled);
             }
             return instance;
         }
