@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using com.rudderlabs.unity.library.Event.Property;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace com.rudderlabs.unity.library.Event
 {
@@ -23,7 +24,8 @@ namespace com.rudderlabs.unity.library.Event
         {
             foreach (string key in _properties.Keys)
             {
-                if (key.Contains(".")) {
+                if (key.Contains("."))
+                {
                     throw RudderException("\".\" can not be used as a key name for properties");
                 }
             }
@@ -52,7 +54,7 @@ namespace com.rudderlabs.unity.library.Event
         [JsonProperty(PropertyName = "rl_action")]
         internal string action = "";
         [JsonProperty(PropertyName = "rl_message_id")]
-        internal string messageId = System.Guid.NewGuid().ToString();
+        internal string messageId = Stopwatch.GetTimestamp().ToString() + "-" + System.Guid.NewGuid().ToString();
         [JsonProperty(PropertyName = "rl_timestamp")]
         internal string timestamp = DateTime.UtcNow.ToString("u");
         [JsonProperty(PropertyName = "rl_anonymous_id")]
@@ -79,7 +81,7 @@ namespace com.rudderlabs.unity.library.Event
     {
         [JsonProperty(PropertyName = "rl_app")]
         internal RudderApp rudderApp = new RudderApp();
-        [JsonProperty(PropertyName="rl_platform")]
+        [JsonProperty(PropertyName = "rl_platform")]
         internal string platform = Application.platform.ToString();
         [JsonProperty(PropertyName = "rl_traits")]
         internal RudderTraits traits = new RudderTraits();
@@ -152,26 +154,6 @@ namespace com.rudderlabs.unity.library.Event
     class RudderNetwork
     {
         [JsonProperty(PropertyName = "rl_carrier")]
-        internal string carrier = "unavailable";
-
-        // #if UNITY_IPHONE
-        // [DllImport ("__Internal")]
-        // private static extern string _GetNetworkInfoIOS();
-        // #endif
-
-        // #if UNITY_ANDROID
-        // private static extern string _GetNetworkInfoAndroid();
-        // #endif
-
-        public RudderNetwork()
-        {
-            // #if UNITY_IPHONE
-            // carrier = _GetNetworkInfoIOS();
-            // #endif
-
-            // #if UNITY_ANDROID
-            // carrier = _GetNetworkInfoAndroid();
-            // #endif
-        }
+        internal string carrier = EventRepository.carrier;
     }
 }

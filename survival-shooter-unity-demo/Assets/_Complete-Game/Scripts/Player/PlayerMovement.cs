@@ -40,7 +40,7 @@ namespace CompleteProject
             playerRigidbody = GetComponent<Rigidbody>();
 
             Debug.Log("Initializing Rudder");
-            rudderInstance = RudderClient.GetInstance(RUDDER_WRITE_KEY, RUDDER_API_URL, RUDDER_FLUSH_QUEUE_SIZE, true);
+            rudderInstance = RudderClient.GetInstance(RUDDER_WRITE_KEY, RUDDER_API_URL, RUDDER_FLUSH_QUEUE_SIZE);
             Debug.Log("Initializing Amplitude");
             Amplitude amplitude = Amplitude.Instance;
             amplitude.logging = true;
