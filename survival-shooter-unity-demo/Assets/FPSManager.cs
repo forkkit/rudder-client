@@ -40,7 +40,7 @@ namespace CompleteProject
             // {
             Dictionary<string, object> FPSData = new Dictionary<string, object>() {
                 {"category" , "Comparision" },
-                {"FPS Value" , fps}
+                {"FPS Value" , text}
             };
             Amplitude.Instance.logEvent("FPS Direct without sdk", FPSData);
             check = false;
