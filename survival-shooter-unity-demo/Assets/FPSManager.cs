@@ -1,7 +1,4 @@
-﻿using com.rudderlabs.unity.library.Event;
-using com.rudderlabs.unity.library.Event.Property;
-using com.rudderlabs.unity.library;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
 
@@ -39,15 +36,15 @@ namespace CompleteProject
             string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
             GUI.Label(rect, text, style);
 
-            if (check)
-            {
-                Dictionary<string, object> FPSData = new Dictionary<string, object>() {
+            // if (check)
+            // {
+            Dictionary<string, object> FPSData = new Dictionary<string, object>() {
                 {"category" , "Comparision" },
-                {"FPS Value" , text}
+                {"FPS Value" , fps}
             };
-                Amplitude.Instance.logEvent("FPS Direct works now ?", FPSData);
-                check = false;
-            }
+            Amplitude.Instance.logEvent("FPS Direct without sdk", FPSData);
+            check = false;
+            // }
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using com.rudderlabs.unity.library.Event;
-using com.rudderlabs.unity.library.Event.Property;
 
 namespace CompleteProject
 {
@@ -85,22 +83,22 @@ namespace CompleteProject
                 playerHealth.TakeDamage(attackDamage);
             }
 
-            Debug.Log("Tracking Attack");
-            RudderProperty rudderProperty = new RudderProperty();
-            rudderProperty.AddProperty("category", "Attack");
-            rudderProperty.AddProperty("transform_position", transform.position.ToString());
-            RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetEventName("EnemyAttack_Attack")
-            .SetRudderProperty(rudderProperty)
-            .Build();
-            CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+            // Debug.Log("Tracking Attack");
+            // RudderProperty rudderProperty = new RudderProperty();
+            // rudderProperty.AddProperty("category", "Attack");
+            // rudderProperty.AddProperty("transform_position", transform.position.ToString());
+            // RudderEvent rudderEvent = new RudderEventBuilder()
+            // .SetEventName("EnemyAttack_Attack")
+            // .SetRudderProperty(rudderProperty)
+            // .Build();
+            // CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
-            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-                    {"category" , "Attack" },
-                    {"transform_position" , transform.position.ToString()},
-                    {"insert_id" , rudderEvent.message.messageId}
-                };
-            Amplitude.Instance.logEvent("EnemyAttack_Attack Direct", demoOptions);
+            // Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+            //         {"category" , "Attack" },
+            //         {"transform_position" , transform.position.ToString()},
+            //         {"insert_id" , rudderEvent.message.messageId}
+            //     };
+            // Amplitude.Instance.logEvent("EnemyAttack_Attack Direct", demoOptions);
         }
     }
 }

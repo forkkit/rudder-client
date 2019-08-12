@@ -1,6 +1,4 @@
-﻿using com.rudderlabs.unity.library.Event;
-using com.rudderlabs.unity.library.Event.Property;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -18,7 +16,7 @@ public class PlayerShooting : MonoBehaviour
     AudioSource gunAudio;
     Light gunLight;
     float effectsDisplayTime = 0.2f;
- 
+
     void Awake()
     {
         shootableMask = LayerMask.GetMask("Shootable");
@@ -78,7 +76,7 @@ public class PlayerShooting : MonoBehaviour
                 enemyHealth.TakeDamage(damagePerShot, shootHit.point);
             }
             gunLine.SetPosition(1, shootHit.point);
-            
+
         }
         else
         {

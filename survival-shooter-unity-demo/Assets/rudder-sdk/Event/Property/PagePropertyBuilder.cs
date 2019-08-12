@@ -72,7 +72,7 @@ namespace com.rudderlabs.unity.library.Event.Property
             {
                 rudderProperty.AddProperty("search", search);
             }
-            if(keywords != null)
+            if (keywords != null)
             {
                 rudderProperty.AddProperty("keywords", keywords);
             }

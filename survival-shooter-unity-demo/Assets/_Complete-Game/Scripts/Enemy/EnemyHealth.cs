@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using com.rudderlabs.unity.library.Event;
-using com.rudderlabs.unity.library.Event.Property;
 using UnityEngine;
 
 namespace CompleteProject
@@ -89,22 +87,22 @@ namespace CompleteProject
             enemyAudio.clip = deathClip;
             enemyAudio.Play();
 
-            Debug.Log("Tracking Enemy Death");
-            RudderProperty rudderProperty = new RudderProperty();
-            rudderProperty.AddProperty("category", "Enemy Death");
-            rudderProperty.AddProperty("transform_position", transform.position.ToString());
-            RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetEventName("EnemyHealth_Death")
-            .SetRudderProperty(rudderProperty)
-            .Build();
-            CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+            // Debug.Log("Tracking Enemy Death");
+            // RudderProperty rudderProperty = new RudderProperty();
+            // rudderProperty.AddProperty("category", "Enemy Death");
+            // rudderProperty.AddProperty("transform_position", transform.position.ToString());
+            // RudderEvent rudderEvent = new RudderEventBuilder()
+            // .SetEventName("EnemyHealth_Death")
+            // .SetRudderProperty(rudderProperty)
+            // .Build();
+            // CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
-            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-                    {"category" , "Pause" },
-                    {"transform_position" , transform.position.ToString()},
-                    {"insert_id" , rudderEvent.message.messageId}
-                };
-            Amplitude.Instance.logEvent("EnemyHealth_Death Direct", demoOptions);
+            // Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+            //         {"category" , "Pause" },
+            //         {"transform_position" , transform.position.ToString()},
+            //         {"insert_id" , rudderEvent.message.messageId}
+            //     };
+            // Amplitude.Instance.logEvent("EnemyHealth_Death Direct", demoOptions);
         }
 
 

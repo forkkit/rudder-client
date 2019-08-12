@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using com.rudderlabs.unity.library;
-using com.rudderlabs.unity.library.Event;
-using com.rudderlabs.unity.library.Event.Property;
 using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 using System;
@@ -10,7 +7,7 @@ namespace CompleteProject
 {
     public class PlayerMovement : MonoBehaviour
     {
-        public static RudderClient rudderInstance;
+        // public static RudderClient rudderInstance;
         // private static string RUDDER_API_URL = "http://35.171.27.177:8080";
         // private static string RUDDER_API_URL = "http://torpedo.rudderlabs.com:8080";
         // private static string RUDDER_API_URL = "http://192.168.43.51:9393";
@@ -42,7 +39,7 @@ namespace CompleteProject
             playerRigidbody = GetComponent<Rigidbody>();
 
             Debug.Log("Initializing Rudder");
-            rudderInstance = RudderClient.GetInstance(RUDDER_WRITE_KEY, RUDDER_API_URL, RUDDER_FLUSH_QUEUE_SIZE, true);
+            // rudderInstance = RudderClient.GetInstance(RUDDER_WRITE_KEY, RUDDER_API_URL, RUDDER_FLUSH_QUEUE_SIZE, true);
             Debug.Log("Initializing Amplitude");
             Amplitude amplitude = Amplitude.Instance;
             amplitude.logging = true;
