@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "337081160298",
+    "firebase_url": "https://survivaldemo-ca193.firebaseio.com",
+    "project_id": "survivaldemo-ca193",
+    "storage_bucket": "survivaldemo-ca193.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337081160298:android:6f81eaab2e34955c",
+        "android_client_info": {
+          "package_name": "com.rudderlabs.demo.survival_shooter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337081160298-qubrr1qpkgcdbtg82pve2qojgnh9qelb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhHd9uVDuEelVU_6s38nqzRVLM27tpu1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337081160298-qubrr1qpkgcdbtg82pve2qojgnh9qelb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
