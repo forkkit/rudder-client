@@ -20,7 +20,7 @@ namespace CompleteProject
             if (timeFreeze == 0 || timeFreeze == currentEpochTime)
             {
                 check = true;
-                timeFreeze = currentEpochTime + 10;
+                timeFreeze = currentEpochTime + 1;
             }
         }
 
@@ -39,15 +39,15 @@ namespace CompleteProject
             string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
             GUI.Label(rect, text, style);
 
-            if (check)
-            {
-                Dictionary<string, object> FPSData = new Dictionary<string, object>() {
+            // if (check)
+            // {
+            Dictionary<string, object> FPSData = new Dictionary<string, object>() {
                 {"category" , "Comparision" },
                 {"FPS Value" , text}
             };
-                Amplitude.Instance.logEvent("FPS Direct works now ?", FPSData);
-                check = false;
-            }
+            Amplitude.Instance.logEvent("FPS Direct with sdk", FPSData);
+            check = false;
+            // }
         }
     }
 }
