@@ -5,3 +5,5 @@ obj/
 Temp/
 Logs/
 Library/
+**/*.meta
+
