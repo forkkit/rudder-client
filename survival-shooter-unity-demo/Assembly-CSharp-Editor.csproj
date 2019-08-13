@@ -282,9 +282,6 @@
  <Reference Include="UnityEditor.iOS.Extensions">
  <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Newtonsoft.Json.dll</HintPath>
- </Reference>
  <Reference Include="System.Configuration">
  <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/System.Configuration.dll</HintPath>
  </Reference>
@@ -320,6 +317,9 @@
  </Reference>
  <Reference Include="UnityEditor.Purchasing">
  <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

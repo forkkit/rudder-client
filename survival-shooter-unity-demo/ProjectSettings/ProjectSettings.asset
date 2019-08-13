@@ -163,7 +163,7 @@ PlayerSettings:
     Android: com.rudderlabs.demo.survival_shooter
     Standalone: unity.Unity Technologies.Nightmares
     Tizen: com.Company.ProductName
-    iPhone: com.Company.ProductName
+    iPhone: com.rudderlabs.ios.testapp
     tvOS: com.Company.ProductName
   buildNumber:
     iPhone: 0
@@ -246,11 +246,11 @@ PlayerSettings:
   metalAPIValidation: 1
   iOSRenderExtraFrameOnPause: 1
   appleDeveloperTeamID: 
-  iOSManualSigningProvisioningProfileID: 
+  iOSManualSigningProvisioningProfileID: dccd51dd-9400-43f8-9356-d37c3230e80a
   tvOSManualSigningProvisioningProfileID: 
-  iOSManualSigningProvisioningProfileType: 0
+  iOSManualSigningProvisioningProfileType: 1
   tvOSManualSigningProvisioningProfileType: 0
-  appleEnableAutomaticSigning: 0
+  appleEnableAutomaticSigning: 2
   iOSRequireARKit: 0
   iOSAutomaticallyDetectAndAddCapabilities: 1
   appleEnableProMotion: 0
@@ -709,7 +709,8 @@ PlayerSettings:
     WebGL: 1
     Windows Store Apps: 2
     iPhone: 2
-  il2cppCompilerConfiguration: {}
+  il2cppCompilerConfiguration:
+    Standalone: 0
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
   allowUnsafeCode: 0
