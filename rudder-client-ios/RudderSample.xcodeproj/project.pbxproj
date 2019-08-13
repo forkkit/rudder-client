@@ -911,7 +911,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rudderlabs.ios.testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Test Application Provisioning Profile Development";
+				PROVISIONING_PROFILE_SPECIFIER = "Arnab Dev PP";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -931,7 +931,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rudderlabs.ios.testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Test Application Provisioning Profile Development";
+				PROVISIONING_PROFILE_SPECIFIER = "Arnab Dev PP";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
