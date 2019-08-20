@@ -11,20 +11,20 @@ object PackageDataUtil {
         val packageInfo = packageManager.getPackageInfo(packageName, 0)
 
         return PackageData(
-            when {
-                Build.VERSION.SDK_INT >= 28 -> packageInfo.longVersionCode.toString()
-                else -> packageInfo.versionCode.toString()
-            },
-            packageInfo.applicationInfo.loadLabel(packageManager).toString(),
-            packageInfo.packageName,
-            packageInfo.versionName ?: "1.0.0"
+                when {
+                    Build.VERSION.SDK_INT >= 28 -> packageInfo.longVersionCode.toString()
+                    else -> packageInfo.versionCode.toString()
+                },
+                packageInfo.applicationInfo.loadLabel(packageManager).toString(),
+                packageInfo.packageName,
+                packageInfo.versionName ?: "1.0.0"
         )
     }
 }
 
 data class PackageData(
-    val appBuild: String,
-    val appName: String,
-    val appNameSpace: String,
-    val appVersion: String
+        val appBuild: String,
+        val appName: String,
+        val appNameSpace: String,
+        val appVersion: String
 )

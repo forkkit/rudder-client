@@ -20,7 +20,7 @@ public class BaseTestCase {
     public void setup() throws InterruptedException {
         Context context = ApplicationProvider.getApplicationContext();
 //        rudderClient = RudderClient.getInstance(context, 5, "http://54.172.64.144:8080/", false);
-        rudderClient = RudderClient.getInstance(context, 5, "http://08cf8769.ngrok.io/", false);
+        rudderClient = RudderClient.getInstance(context, 5, "http://cccd5697.ngrok.io/", false);
         Thread.sleep(1000);
     }
 }

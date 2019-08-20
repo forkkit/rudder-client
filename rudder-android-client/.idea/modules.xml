@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/rudder-android-client.iml" filepath="$PROJECT_DIR$/rudder-android-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rudder-sdk-core/rudder-sdk-core.iml" filepath="$PROJECT_DIR$/rudder-sdk-core/rudder-sdk-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rudder-sdk-extension-adjust/rudder-sdk-extension-adjust.iml" filepath="$PROJECT_DIR$/rudder-sdk-extension-adjust/rudder-sdk-extension-adjust.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rudder-sdk-sample-java/rudder-sdk-sample-java.iml" filepath="$PROJECT_DIR$/rudder-sdk-sample-java/rudder-sdk-sample-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rudder-sdk-sample-kotlin/rudder-sdk-sample-kotlin.iml" filepath="$PROJECT_DIR$/rudder-sdk-sample-kotlin/rudder-sdk-sample-kotlin.iml" />
+    </modules>
+  </component>
+</project>

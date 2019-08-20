@@ -158,6 +158,7 @@ class RudderContext {
             this.userAgent = it.userAgent
             this.deviceInfo = RudderDeviceInfo().populate(template)
             this.network = RudderNetwork().populate(template)
+            this.traits = RudderTraits().also { t -> t.anonymousId = template.deviceId }
         }
     }
 }
@@ -187,6 +188,8 @@ class RudderApp {
 
 
 class RudderTraits {
+    @SerializedName("rl_anonymous_id")
+    var anonymousId: String? = null
     @SerializedName("rl_address")
     @TypeConverters(DataTypeConverter::class)
     var address: TraitsAddress? = null
