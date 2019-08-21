@@ -2,8 +2,6 @@ package com.rudderlabs.android.sdk.core;
 
 import android.app.Application;
 import com.google.gson.Gson;
-import com.rudderlabs.android.sdk.core.event.RudderElement;
-import com.rudderlabs.android.sdk.core.event.RudderPayload;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,35 +11,54 @@ import java.util.concurrent.Executors;
 class EventRepository {
     private RudderConfig config;
     private ArrayList<RudderElement> events = new ArrayList<>();
+    private ArrayList<RudderElement> eventBuffer = new ArrayList<>();
     private static String writeKey;
     private DBPersistentManager dbManager;
-    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private final ExecutorService batchExecutor = Executors.newSingleThreadExecutor();
+    private final ExecutorService dumpExecutor = Executors.newSingleThreadExecutor();
 
     EventRepository(Application application, String key, RudderConfig config) {
         this.config = config;
+        RudderElementCache.initiate(application);
         this.dbManager = new DBPersistentManager(application);
         writeKey = key;
     }
 
     void dump(RudderElement event) {
-        event.setIntegrations(config.getIntegrations());
-        events.add(event);
+        eventBuffer.add(event);
+        processEventBufferAsync();
+    }
 
-        if (events.size() == config.getFlushQueueSize()) {
-            flushEvents();
-            events.clear();
-        }
+    private void processEventBufferAsync() {
+        RudderElement element = eventBuffer.get(0);
+        Runnable elementJob = createJobFromElement(element);
+        dumpExecutor.submit(elementJob);
+    }
+
+    private Runnable createJobFromElement(final RudderElement element) {
+        return new Runnable() {
+            @Override
+            public void run() {
+                for (RudderIntegrationFactory integration : config.getIntegrations())
+                    element.addIntegrationProps(integration.key(), integration.enabled(), integration.getDestinationProps());
+                events.add(element);
+
+                if (events.size() == config.getFlushQueueSize()) {
+                    flushEvents();
+                }
+            }
+        };
     }
 
     void flushEvents() {
         String payload = new Gson().toJson(new RudderPayload(events, writeKey));
         RudderLogger.logInfo("PAYLOAD: " + payload);
 
-        processPayload(payload);
+        processPayloadAsync(payload);
     }
 
-    private void processPayload(final String payload) {
-        executor.submit(new Runnable() {
+    private void processPayloadAsync(final String payload) {
+        batchExecutor.submit(new Runnable() {
             @Override
             public void run() {
                 try {

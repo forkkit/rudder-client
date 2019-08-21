@@ -1,9 +1,7 @@
 package com.rudderlabs.android.sdk.core.positive;
 
 
-import com.rudderlabs.android.sdk.core.BaseTestCase;
-import com.rudderlabs.android.sdk.core.RudderException;
-import com.rudderlabs.android.sdk.core.event.*;
+import com.rudderlabs.android.sdk.core.*;
 import org.junit.Test;
 
 

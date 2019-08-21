@@ -2,8 +2,8 @@
 //
 //
 //import com.rudderlabs.android.sdk.core.BaseTestCase;
-//import com.rudderlabs.android.sdk.core.event.RudderElement;
-//import com.rudderlabs.android.sdk.core.event.RudderElementBuilder;
+//import com.rudderlabs.android.sdk.core.RudderElement;
+//import com.rudderlabs.android.sdk.core.RudderElementBuilder;
 //import org.junit.Test;
 //
 //public class ECommerceTestCases extends BaseTestCase {

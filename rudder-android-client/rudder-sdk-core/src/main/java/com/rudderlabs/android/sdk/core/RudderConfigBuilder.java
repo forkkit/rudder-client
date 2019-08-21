@@ -37,14 +37,14 @@ public class RudderConfigBuilder {
         return this;
     }
 
-    private ArrayList<String> integrations = new ArrayList<>();
+    private ArrayList<RudderIntegrationFactory> integrations = new ArrayList<>();
 
-    public RudderConfigBuilder withIntegration(String integration) {
+    public RudderConfigBuilder withIntegration(RudderIntegrationFactory integration) {
         this.integrations.add(integration);
         return this;
     }
 
-    public RudderConfigBuilder withIntegrations(List<String> integration) {
+    public RudderConfigBuilder withIntegrations(List<RudderIntegrationFactory> integration) {
         this.integrations.addAll(integration);
         return this;
     }

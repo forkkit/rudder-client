@@ -2,10 +2,10 @@ package com.rudderlabs.android.sdk.core.torpedo;
 
 import com.rudderlabs.android.sdk.core.BaseTestCase;
 import com.rudderlabs.android.sdk.core.RudderException;
-import com.rudderlabs.android.sdk.core.event.RudderElement;
-import com.rudderlabs.android.sdk.core.event.RudderElementBuilder;
-import com.rudderlabs.android.sdk.core.event.RudderProperty;
-import com.rudderlabs.android.sdk.core.event.TrackPropertyBuilder;
+import com.rudderlabs.android.sdk.core.RudderElement;
+import com.rudderlabs.android.sdk.core.RudderElementBuilder;
+import com.rudderlabs.android.sdk.core.RudderProperty;
+import com.rudderlabs.android.sdk.core.TrackPropertyBuilder;
 import org.junit.Test;
 
 public class TorpedoEvents extends BaseTestCase {

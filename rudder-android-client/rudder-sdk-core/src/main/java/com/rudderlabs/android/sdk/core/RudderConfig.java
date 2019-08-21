@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class RudderConfig {
     private String endPointUri = Constants.BASE_URL;
     private int flushQueueSize = Constants.FLUSH_QUEUE_SIZE;
-    private ArrayList<String> integrations = new ArrayList<>();
+    private ArrayList<RudderIntegrationFactory> integrations = new ArrayList<>();
     private boolean isDebug = false;
     private int logLevel = RudderLogger.RudderLogLevel.NONE;
 
@@ -20,7 +20,7 @@ public class RudderConfig {
         new RudderConfig(Constants.BASE_URL, flushQueueSize, getDefaultIntegrations());
     }
 
-    public RudderConfig(ArrayList<String> integrations) {
+    public RudderConfig(ArrayList<RudderIntegrationFactory> integrations) {
         try {
             new RudderConfig(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, integrations);
         } catch (RudderException e) {
@@ -36,15 +36,15 @@ public class RudderConfig {
         new RudderConfig(endPointUri, flushQueueSize, getDefaultIntegrations(), isDebug, logLevel);
     }
 
-    public RudderConfig(String endPointUri, int flushQueueSize, ArrayList<String> integrations) throws RudderException {
+    public RudderConfig(String endPointUri, int flushQueueSize, ArrayList<RudderIntegrationFactory> integrations) throws RudderException {
         new RudderConfig(endPointUri, flushQueueSize, integrations, false, RudderLogger.RudderLogLevel.NONE);
     }
 
-    public RudderConfig(String endPointUri, int flushQueueSize, ArrayList<String> integrations, boolean isDebug) throws RudderException {
+    public RudderConfig(String endPointUri, int flushQueueSize, ArrayList<RudderIntegrationFactory> integrations, boolean isDebug) throws RudderException {
         new RudderConfig(endPointUri, flushQueueSize, integrations, isDebug, isDebug ? RudderLogger.RudderLogLevel.DEBUG : RudderLogger.RudderLogLevel.NONE);
     }
 
-    public RudderConfig(String endPointUri, int flushQueueSize, ArrayList<String> integrations, boolean isDebug, int logLevel) throws RudderException {
+    public RudderConfig(String endPointUri, int flushQueueSize, ArrayList<RudderIntegrationFactory> integrations, boolean isDebug, int logLevel) throws RudderException {
         RudderLogger.init(logLevel);
         if (TextUtils.isEmpty(endPointUri)) {
             throw new RudderException("endPointUri can not be null or empty");
@@ -71,7 +71,7 @@ public class RudderConfig {
         }
     }
 
-    private ArrayList<String> getDefaultIntegrations() {
+    private ArrayList<RudderIntegrationFactory> getDefaultIntegrations() {
         return new ArrayList<>();
     }
 
@@ -91,11 +91,11 @@ public class RudderConfig {
         this.flushQueueSize = flushQueueSize;
     }
 
-    public ArrayList<String> getIntegrations() {
+    public ArrayList<RudderIntegrationFactory> getIntegrations() {
         return integrations;
     }
 
-    public void setIntegrations(ArrayList<String> integrations) {
+    public void setIntegrations(ArrayList<RudderIntegrationFactory> integrations) {
         this.integrations = integrations;
     }
 

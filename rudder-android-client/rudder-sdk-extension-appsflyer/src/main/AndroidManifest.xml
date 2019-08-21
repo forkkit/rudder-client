@@ -1,15 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.rudderlabs.android.sdk.integrations.adjust">
+          package="com.rudderlabs.android.sdk.integrations.appsflyer">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <application>
-        <receiver
-                android:name="com.adjust.sdk.AdjustReferrerReceiver"
-                android:permission="android.permission.INSTALL_PACKAGES"
-                android:exported="true" >
+        <receiver android:name="com.appsflyer.SingleInstallBroadcastReceiver" android:exported="true">
             <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
             </intent-filter>
         </receiver>
     </application>
