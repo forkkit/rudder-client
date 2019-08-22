@@ -30,39 +30,34 @@ public class AppsflyerIntegration extends RudderIntegrationFactory<AppsFlyerLib>
 
     @Override
     public void identify(RudderElement element) {
-
+        processInAppEvents(element);
     }
 
     @Override
     public void page(RudderElement element) {
-        AppsFlyerLib.getInstance()
-                .trackEvent(
-                        application,
-                        "page-" + (element.getEventName() == null ? "" : element.getEventName()),
-                        element.getEventProperties()
-                );
+        processInAppEvents(element);
     }
 
     @Override
     public void screen(RudderElement element) {
-        AppsFlyerLib.getInstance()
-                .trackEvent(
-                        application,
-                        "screen-" + (element.getEventName() == null ? "" : element.getEventName()),
-                        element.getEventProperties()
-                );
+        processInAppEvents(element);
     }
 
     @Override
     public void track(RudderElement element) {
-//        if (getSettings().nativeSDKEnabaled()) {
-        AppsFlyerLib.getInstance()
-                .trackEvent(
-                        application,
-                        "track-" + element.getEventName(),
-                        element.getEventProperties()
-                );
-//        }
+        processInAppEvents(element);
+    }
+
+    private void processInAppEvents(RudderElement element) {
+        AppsflyerEvent appsFlyerEvent = AppsflyerEventProcessor.processRudderEvents(element);
+        if (appsFlyerEvent != null) {
+            AppsFlyerLib.getInstance()
+                    .trackEvent(
+                            application,
+                            appsFlyerEvent.getEventType(),
+                            appsFlyerEvent.getEventProps()
+                    );
+        }
     }
 
     @Override

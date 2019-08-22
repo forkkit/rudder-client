@@ -32,6 +32,7 @@ class EventRepository {
     private void processEventBufferAsync() {
         RudderElement element = eventBuffer.get(0);
         Runnable elementJob = createJobFromElement(element);
+        eventBuffer.remove(0);
         dumpExecutor.submit(elementJob);
     }
 

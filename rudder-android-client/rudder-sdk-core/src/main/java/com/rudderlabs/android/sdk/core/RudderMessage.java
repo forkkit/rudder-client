@@ -70,9 +70,19 @@ class RudderMessage {
     }
 
     void addIntegrationProps(String integrationKey, boolean isEnabled, Map props) {
-        if (isEnabled) {
-            integrations.put(integrationKey, isEnabled);
-            destinationProps.put(integrationKey, props);
-        }
+        integrations.put(integrationKey, isEnabled);
+        if (isEnabled) destinationProps.put(integrationKey, props);
+    }
+
+    String getType() {
+        return type;
+    }
+
+    String getAction() {
+        return action;
+    }
+
+    Map<String, Object> getUserProperties() {
+        return userProperties;
     }
 }

@@ -3,6 +3,7 @@ package com.rudderlabs.android.sdk.core;
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
+import com.rudderlabs.android.sdk.core.ecommerce.ECommercePropertyBuilder;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -71,6 +72,18 @@ public class RudderClient {
                     }
                 }
             });
+        }
+    }
+
+    public void track(ECommercePropertyBuilder builder) {
+        try {
+            RudderElement element = new RudderElementBuilder()
+                    .setEventName(builder.event())
+                    .setProperty(builder.build())
+                    .build();
+            track(element, true);
+        } catch (RudderException e) {
+            RudderLogger.logError(e.getCause());
         }
     }
 

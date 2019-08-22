@@ -23,6 +23,6 @@ public class RudderProperty {
     }
 
     public void setProperty(Map<String, Object> map) {
-        this.map.putAll(map);
+        if (map != null) this.map.putAll(map);
     }
 }

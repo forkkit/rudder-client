@@ -3,12 +3,11 @@ package com.rudderlabs.android.sdk.core.util;
 import android.app.Application;
 import android.os.Build;
 import android.text.TextUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
-import java.util.UUID;
+import java.util.*;
 
 import static android.provider.Settings.Secure.ANDROID_ID;
 import static android.provider.Settings.System.getString;
@@ -34,5 +33,10 @@ public class Utils {
 
         // If this still fails, generate random identifier that does not persist across installations
         return UUID.randomUUID().toString();
+    }
+
+    public static Map<String, Object> convertToMap(Object object) {
+        Gson gson = new Gson();
+        return gson.fromJson(gson.toJson(object), new TypeToken<Map<String, Object>>() {}.getType());
     }
 }

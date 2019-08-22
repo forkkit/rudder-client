@@ -47,4 +47,24 @@ public class RudderElement {
     void addIntegrationProps(String integrationKey, boolean isEnabled, Map props) {
         message.addIntegrationProps(integrationKey, isEnabled, props);
     }
+
+    public RudderMessage getMessage() {
+        return message;
+    }
+
+    public String getType() {
+        return message.getType();
+    }
+
+    public String getAction() {
+        return message.getAction();
+    }
+
+    public Map<String, Object> getUserProperties() {
+        return message.getUserProperties();
+    }
+
+    public Map<String, Object> getProperties() {
+        return message.getProperties();
+    }
 }
