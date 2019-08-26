@@ -30,7 +30,7 @@ public abstract class RudderIntegrationFactory<T> {
 
     public abstract T getInstance();
 
-    public abstract Map<String, Object> getDestinationProps();
+    public abstract Map<String, Object> getDestinationProps(RudderElement element);
 
     protected RudderIntegrationSettings getSettings() {
         return settings;

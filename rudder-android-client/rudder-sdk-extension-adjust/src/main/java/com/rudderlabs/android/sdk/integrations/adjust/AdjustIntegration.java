@@ -12,6 +12,7 @@ import com.rudderlabs.android.sdk.core.RudderElement;
 import com.rudderlabs.android.sdk.core.RudderIntegrationFactory;
 import com.rudderlabs.android.sdk.core.RudderIntegrationSettings;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class AdjustIntegration extends RudderIntegrationFactory<AdjustInstance> {
@@ -98,7 +99,13 @@ public class AdjustIntegration extends RudderIntegrationFactory<AdjustInstance> 
     }
 
     @Override
-    public Map<String, Object> getDestinationProps() {
+    public Map<String, Object> getDestinationProps(RudderElement element) {
+        String token = settings.getToken(element.getEventName());
+        if (token != null) {
+            Map<String, Object> destinationPropsMap = new HashMap<>();
+            destinationPropsMap.put("ad_event_token", token);
+            return destinationPropsMap;
+        }
         return null;
     }
 }

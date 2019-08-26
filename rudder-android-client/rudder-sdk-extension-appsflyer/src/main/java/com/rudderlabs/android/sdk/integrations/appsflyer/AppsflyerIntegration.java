@@ -1,6 +1,7 @@
 package com.rudderlabs.android.sdk.integrations.appsflyer;
 
 import android.app.Application;
+
 import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.AppsFlyerLib;
 import com.rudderlabs.android.sdk.core.*;
@@ -78,7 +79,7 @@ public class AppsflyerIntegration extends RudderIntegrationFactory<AppsFlyerLib>
     private Map<String, Object> props;
 
     @Override
-    public Map<String, Object> getDestinationProps() {
+    public Map<String, Object> getDestinationProps(RudderElement element) {
         if (props == null) {
             props = new HashMap<>();
             props.put("rl_af_uid", AppsFlyerLib.getInstance().getAppsFlyerUID(application));

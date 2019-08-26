@@ -1,6 +1,7 @@
 package com.rudderlabs.android.sdk.core;
 
 import android.app.Application;
+
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -41,7 +42,7 @@ class EventRepository {
             @Override
             public void run() {
                 for (RudderIntegrationFactory integration : config.getIntegrations())
-                    element.addIntegrationProps(integration.key(), integration.enabled(), integration.getDestinationProps());
+                    element.addIntegrationProps(integration.key(), integration.enabled(), integration.getDestinationProps(element));
                 events.add(element);
 
                 if (events.size() == config.getFlushQueueSize()) {
