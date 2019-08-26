@@ -89,21 +89,29 @@ public class AppsflyerIntegration extends RudderIntegrationFactory<AppsFlyerLib>
 
     @Override
     public void onInstallConversionDataLoaded(Map<String, String> map) {
-
+        Map<String, Object> eventMap = new HashMap<>();
+        for (String key : map.keySet()) {
+            eventMap.put(key, eventMap.get(key));
+        }
+        rudderClient.track(new RudderElementBuilder().setEventName("InstallConversionDataLoaded").setProperty(eventMap).build(), false);
     }
 
     @Override
     public void onInstallConversionFailure(String s) {
-
+        // ignored
     }
 
     @Override
     public void onAppOpenAttribution(Map<String, String> map) {
-
+        Map<String, Object> eventMap = new HashMap<>();
+        for (String key : map.keySet()) {
+            eventMap.put(key, eventMap.get(key));
+        }
+        rudderClient.track(new RudderElementBuilder().setEventName("AppOpenAttribution").setProperty(eventMap).build(), false);
     }
 
     @Override
     public void onAttributionFailure(String s) {
-
+        // ignored
     }
 }
