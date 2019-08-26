@@ -50,6 +50,7 @@ public class PagePropertyBuilder extends RudderPropertyBuilder {
         if (TextUtils.isEmpty(url)) {
             throw new RudderException("url can not be null or empty");
         }
+
         RudderProperty property = new RudderProperty();
         property.setProperty("title", this.title);
         property.setProperty("url", this.url);
@@ -57,6 +58,7 @@ public class PagePropertyBuilder extends RudderPropertyBuilder {
         property.setProperty("referrer", this.referrer);
         property.setProperty("search", this.search);
         property.setProperty("keywords", this.keywords);
-        return null;
+
+        return property;
     }
 }
