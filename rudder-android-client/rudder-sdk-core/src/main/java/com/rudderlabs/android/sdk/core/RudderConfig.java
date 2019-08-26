@@ -12,6 +12,10 @@ public class RudderConfig {
     private boolean isDebug = false;
     private int logLevel = RudderLogger.RudderLogLevel.NONE;
 
+    private RudderConfig() throws RudderException {
+        new RudderConfig(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, getDefaultIntegrations());
+    }
+
     public RudderConfig(String endPointUri) throws RudderException {
         new RudderConfig(endPointUri, Constants.FLUSH_QUEUE_SIZE, getDefaultIntegrations());
     }
