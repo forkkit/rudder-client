@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "com.rudderlabs.android.sdk"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -26,6 +26,7 @@ dependencies {
     implementation project(':rudder-sdk-core')
     implementation project(':rudder-sdk-extension-appsflyer')
     implementation project(':rudder-sdk-extension-adjust')
+    implementation project(':rudder-sdk-extension-fb')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
