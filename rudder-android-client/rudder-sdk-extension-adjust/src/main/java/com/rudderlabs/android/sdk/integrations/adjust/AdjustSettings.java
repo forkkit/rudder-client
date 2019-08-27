@@ -1,7 +1,10 @@
 package com.rudderlabs.android.sdk.integrations.adjust;
 
+import android.os.Build;
+
 import com.rudderlabs.android.sdk.core.RudderIntegrationSettings;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class AdjustSettings extends RudderIntegrationSettings {
@@ -33,5 +36,36 @@ public class AdjustSettings extends RudderIntegrationSettings {
 
     public Map<String, String> getEventTokenMap() {
         return eventTokenMap;
+    }
+
+    public static class Builder {
+        private String token;
+
+        public Builder withToken(String token) {
+            this.token = token;
+            return this;
+        }
+
+        private Map<String, String> eventTokenMap;
+
+        public Builder withMap(Map<String, String> eventMap) {
+            if (this.eventTokenMap == null) {
+                this.eventTokenMap = new HashMap<>();
+            }
+            this.eventTokenMap.putAll(eventMap);
+            return this;
+        }
+
+        public Builder withMapEntry(String eventName, String eventToken) {
+            if (this.eventTokenMap == null) {
+                this.eventTokenMap = new HashMap<>();
+            }
+            this.eventTokenMap.put(eventName, eventToken);
+            return this;
+        }
+
+        public AdjustSettings build() {
+            return new AdjustSettings(this.token, this.eventTokenMap);
+        }
     }
 }

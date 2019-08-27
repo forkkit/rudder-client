@@ -7,144 +7,114 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06076AFD2313BA5E0048B386 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06076AFC2313BA5E0048B386 /* AppDelegate.m */; };
-		06076B002313BA5E0048B386 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06076AFF2313BA5E0048B386 /* ViewController.m */; };
-		06076B032313BA5E0048B386 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06076B012313BA5E0048B386 /* Main.storyboard */; };
-		06076B062313BA5E0048B386 /* rudder_ios_client.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06076B042313BA5E0048B386 /* rudder_ios_client.xcdatamodeld */; };
-		06076B082313BA5F0048B386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06076B072313BA5F0048B386 /* Assets.xcassets */; };
-		06076B0B2313BA5F0048B386 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06076B092313BA5F0048B386 /* LaunchScreen.storyboard */; };
-		06076B0E2313BA5F0048B386 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06076B0D2313BA5F0048B386 /* main.m */; };
-		06076B182313BA5F0048B386 /* rudder_ios_clientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06076B172313BA5F0048B386 /* rudder_ios_clientTests.m */; };
-		06076B232313BA5F0048B386 /* rudder_ios_clientUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06076B222313BA5F0048B386 /* rudder_ios_clientUITests.m */; };
+		0611903F2313F4AB00679A51 /* rudder_ios_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061190352313F4AB00679A51 /* rudder_ios_client.framework */; };
+		061190442313F4AB00679A51 /* rudder_ios_clientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 061190432313F4AB00679A51 /* rudder_ios_clientTests.m */; };
+		061190462313F4AB00679A51 /* rudder_ios_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 061190382313F4AB00679A51 /* rudder_ios_client.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		061190512313F6A500679A51 /* RudderClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 0611904F2313F6A500679A51 /* RudderClient.h */; };
+		061190522313F6A500679A51 /* RudderClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 061190502313F6A500679A51 /* RudderClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		06076B142313BA5F0048B386 /* PBXContainerItemProxy */ = {
+		061190402313F4AB00679A51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 06076AF02313BA5E0048B386 /* Project object */;
+			containerPortal = 0611902C2313F4AB00679A51 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 06076AF72313BA5E0048B386;
-			remoteInfo = "rudder-ios-client";
-		};
-		06076B1F2313BA5F0048B386 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 06076AF02313BA5E0048B386 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 06076AF72313BA5E0048B386;
+			remoteGlobalIDString = 061190342313F4AB00679A51;
 			remoteInfo = "rudder-ios-client";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		06076AF82313BA5E0048B386 /* rudder-ios-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rudder-ios-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		06076AFB2313BA5E0048B386 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		06076AFC2313BA5E0048B386 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		06076AFE2313BA5E0048B386 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		06076AFF2313BA5E0048B386 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		06076B022313BA5E0048B386 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		06076B052313BA5E0048B386 /* rudder_ios_client.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = rudder_ios_client.xcdatamodel; sourceTree = "<group>"; };
-		06076B072313BA5F0048B386 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		06076B0A2313BA5F0048B386 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		06076B0C2313BA5F0048B386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06076B0D2313BA5F0048B386 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		06076B132313BA5F0048B386 /* rudder-ios-clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rudder-ios-clientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		06076B172313BA5F0048B386 /* rudder_ios_clientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rudder_ios_clientTests.m; sourceTree = "<group>"; };
-		06076B192313BA5F0048B386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06076B1E2313BA5F0048B386 /* rudder-ios-clientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rudder-ios-clientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		06076B222313BA5F0048B386 /* rudder_ios_clientUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rudder_ios_clientUITests.m; sourceTree = "<group>"; };
-		06076B242313BA5F0048B386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		061190352313F4AB00679A51 /* rudder_ios_client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rudder_ios_client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		061190382313F4AB00679A51 /* rudder_ios_client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rudder_ios_client.h; sourceTree = "<group>"; };
+		061190392313F4AB00679A51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0611903E2313F4AB00679A51 /* rudder-ios-clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rudder-ios-clientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		061190432313F4AB00679A51 /* rudder_ios_clientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rudder_ios_clientTests.m; sourceTree = "<group>"; };
+		061190452313F4AB00679A51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0611904F2313F6A500679A51 /* RudderClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RudderClient.h; sourceTree = "<group>"; };
+		061190502313F6A500679A51 /* RudderClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RudderClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		06076AF52313BA5E0048B386 /* Frameworks */ = {
+		061190322313F4AB00679A51 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		06076B102313BA5F0048B386 /* Frameworks */ = {
+		0611903B2313F4AB00679A51 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		06076B1B2313BA5F0048B386 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				0611903F2313F4AB00679A51 /* rudder_ios_client.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06076AEF2313BA5E0048B386 = {
+		0611902B2313F4AB00679A51 = {
 			isa = PBXGroup;
 			children = (
-				06076AFA2313BA5E0048B386 /* rudder-ios-client */,
-				06076B162313BA5F0048B386 /* rudder-ios-clientTests */,
-				06076B212313BA5F0048B386 /* rudder-ios-clientUITests */,
-				06076AF92313BA5E0048B386 /* Products */,
+				061190372313F4AB00679A51 /* rudder-ios-client */,
+				061190422313F4AB00679A51 /* rudder-ios-clientTests */,
+				061190362313F4AB00679A51 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		06076AF92313BA5E0048B386 /* Products */ = {
+		061190362313F4AB00679A51 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06076AF82313BA5E0048B386 /* rudder-ios-client.app */,
-				06076B132313BA5F0048B386 /* rudder-ios-clientTests.xctest */,
-				06076B1E2313BA5F0048B386 /* rudder-ios-clientUITests.xctest */,
+				061190352313F4AB00679A51 /* rudder_ios_client.framework */,
+				0611903E2313F4AB00679A51 /* rudder-ios-clientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		06076AFA2313BA5E0048B386 /* rudder-ios-client */ = {
+		061190372313F4AB00679A51 /* rudder-ios-client */ = {
 			isa = PBXGroup;
 			children = (
-				06076AFB2313BA5E0048B386 /* AppDelegate.h */,
-				06076AFC2313BA5E0048B386 /* AppDelegate.m */,
-				06076AFE2313BA5E0048B386 /* ViewController.h */,
-				06076AFF2313BA5E0048B386 /* ViewController.m */,
-				06076B012313BA5E0048B386 /* Main.storyboard */,
-				06076B072313BA5F0048B386 /* Assets.xcassets */,
-				06076B092313BA5F0048B386 /* LaunchScreen.storyboard */,
-				06076B0C2313BA5F0048B386 /* Info.plist */,
-				06076B0D2313BA5F0048B386 /* main.m */,
-				06076B042313BA5E0048B386 /* rudder_ios_client.xcdatamodeld */,
+				061190382313F4AB00679A51 /* rudder_ios_client.h */,
+				061190392313F4AB00679A51 /* Info.plist */,
+				0611904F2313F6A500679A51 /* RudderClient.h */,
+				061190502313F6A500679A51 /* RudderClient.m */,
 			);
 			path = "rudder-ios-client";
 			sourceTree = "<group>";
 		};
-		06076B162313BA5F0048B386 /* rudder-ios-clientTests */ = {
+		061190422313F4AB00679A51 /* rudder-ios-clientTests */ = {
 			isa = PBXGroup;
 			children = (
-				06076B172313BA5F0048B386 /* rudder_ios_clientTests.m */,
-				06076B192313BA5F0048B386 /* Info.plist */,
+				061190432313F4AB00679A51 /* rudder_ios_clientTests.m */,
+				061190452313F4AB00679A51 /* Info.plist */,
 			);
 			path = "rudder-ios-clientTests";
 			sourceTree = "<group>";
 		};
-		06076B212313BA5F0048B386 /* rudder-ios-clientUITests */ = {
-			isa = PBXGroup;
-			children = (
-				06076B222313BA5F0048B386 /* rudder_ios_clientUITests.m */,
-				06076B242313BA5F0048B386 /* Info.plist */,
-			);
-			path = "rudder-ios-clientUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		061190302313F4AB00679A51 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				061190462313F4AB00679A51 /* rudder_ios_client.h in Headers */,
+				061190512313F6A500679A51 /* RudderClient.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		06076AF72313BA5E0048B386 /* rudder-ios-client */ = {
+		061190342313F4AB00679A51 /* rudder-ios-client */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06076B272313BA5F0048B386 /* Build configuration list for PBXNativeTarget "rudder-ios-client" */;
+			buildConfigurationList = 061190492313F4AB00679A51 /* Build configuration list for PBXNativeTarget "rudder-ios-client" */;
 			buildPhases = (
-				06076AF42313BA5E0048B386 /* Sources */,
-				06076AF52313BA5E0048B386 /* Frameworks */,
-				06076AF62313BA5E0048B386 /* Resources */,
+				061190302313F4AB00679A51 /* Headers */,
+				061190312313F4AB00679A51 /* Sources */,
+				061190322313F4AB00679A51 /* Frameworks */,
+				061190332313F4AB00679A51 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -152,106 +122,71 @@
 			);
 			name = "rudder-ios-client";
 			productName = "rudder-ios-client";
-			productReference = 06076AF82313BA5E0048B386 /* rudder-ios-client.app */;
-			productType = "com.apple.product-type.application";
+			productReference = 061190352313F4AB00679A51 /* rudder_ios_client.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		06076B122313BA5F0048B386 /* rudder-ios-clientTests */ = {
+		0611903D2313F4AB00679A51 /* rudder-ios-clientTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06076B2A2313BA5F0048B386 /* Build configuration list for PBXNativeTarget "rudder-ios-clientTests" */;
+			buildConfigurationList = 0611904C2313F4AB00679A51 /* Build configuration list for PBXNativeTarget "rudder-ios-clientTests" */;
 			buildPhases = (
-				06076B0F2313BA5F0048B386 /* Sources */,
-				06076B102313BA5F0048B386 /* Frameworks */,
-				06076B112313BA5F0048B386 /* Resources */,
+				0611903A2313F4AB00679A51 /* Sources */,
+				0611903B2313F4AB00679A51 /* Frameworks */,
+				0611903C2313F4AB00679A51 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				06076B152313BA5F0048B386 /* PBXTargetDependency */,
+				061190412313F4AB00679A51 /* PBXTargetDependency */,
 			);
 			name = "rudder-ios-clientTests";
 			productName = "rudder-ios-clientTests";
-			productReference = 06076B132313BA5F0048B386 /* rudder-ios-clientTests.xctest */;
+			productReference = 0611903E2313F4AB00679A51 /* rudder-ios-clientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		06076B1D2313BA5F0048B386 /* rudder-ios-clientUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 06076B2D2313BA5F0048B386 /* Build configuration list for PBXNativeTarget "rudder-ios-clientUITests" */;
-			buildPhases = (
-				06076B1A2313BA5F0048B386 /* Sources */,
-				06076B1B2313BA5F0048B386 /* Frameworks */,
-				06076B1C2313BA5F0048B386 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				06076B202313BA5F0048B386 /* PBXTargetDependency */,
-			);
-			name = "rudder-ios-clientUITests";
-			productName = "rudder-ios-clientUITests";
-			productReference = 06076B1E2313BA5F0048B386 /* rudder-ios-clientUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		06076AF02313BA5E0048B386 /* Project object */ = {
+		0611902C2313F4AB00679A51 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Arnab Pal";
 				TargetAttributes = {
-					06076AF72313BA5E0048B386 = {
+					061190342313F4AB00679A51 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
-					06076B122313BA5F0048B386 = {
+					0611903D2313F4AB00679A51 = {
 						CreatedOnToolsVersion = 10.2.1;
-						TestTargetID = 06076AF72313BA5E0048B386;
-					};
-					06076B1D2313BA5F0048B386 = {
-						CreatedOnToolsVersion = 10.2.1;
-						TestTargetID = 06076AF72313BA5E0048B386;
 					};
 				};
 			};
-			buildConfigurationList = 06076AF32313BA5E0048B386 /* Build configuration list for PBXProject "rudder-ios-client" */;
+			buildConfigurationList = 0611902F2313F4AB00679A51 /* Build configuration list for PBXProject "rudder-ios-client" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
-			mainGroup = 06076AEF2313BA5E0048B386;
-			productRefGroup = 06076AF92313BA5E0048B386 /* Products */;
+			mainGroup = 0611902B2313F4AB00679A51;
+			productRefGroup = 061190362313F4AB00679A51 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				06076AF72313BA5E0048B386 /* rudder-ios-client */,
-				06076B122313BA5F0048B386 /* rudder-ios-clientTests */,
-				06076B1D2313BA5F0048B386 /* rudder-ios-clientUITests */,
+				061190342313F4AB00679A51 /* rudder-ios-client */,
+				0611903D2313F4AB00679A51 /* rudder-ios-clientTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		06076AF62313BA5E0048B386 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				06076B0B2313BA5F0048B386 /* LaunchScreen.storyboard in Resources */,
-				06076B082313BA5F0048B386 /* Assets.xcassets in Resources */,
-				06076B032313BA5E0048B386 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		06076B112313BA5F0048B386 /* Resources */ = {
+		061190332313F4AB00679A51 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		06076B1C2313BA5F0048B386 /* Resources */ = {
+		0611903C2313F4AB00679A51 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -261,69 +196,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		06076AF42313BA5E0048B386 /* Sources */ = {
+		061190312313F4AB00679A51 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06076B062313BA5E0048B386 /* rudder_ios_client.xcdatamodeld in Sources */,
-				06076B002313BA5E0048B386 /* ViewController.m in Sources */,
-				06076B0E2313BA5F0048B386 /* main.m in Sources */,
-				06076AFD2313BA5E0048B386 /* AppDelegate.m in Sources */,
+				061190522313F6A500679A51 /* RudderClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		06076B0F2313BA5F0048B386 /* Sources */ = {
+		0611903A2313F4AB00679A51 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06076B182313BA5F0048B386 /* rudder_ios_clientTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		06076B1A2313BA5F0048B386 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				06076B232313BA5F0048B386 /* rudder_ios_clientUITests.m in Sources */,
+				061190442313F4AB00679A51 /* rudder_ios_clientTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		06076B152313BA5F0048B386 /* PBXTargetDependency */ = {
+		061190412313F4AB00679A51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 06076AF72313BA5E0048B386 /* rudder-ios-client */;
-			targetProxy = 06076B142313BA5F0048B386 /* PBXContainerItemProxy */;
-		};
-		06076B202313BA5F0048B386 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 06076AF72313BA5E0048B386 /* rudder-ios-client */;
-			targetProxy = 06076B1F2313BA5F0048B386 /* PBXContainerItemProxy */;
+			target = 061190342313F4AB00679A51 /* rudder-ios-client */;
+			targetProxy = 061190402313F4AB00679A51 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		06076B012313BA5E0048B386 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				06076B022313BA5E0048B386 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		06076B092313BA5F0048B386 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				06076B0A2313BA5F0048B386 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		06076B252313BA5F0048B386 /* Debug */ = {
+		061190472313F4AB00679A51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -357,6 +257,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -379,10 +280,12 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		06076B262313BA5F0048B386 /* Release */ = {
+		061190482313F4AB00679A51 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -416,6 +319,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -432,47 +336,64 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		06076B282313BA5F0048B386 /* Debug */ = {
+		0611904A2313F4AB00679A51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTGKNDBD23;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "rudder-ios-client/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rudderlabs.ios.sdk.core.rudder-ios-client";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		06076B292313BA5F0048B386 /* Release */ = {
+		0611904B2313F4AB00679A51 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTGKNDBD23;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "rudder-ios-client/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rudderlabs.ios.sdk.core.rudder-ios-client";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		06076B2B2313BA5F0048B386 /* Debug */ = {
+		0611904D2313F4AB00679A51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GTGKNDBD23;
 				INFOPLIST_FILE = "rudder-ios-clientTests/Info.plist";
@@ -484,14 +405,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rudderlabs.ios.sdk.core.rudder-ios-clientTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rudder-ios-client.app/rudder-ios-client";
 			};
 			name = Debug;
 		};
-		06076B2C2313BA5F0048B386 /* Release */ = {
+		0611904E2313F4AB00679A51 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GTGKNDBD23;
 				INFOPLIST_FILE = "rudder-ios-clientTests/Info.plist";
@@ -503,99 +422,40 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rudderlabs.ios.sdk.core.rudder-ios-clientTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rudder-ios-client.app/rudder-ios-client";
-			};
-			name = Release;
-		};
-		06076B2E2313BA5F0048B386 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GTGKNDBD23;
-				INFOPLIST_FILE = "rudder-ios-clientUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rudderlabs.ios.sdk.core.rudder-ios-clientUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "rudder-ios-client";
-			};
-			name = Debug;
-		};
-		06076B2F2313BA5F0048B386 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GTGKNDBD23;
-				INFOPLIST_FILE = "rudder-ios-clientUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rudderlabs.ios.sdk.core.rudder-ios-clientUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "rudder-ios-client";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		06076AF32313BA5E0048B386 /* Build configuration list for PBXProject "rudder-ios-client" */ = {
+		0611902F2313F4AB00679A51 /* Build configuration list for PBXProject "rudder-ios-client" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				06076B252313BA5F0048B386 /* Debug */,
-				06076B262313BA5F0048B386 /* Release */,
+				061190472313F4AB00679A51 /* Debug */,
+				061190482313F4AB00679A51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06076B272313BA5F0048B386 /* Build configuration list for PBXNativeTarget "rudder-ios-client" */ = {
+		061190492313F4AB00679A51 /* Build configuration list for PBXNativeTarget "rudder-ios-client" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				06076B282313BA5F0048B386 /* Debug */,
-				06076B292313BA5F0048B386 /* Release */,
+				0611904A2313F4AB00679A51 /* Debug */,
+				0611904B2313F4AB00679A51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06076B2A2313BA5F0048B386 /* Build configuration list for PBXNativeTarget "rudder-ios-clientTests" */ = {
+		0611904C2313F4AB00679A51 /* Build configuration list for PBXNativeTarget "rudder-ios-clientTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				06076B2B2313BA5F0048B386 /* Debug */,
-				06076B2C2313BA5F0048B386 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		06076B2D2313BA5F0048B386 /* Build configuration list for PBXNativeTarget "rudder-ios-clientUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				06076B2E2313BA5F0048B386 /* Debug */,
-				06076B2F2313BA5F0048B386 /* Release */,
+				0611904D2313F4AB00679A51 /* Debug */,
+				0611904E2313F4AB00679A51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		06076B042313BA5E0048B386 /* rudder_ios_client.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				06076B052313BA5E0048B386 /* rudder_ios_client.xcdatamodel */,
-			);
-			currentVersion = 06076B052313BA5E0048B386 /* rudder_ios_client.xcdatamodel */;
-			path = rudder_ios_client.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
-	rootObject = 06076AF02313BA5E0048B386 /* Project object */;
+	rootObject = 0611902C2313F4AB00679A51 /* Project object */;
 }

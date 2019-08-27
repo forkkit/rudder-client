@@ -1,10 +1,12 @@
 package com.rudderlabs.android.sample.java;
 
 import android.app.Application;
+
 import com.rudderlabs.android.sdk.core.RudderClient;
 import com.rudderlabs.android.sdk.core.RudderConfigBuilder;
 import com.rudderlabs.android.sdk.core.RudderException;
 import com.rudderlabs.android.sdk.integrations.adjust.AdjustIntegration;
+import com.rudderlabs.android.sdk.integrations.adjust.AdjustSettings;
 import com.rudderlabs.android.sdk.integrations.appsflyer.AppsflyerIntegration;
 
 public class MainApplication extends Application {
@@ -35,7 +37,10 @@ public class MainApplication extends Application {
                             .withEndPointUri(END_POINT_URL)
                             .withDebug(true)
                             .withIntegration(new AppsflyerIntegration(SAMPLE_AF_KEY))
-                            .withIntegration(new AdjustIntegration(SAMPLE_ADJUST_KEY))
+                            .withIntegration(new AdjustIntegration(new AdjustSettings.Builder()
+                                    .withToken(SAMPLE_ADJUST_KEY)
+                                    .withMapEntry("foo", "bar")
+                                    .build()))
             );
         } catch (RudderException e) {
             e.printStackTrace();

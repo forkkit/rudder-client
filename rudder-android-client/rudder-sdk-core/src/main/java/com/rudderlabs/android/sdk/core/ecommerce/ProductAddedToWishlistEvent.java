@@ -1,5 +1,6 @@
 package com.rudderlabs.android.sdk.core.ecommerce;
 
+import com.rudderlabs.android.sdk.core.RudderException;
 import com.rudderlabs.android.sdk.core.RudderProperty;
 
 public class ProductAddedToWishlistEvent extends ProductViewedEvent {
@@ -32,12 +33,13 @@ public class ProductAddedToWishlistEvent extends ProductViewedEvent {
     }
 
     @Override
-    public RudderProperty build() {
-        RudderProperty property = super.build();
-        if (wishList != null) {
-            property.setProperty(ECommerceParamNames.WISHLIST_ID, wishList.getWishListId());
-            property.setProperty(ECommerceParamNames.WISHLIST_NAME, wishList.getWishListName());
+    public RudderProperty build() throws RudderException {
+        if (wishList == null) {
+            throw new RudderException("Wishlist is not initiated");
         }
+        RudderProperty property = super.build();
+        property.setProperty(ECommerceParamNames.WISHLIST_ID, wishList.getWishListId());
+        property.setProperty(ECommerceParamNames.WISHLIST_NAME, wishList.getWishListName());
         return property;
     }
 }

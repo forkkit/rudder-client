@@ -1,5 +1,6 @@
 package com.rudderlabs.android.sdk.core.ecommerce;
 
+import com.rudderlabs.android.sdk.core.RudderException;
 import com.rudderlabs.android.sdk.core.RudderProperty;
 import com.rudderlabs.android.sdk.core.util.Utils;
 
@@ -17,7 +18,7 @@ public class ProductViewedEvent extends ECommercePropertyBuilder {
     }
 
     @Override
-    public RudderProperty build() {
+    public RudderProperty build() throws RudderException {
         RudderProperty property = new RudderProperty();
         property.setProperty(Utils.convertToMap(product));
         return property;

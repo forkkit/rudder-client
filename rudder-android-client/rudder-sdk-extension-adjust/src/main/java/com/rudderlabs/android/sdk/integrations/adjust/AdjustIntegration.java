@@ -23,14 +23,14 @@ public class AdjustIntegration extends RudderIntegrationFactory<AdjustInstance> 
         this(AdjustSettings.getWithToken(appToken));
     }
 
-    public AdjustIntegration(RudderIntegrationSettings settings) {
+    public AdjustIntegration(AdjustSettings settings) {
         super(settings);
-        this.settings = (AdjustSettings) settings;
+        this.settings = settings;
     }
 
     @Override
     public void init(Application application, RudderClient client, RudderConfig config) {
-        AdjustConfig adjustConfig = new AdjustConfig(application, getSettings().getToken(), config.isDebug() ? AdjustConfig.ENVIRONMENT_SANDBOX : AdjustConfig.ENVIRONMENT_PRODUCTION);
+        AdjustConfig adjustConfig = new AdjustConfig(application, this.settings.getToken(), config.isDebug() ? AdjustConfig.ENVIRONMENT_SANDBOX : AdjustConfig.ENVIRONMENT_PRODUCTION);
         Adjust.onCreate(adjustConfig);
     }
 
