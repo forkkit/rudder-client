@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">AndroidAnalytics</string>
-    <string name="post_event">Post Event</string>
-    <string name="flush">Flush Events</string>
-</resources>
