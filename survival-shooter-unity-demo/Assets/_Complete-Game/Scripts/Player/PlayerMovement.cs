@@ -10,9 +10,9 @@ namespace CompleteProject
     public class PlayerMovement : MonoBehaviour
     {
         public static RudderClient rudderInstance;
-        private static string RUDDER_API_URL = "https://192.168.1.101";
+        // private static string RUDDER_API_URL = "https://192.168.1.101";
         // private static string RUDDER_API_URL = "http://torpedo.rudderlabs.com:8080";
-        // private static string RUDDER_API_URL = "https://torpedo-dev.rudderlabs.com";
+        private static string RUDDER_API_URL = "https://torpedo-dev.rudderlabs.com";
         // private static string RUDDER_API_URL = "https://rudderlabs.com";
         // private static string RUDDER_API_URL = "https://c90a566a.ngrok.io";
         private static string RUDDER_WRITE_KEY = "1Q8oS6rzUqcFrBj08j43l4tmmS7";
