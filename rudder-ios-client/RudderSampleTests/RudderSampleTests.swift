@@ -40,7 +40,7 @@ class RudderSampleTests: BaseTests {
     
     func testSimpleTrackEvent() {
         do {
-            let rudderEvent = RudderEventBuilder()
+            let rudderEvent = RudderElementBuilder()
                 .setChannel(channel: "Test Channel")
                 .setEvent(event: "Test Track")
                 .setProperty(property: try TrackPropertyBuilder()
@@ -59,7 +59,7 @@ class RudderSampleTests: BaseTests {
     
     func testSimplePageEvent() {
         do {
-            let rudderEvent = RudderEventBuilder()
+            let rudderEvent = RudderElementBuilder()
                 .setChannel(channel: "Test Channel")
                 .setProperty(property: try PagePropertyBuilder()
                     .setUrl(url: "http://jsonviewer.stack.hu")
@@ -80,7 +80,7 @@ class RudderSampleTests: BaseTests {
     
     func testSimpleScreenEvent() {
         do {
-            let rudderEvent = RudderEventBuilder()
+            let rudderEvent = RudderElementBuilder()
                 .setChannel(channel: "Test Channel")
                 .setProperty(property: try ScreenPropertyBuilder()
                     .setName(name: "Test Screen")

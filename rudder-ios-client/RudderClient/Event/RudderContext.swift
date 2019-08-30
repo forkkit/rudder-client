@@ -14,14 +14,13 @@ class RudderContext: Encodable {
     var library: RudderLibraryInfo = RudderLibraryInfo()
     var os: RudderOSInfo = RudderOSInfo()
     var screenInfo: RudderScreenInfo = RudderScreenInfo()
-    var userAgent: String = ""
+    var userAgent: String = "rudder-ios-client"
     var locale: String = (Locale.current.languageCode ?? "") + "-" + (Locale.current.regionCode ?? "")
     var deviceInfo: RudderDeviceInfo = RudderDeviceInfo()
     var network: RudderNetwork = RudderNetwork()
     
     init() {
-//        self.traits = RudderTraits()
-        self.traits?.anonymousId = self.deviceInfo.id
+        self.traits = RudderTraits(anonymousId: self.deviceInfo.id)
     }
     
     enum CodingKeys: String, CodingKey {

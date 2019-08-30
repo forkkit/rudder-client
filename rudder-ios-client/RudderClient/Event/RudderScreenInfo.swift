@@ -7,11 +7,19 @@
 //
 
 import Foundation
+import UIKit
 
 struct RudderScreenInfo: Codable {
-    var density: Int = 0
-    var width: Int = 0
-    var height: Int = 0
+    var density: Int
+    var width: Int
+    var height: Int
+    
+    init() {
+        let screenSize = UIScreen.main.bounds
+        self.width = Int(screenSize.width)
+        self.height = Int(screenSize.height)
+        self.density = Int(UIScreen.main.scale)
+    }
     
     enum CodingKeys: String, CodingKey {
         case density = "rl_density"

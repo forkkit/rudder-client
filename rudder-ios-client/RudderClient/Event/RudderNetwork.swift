@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import CoreTelephony
 
 struct RudderNetwork: Encodable {
-    var carrier: String = ""
+    var carrier: String = CTCarrier().carrierName ?? "unavailable"
     
     enum CodingKeys: String, CodingKey {
         case carrier = "rl_carrier"

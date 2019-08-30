@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 struct RudderOSInfo: Codable {
-    var name: String = ""
-    var version: String = ""
+    var name: String = UIDevice.current.systemName
+    var version: String = UIDevice.current.systemVersion
     
     enum CodingKeys: String, CodingKey {
         case name = "rl_name"

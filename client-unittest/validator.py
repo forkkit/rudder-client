@@ -32,7 +32,7 @@ def test_json() :
 	# 			validate(instance=event['rl_message']['rl_context']['rl_traits'], schema=traits_schema)
 	# 		else:
 	# 			if 'rl_properties' not in event['rl_message'].keys() :
-	# 				return "NOT OK", 400
+	# 				return "NOT OK", 400	
 	# 			if 'rl_event' in event['rl_message'].keys():
 	# 				rl_event = event['rl_message']['rl_event']
 	# 			else :

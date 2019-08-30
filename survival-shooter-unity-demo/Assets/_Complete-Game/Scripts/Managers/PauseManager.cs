@@ -43,14 +43,14 @@ public class PauseManager : MonoBehaviour
         RudderProperty rudderProperty = new RudderProperty();
         rudderProperty.AddProperty("category", "Pause");
         rudderProperty.AddProperty("transform_position", transform.position.ToString());
-        rudderProperty.AddProperty("rl_message_id", rudderEvent.message.messageId);
+        rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
         rudderEvent.SetProperties(rudderProperty);
         CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
         Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                     {"category" , "Pause" },
                     {"transform_position" , transform.position.ToString()},
-                    {"rl_message_id" , rudderEvent.message.messageId}
+                    {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
                 };
         Amplitude.Instance.logEvent("PauseManager_Pause Direct", demoOptions);
     }

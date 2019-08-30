@@ -27,6 +27,7 @@ struct RudderTraits: Encodable {
     var userName: String? = nil
     
     enum CodingKeys: String, CodingKey {
+        case anonymousId =  "rl_anonymous_id"
         case address = "rl_address"
         case age = "rl_age"
         case birthday = "rl_birthday"
@@ -42,5 +43,28 @@ struct RudderTraits: Encodable {
         case phone = "rl_phone"
         case title = "rl_title"
         case userName = "rl_username"
+    }
+    
+    init(anonymousId: String) {
+        self.anonymousId = anonymousId
+    }
+    
+    init(address: TraitsAddress, age: Int, birthday: String, company: TraitsCompany, createdAt: String, description: String, email: String, firstName: String, gender: String, id: String, lastName: String, name: String, phone: String, title: String, userName: String) {
+        self.anonymousId = RudderElementCache.getCachedContext().deviceInfo.id
+        self.address = address
+        self.age = age
+        self.birthday = birthday
+        self.company = company
+        self.createdAt = createdAt
+        self.description = description
+        self.email = email
+        self.firstName = firstName
+        self.gender = gender
+        self.id = id
+        self.lastName = lastName
+        self.name = name
+        self.phone = phone
+        self.title = title
+        self.userName = userName
     }
 }

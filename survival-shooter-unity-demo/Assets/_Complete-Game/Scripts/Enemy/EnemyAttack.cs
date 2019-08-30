@@ -92,14 +92,14 @@ namespace CompleteProject
             RudderProperty rudderProperty = new RudderProperty();
             rudderProperty.AddProperty("category", "Attack");
             rudderProperty.AddProperty("transform_position", transform.position.ToString());
-            rudderProperty.AddProperty("rl_message_id", rudderEvent.message.messageId);
+            rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
             rudderEvent.SetProperties(rudderProperty);
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
             Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
                     {"category" , "Attack" },
                     {"transform_position" , transform.position.ToString()},
-                    {"rl_message_id" , rudderEvent.message.messageId}
+                    {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
                 };
             Amplitude.Instance.logEvent("EnemyAttack_Attack Direct", demoOptions);
         }

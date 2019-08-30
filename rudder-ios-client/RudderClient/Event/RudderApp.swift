@@ -9,10 +9,10 @@
 import Foundation
 
 struct RudderApp: Codable {
-    var build: String = ""
-    var name: String = ""
-    var nameSpace : String = ""
-    var version: String = ""
+    var build: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+    var name: String = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""
+    var nameSpace : String = Bundle.main.bundleIdentifier ?? ""
+    var version: String = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""
     
     enum CodingKeys: String, CodingKey {
         case build = "rl_build"

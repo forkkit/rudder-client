@@ -12,10 +12,10 @@ import com.rudderlabs.android.sdk.integrations.appsflyer.AppsflyerIntegration;
 public class MainApplication extends Application {
     private static MainApplication instance;
     private static RudderClient rudderClient;
-    private static String SAMPLE_WRITE_KEY = "test-write-key";
+    private static String SAMPLE_WRITE_KEY = "1Q8oS6rzUqcFrBj08j43l4tmmS7";
     private static String SAMPLE_AF_KEY = "test-write-key";
     private static String SAMPLE_ADJUST_KEY = "test-write-key";
-    private static String END_POINT_URL = "http://cccd5697.ngrok.io";
+    private static String END_POINT_URL = "https://torpedo-dev.rudderlabs.com/";
 
     public RudderClient getRudderClient() {
         return rudderClient;

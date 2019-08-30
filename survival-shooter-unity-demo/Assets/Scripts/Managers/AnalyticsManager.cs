@@ -3,5 +3,5 @@ using UnityEngine;
 
 class AnalyticsManager : MonoBehaviour
 {
-    private RudderEvent rudderEvent = new RudderEvent();
+    // private RudderEvent rudderEvent = new RudderEvent();
 }
