@@ -85,4 +85,8 @@ class RudderMessage {
     Map<String, Object> getUserProperties() {
         return userProperties;
     }
+
+    public RudderTraits getTraits() {
+        return this.context.getTraits();
+    }
 }

@@ -147,6 +147,7 @@ public class RudderClient {
     }
 
     public void identify(final RudderElement event, boolean withIntegration) {
+        event.setType(MessageType.IDENTIFY);
         repository.dump(event);
         if (withIntegration) {
             integrationExecutor.submit(new Runnable() {
@@ -163,7 +164,6 @@ public class RudderClient {
     public void identify(RudderTraits traits) {
         RudderElement event = new RudderElementBuilder().setEventName(MessageType.IDENTIFY).setUserId(traits.getId()).build();
         event.identifyWithTraits(traits);
-        event.setType(MessageType.IDENTIFY);
         identify(event, true);
     }
 

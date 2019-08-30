@@ -67,4 +67,8 @@ public class RudderElement {
     public Map<String, Object> getProperties() {
         return message.getProperties();
     }
+
+    public RudderTraits getTraits() {
+        return message.getTraits();
+    }
 }

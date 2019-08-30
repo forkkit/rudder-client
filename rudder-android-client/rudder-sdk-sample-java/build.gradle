@@ -2,9 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.rudderlabs.android.sdk"
+        applicationId "com.rudderlabs.android.sample.java"
         minSdkVersion 14
         targetSdkVersion 29
         versionCode 1
@@ -26,6 +26,7 @@ dependencies {
     implementation project(':rudder-sdk-core')
     implementation project(':rudder-sdk-extension-appsflyer')
     implementation project(':rudder-sdk-extension-adjust')
+    implementation project(':rudder-sdk-extension-mixpanel')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
