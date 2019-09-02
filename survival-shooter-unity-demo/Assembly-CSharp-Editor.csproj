@@ -276,6 +276,9 @@
  <Reference Include="UnityEditor.iOS.Extensions">
  <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="System.Web.Extensions">
+ <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/System.Web.Extensions.dll</HintPath>
+ </Reference>
  <Reference Include="System.Configuration">
  <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/System.Configuration.dll</HintPath>
  </Reference>

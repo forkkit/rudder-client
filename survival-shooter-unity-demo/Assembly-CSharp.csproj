@@ -94,8 +94,20 @@
      <Compile Include="Assets\rudder-sdk\Event\RudderTraits.cs" />
      <Compile Include="Assets\rudder-sdk\Event\RudderTraitsBuilder.cs" />
      <Compile Include="Assets\rudder-sdk\EventRepository.cs" />
-     <Compile Include="Assets\rudder-sdk\MiniJSON.cs" />
      <Compile Include="Assets\rudder-sdk\RudderClient.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\Extensions.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\IJsonWrapper.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\JsonAttribute.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\JsonData.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\JsonException.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\JsonMapper.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\JsonMockWrapper.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\JsonReader.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\JsonWriter.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\Lexer.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\ParserToken.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\Platform.cs" />
+     <Compile Include="Assets\rudder-sdk\UnityLitJson\Unity\UnityTypeBindings.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyAttack.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
@@ -300,6 +312,9 @@
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Web.Extensions">
+ <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/System.Web.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="System.Configuration">
  <HintPath>/Users/arnab/workspace/rudder-client/survival-shooter-unity-demo/Assets/rudder-sdk/Plugins/SQLite/System.Configuration.dll</HintPath>
