@@ -94,6 +94,7 @@
      <Compile Include="Assets\rudder-sdk\Event\RudderTraits.cs" />
      <Compile Include="Assets\rudder-sdk\Event\RudderTraitsBuilder.cs" />
      <Compile Include="Assets\rudder-sdk\EventRepository.cs" />
+     <Compile Include="Assets\rudder-sdk\MiniJSON.cs" />
      <Compile Include="Assets\rudder-sdk\RudderClient.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyAttack.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />

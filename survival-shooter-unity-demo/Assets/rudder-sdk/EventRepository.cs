@@ -8,8 +8,6 @@ using System.IO;
 using Mono.Data.Sqlite;
 using System.Data;
 using System.Threading;
-using System.Runtime.InteropServices;
-using UnityEngine.Networking;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
@@ -44,7 +42,7 @@ namespace com.rudderlabs.unity.library
             flushQueueSize = _flushQueueSize;
             loggingEnabled = false;
 
-            dbPath = "URI=file:" + Application.persistentDataPath + "/persistance.db";
+            dbPath = "URI=file:" + Application.persistentDataPath + "/rl_persistance.db";
             if (conn == null)
             {
                 CreateConnection();
@@ -67,6 +65,22 @@ namespace com.rudderlabs.unity.library
             carrier = _GetiOSCarrierName();
 #endif
             CreateSchema();
+
+            StartProcessorThread();
+        }
+
+        System.Threading.Timer timer;
+
+        private void StartProcessorThread()
+        {
+            System.Threading.TimerCallback timerCallback = new TimerCallback(ProcessThread);
+            timer = new System.Threading.Timer(timerCallback);
+            timer.
+        }
+
+        private void ProcessThread(object obj)
+        {
+
         }
 
         internal void enableLogging(bool _isEnabled)
@@ -114,19 +128,30 @@ namespace com.rudderlabs.unity.library
         // generic method for dumping all events
         internal void Dump(RudderEvent rudderEvent)
         {
-            Debug.Log("EVENT DUMPED");
-            // temporary for torpedo only as torpedo is specific to amplitude
-            rudderEvent.AddIntegrations(RudderIntegrationPlatform.AMPLITUDE);
-            // add incoming event to buffer 
-            eventBuffer.Add(rudderEvent);
-
-            // if flushQueueSize is full flush the events to server
-            if (eventBuffer.Count == flushQueueSize)
+            Debug.Log("EventRepository: EVENT DUMPED");
+            string eventString = JsonUtility.ToJson(rudderEvent);
+            if (conn == null)
             {
-                Debug.Log("EVENT FLUSH STARTED");
-                totalEvents += eventBuffer.Count;
-                FlushEventsAsync();
+                CreateConnection();
             }
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "INSERT INTO events (event, updated) VALUES (@Event, @Updated);";
+                cmd.Parameters.Add(new SqliteParameter { ParameterName = "Event", Value = eventString });
+                cmd.Parameters.Add(new SqliteParameter { ParameterName = "Updated", Value = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds });
+                cmd.ExecuteNonQuery();
+            }
+
+            // add incoming event to buffer 
+            // eventBuffer.Add(rudderEvent);
+            // // if flushQueueSize is full flush the events to server
+            // if (eventBuffer.Count == flushQueueSize)
+            // {
+            //     Debug.Log("EVENT FLUSH STARTED");
+            //     totalEvents += eventBuffer.Count;
+            //     FlushEventsAsync();
+            // }
         }
 
         internal void FlushEventsAsync()
@@ -155,8 +180,10 @@ namespace com.rudderlabs.unity.library
                 //                                                 {
                 //                                                     NullValueHandling = NullValueHandling.Ignore
                 //                                                 });
+                // string payloadString = Json.Serialize(eventPayload);
                 string payloadString = JsonUtility.ToJson(eventPayload);
                 // string payloadString = new JavaScriptSerializer().Serialize(eventPayload);
+                // string payloadString = JsonConverter.Serialize(eventPayload);
 
                 Debug.Log("EventRepository: Payload String: " + payloadString);
 
@@ -283,7 +310,7 @@ namespace com.rudderlabs.unity.library
                         Value = batchId
                     });
 
-                    var result = cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
             }
 
@@ -317,9 +344,7 @@ namespace com.rudderlabs.unity.library
                     Value = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds
                 });
 
-                var result = cmd.ExecuteNonQuery();
-                Debug.Log("EventRepository: insert query" + cmd.ToString());
-                Debug.Log("EventRepository: insert event: " + result);
+                cmd.ExecuteNonQuery();
             }
         }
 

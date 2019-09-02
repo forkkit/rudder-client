@@ -4,7 +4,7 @@ from flask import request
 from flask import abort
 from flask import Response
 from jsonschema import validate
-import json
+import json, time
 
 app = Flask(__name__)
 
@@ -15,6 +15,11 @@ def hello_world():
 @app.route('/hello', methods = ['POST'])
 def test_json() :
 	payload = request.get_json()
+
+	f = open(str(time.time())+".json", "w")
+	f.write(json.dumps(payload))
+	f.close()
+
 	print(payload)
 	# try :
 	# 	with open('./payload/payload.schema.json') as f:

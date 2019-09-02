@@ -134,7 +134,7 @@ namespace CompleteProject
             rudderProperty.AddProperty("transform_position", transform.position.ToString());
             if (enemyHealth != null)
             {
-                rudderProperty.AddProperty("enemy_health", enemyHealth.currentHealth);
+                rudderProperty.AddProperty("enemy_health", enemyHealth.currentHealth.ToString());
             }
             rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
             rudderEvent.SetProperties(rudderProperty);

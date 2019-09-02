@@ -34,7 +34,7 @@ namespace CompleteProject
                     .Build();
                     RudderProperty rudderProperty = new RudderProperty();
                     rudderProperty.AddProperty("category", "GameOver");
-                    rudderProperty.AddProperty("total_payments", ScoreManager.score);
+                    rudderProperty.AddProperty("total_payments", ScoreManager.score.ToString());
                     rudderProperty.AddProperty("transform_position", transform.position.ToString());
                     rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
                     rudderEvent.SetProperties(rudderProperty);

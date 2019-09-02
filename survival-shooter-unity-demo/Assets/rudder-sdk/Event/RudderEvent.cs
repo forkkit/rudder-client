@@ -18,7 +18,10 @@ namespace com.rudderlabs.unity.library.Event
         // for a particular set of events
         public void AddIntegrations(RudderIntegrationPlatform platform)
         {
-            rl_message.rl_integrations.Add(platform.value, true);
+            if (!rl_message.rl_integrations.ContainsKey(platform.value))
+            {
+                rl_message.rl_integrations.Add(platform.value, true);
+            }
         }
         // API for setting event level properties
         // throws exception if "." is present in the key name
@@ -83,7 +86,8 @@ namespace com.rudderlabs.unity.library.Event
         internal RudderMessage()
         {
             rl_integrations.Add(RudderIntegrationPlatform.ALL.value, false);
-            rl_integrations.Add(RudderIntegrationPlatform.GOOGLE_ANALYTICS.value, false);
+            rl_integrations.Add(RudderIntegrationPlatform.GOOGLE_ANALYTICS.value, true);
+            rl_integrations.Add(RudderIntegrationPlatform.AMPLITUDE.value, true);
             rl_anonymous_id = SystemInfo.deviceUniqueIdentifier.ToLower();
         }
     }
