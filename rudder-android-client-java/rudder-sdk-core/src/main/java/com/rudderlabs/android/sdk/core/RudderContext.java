@@ -45,4 +45,8 @@ class RudderContext {
     void updateTraits(RudderTraits traits) {
         this.traits = traits;
     }
+
+    public RudderTraits getTraits() {
+        return traits;
+    }
 }
