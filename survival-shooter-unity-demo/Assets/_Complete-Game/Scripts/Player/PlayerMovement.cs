@@ -8,16 +8,14 @@ namespace CompleteProject
     {
         public static RudderClient rudderInstance;
         // private static string RUDDER_API_URL = "https://192.168.1.101";
-        private static string RUDDER_API_URL = "https://torpedo.rudderlabs.com";
+        // private static string RUDDER_API_URL = "https://torpedo.rudderlabs.com";
         // private static string RUDDER_API_URL = "https://torpedo-dev.rudderlabs.com";
         // private static string RUDDER_API_URL = "https://rudderlabs.com";
-        // private static string RUDDER_API_URL = "https://97bc552e.ngrok.io";
+        private static string RUDDER_API_URL = "https://366bfeb3.ngrok.io";
         private static string RUDDER_WRITE_KEY = "1QH0xOiRBxiKht41YBe90rJVVXR";
         private static int RUDDER_FLUSH_QUEUE_SIZE = 30;
         private static string AMPLITUDE_API_KEY = "93e43f5663a58bc385048a27c4e90c30";
-
         public float speed = 6f;            // The speed that the player will move at.
-
         Vector3 movement;                   // The vector to store the direction of the player's movement.
         Animator anim;                      // Reference to the animator component.
         Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
