@@ -30,11 +30,11 @@ namespace com.rudderlabs.unity.library.Event.Property
         {
             if (category == null)
             {
-                throw new RudderException("Key \"category\" is required for track event");
+                throw new RudderException("Key \"rl_category\" is required for track event");
             }
 
             RudderProperty rudderProperty = new RudderProperty();
-            rudderProperty.AddProperty("category", this.category);
+            rudderProperty.AddProperty("rl_category", this.category);
             rudderProperty.AddProperty("label", this.label);
             rudderProperty.AddProperty("value", this.value);
             return rudderProperty;

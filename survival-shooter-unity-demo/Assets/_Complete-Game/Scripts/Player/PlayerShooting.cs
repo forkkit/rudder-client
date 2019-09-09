@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using com.rudderlabs.unity.library.Event;
+﻿using com.rudderlabs.unity.library.Event;
 using com.rudderlabs.unity.library.Event.Property;
 using UnityEngine;
-using UnitySampleAssets.CrossPlatformInput;
 
 namespace CompleteProject
 {
@@ -128,6 +126,7 @@ namespace CompleteProject
             Debug.Log("Tracking Shoot");
             RudderEvent rudderEvent = new RudderEventBuilder()
             .SetEventName("PlayerShooting_Shoot")
+            .SetUserId("w240adxe7fseasn34m6u-4vpw1n7iac2jz9b135s7")
             .Build();
             RudderProperty rudderProperty = new RudderProperty();
             rudderProperty.AddProperty("category", "Shoot");
@@ -136,20 +135,21 @@ namespace CompleteProject
             {
                 rudderProperty.AddProperty("enemy_health", enemyHealth.currentHealth.ToString());
             }
-            rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
             rudderEvent.SetProperties(rudderProperty);
+            rudderEvent.AddIntegrations(RudderIntegrationPlatform.ALL, false);
+            rudderEvent.AddIntegrations(RudderIntegrationPlatform.GOOGLE_ANALYTICS, true);
+            rudderEvent.AddIntegrations(RudderIntegrationPlatform.AMPLITUDE, true);
             CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
-
-            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-                {"category" , "Shoot" },
-                {"transform_position" , transform.position.ToString()},
-                {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
-            };
-            if (enemyHealth != null)
-            {
-                demoOptions.Add("enemy_health", enemyHealth.currentHealth);
-            }
-            Amplitude.Instance.logEvent("PlayerShooting_Shoot Direct", demoOptions);
+            // Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+            //     {"category" , "Shoot" },
+            //     {"transform_position" , transform.position.ToString()},
+            //     {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
+            // };
+            // if (enemyHealth != null)
+            // {
+            //     demoOptions.Add("enemy_health", enemyHealth.currentHealth);
+            // }
+            // Amplitude.Instance.logEvent("PlayerShooting_Shoot Direct", demoOptions);
         }
     }
 }

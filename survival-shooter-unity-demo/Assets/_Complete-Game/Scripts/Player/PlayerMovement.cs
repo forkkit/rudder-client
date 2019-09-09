@@ -1,4 +1,6 @@
 ﻿using com.rudderlabs.unity.library;
+using com.rudderlabs.unity.library.Event;
+using com.rudderlabs.unity.library.Event.Property;
 using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
@@ -11,8 +13,9 @@ namespace CompleteProject
         // private static string RUDDER_API_URL = "https://torpedo.rudderlabs.com";
         // private static string RUDDER_API_URL = "https://torpedo-dev.rudderlabs.com";
         // private static string RUDDER_API_URL = "https://rudderlabs.com";
-        private static string RUDDER_API_URL = "https://366bfeb3.ngrok.io";
-        private static string RUDDER_WRITE_KEY = "1QH0xOiRBxiKht41YBe90rJVVXR";
+        private static string RUDDER_API_URL = "https://92c02fd7.ngrok.io";
+        // private static string RUDDER_WRITE_KEY = "1QH0xOiRBxiKht41YBe90rJVVXR";
+        private static string RUDDER_WRITE_KEY = "1P6q8fcXrkmekovCdk0a3gFq30X";
         private static int RUDDER_FLUSH_QUEUE_SIZE = 30;
         private static string AMPLITUDE_API_KEY = "93e43f5663a58bc385048a27c4e90c30";
         public float speed = 6f;            // The speed that the player will move at.
@@ -34,14 +37,15 @@ namespace CompleteProject
             // Set up references.
             anim = GetComponent<Animator>();
             playerRigidbody = GetComponent<Rigidbody>();
-
+#if !UNITY_EDITOR
             Debug.Log("Initializing Rudder");
             rudderInstance = RudderClient.GetInstance(RUDDER_WRITE_KEY, RUDDER_API_URL, RUDDER_FLUSH_QUEUE_SIZE);
-            Debug.Log("Initializing Amplitude");
-            Amplitude amplitude = Amplitude.Instance;
-            amplitude.logging = true;
-            amplitude.init(AMPLITUDE_API_KEY);
-            amplitude.setUserId(SystemInfo.deviceUniqueIdentifier.ToLower());
+#endif
+            // Debug.Log("Initializing Amplitude");
+            // Amplitude amplitude = Amplitude.Instance;
+            // amplitude.logging = true;
+            // amplitude.init(AMPLITUDE_API_KEY);
+            // amplitude.setUserId(SystemInfo.deviceUniqueIdentifier.ToLower());
         }
 
 
@@ -81,6 +85,7 @@ namespace CompleteProject
             // RudderEvent rudderEvent = new RudderEventBuilder()
             // .SetEventName("PlayerMovement_Move")
             // .SetRudderProperty(rudderProperty)
+            // .SetUserId("w240adxe7fseasn34m6u-4vpw1n7iac2jz9b135s7")
             // .Build();
             // CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 

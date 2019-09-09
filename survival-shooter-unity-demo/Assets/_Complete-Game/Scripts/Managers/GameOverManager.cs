@@ -26,29 +26,29 @@ namespace CompleteProject
                 // ... tell the animator the game is over.
                 anim.SetTrigger("GameOver");
 
-                if (!gameOverTracked)
-                {
-                    Debug.Log("Tracking GameOver");
-                    RudderEvent rudderEvent = new RudderEventBuilder()
-                    .SetEventName("GameOverManager_GameOver")
-                    .Build();
-                    RudderProperty rudderProperty = new RudderProperty();
-                    rudderProperty.AddProperty("category", "GameOver");
-                    rudderProperty.AddProperty("total_payments", ScoreManager.score.ToString());
-                    rudderProperty.AddProperty("transform_position", transform.position.ToString());
-                    rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
-                    rudderEvent.SetProperties(rudderProperty);
-                    CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+                // if (!gameOverTracked)
+                // {
+                //     Debug.Log("Tracking GameOver");
+                //     RudderEvent rudderEvent = new RudderEventBuilder()
+                //     .SetEventName("GameOverManager_GameOver")
+                //     .Build();
+                //     RudderProperty rudderProperty = new RudderProperty();
+                //     rudderProperty.AddProperty("category", "GameOver");
+                //     rudderProperty.AddProperty("total_payments", ScoreManager.score.ToString());
+                //     rudderProperty.AddProperty("transform_position", transform.position.ToString());
+                //     rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
+                //     rudderEvent.SetProperties(rudderProperty);
+                //     CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
-                    Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-                        {"category" , "GameOver" },
-                        {"total_payments" , ScoreManager.score },
-                        {"transform_position" , transform.position.ToString()},
-                        {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
-                    };
-                    Amplitude.Instance.logEvent("GameOverManager_GameOver Direct", demoOptions);
-                    gameOverTracked = true;
-                }
+                //     Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+                //         {"category" , "GameOver" },
+                //         {"total_payments" , ScoreManager.score },
+                //         {"transform_position" , transform.position.ToString()},
+                //         {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
+                //     };
+                //     Amplitude.Instance.logEvent("GameOverManager_GameOver Direct", demoOptions);
+                //     gameOverTracked = true;
+                // }
             }
         }
     }

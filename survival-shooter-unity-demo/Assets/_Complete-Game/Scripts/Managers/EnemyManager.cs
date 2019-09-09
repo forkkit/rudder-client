@@ -35,23 +35,23 @@ namespace CompleteProject
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
             Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
 
-            Debug.Log("Tracking Spawn");
-            RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetEventName("EnemyManager_Spawn")
-            .Build();
-            RudderProperty rudderProperty = new RudderProperty();
-            rudderProperty.AddProperty("category", "Spawn");
-            rudderProperty.AddProperty("transform_position", transform.position.ToString());
-            rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
-            rudderEvent.SetProperties(rudderProperty);
-            CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+            // Debug.Log("Tracking Spawn");
+            // RudderEvent rudderEvent = new RudderEventBuilder()
+            // .SetEventName("EnemyManager_Spawn")
+            // .Build();
+            // RudderProperty rudderProperty = new RudderProperty();
+            // rudderProperty.AddProperty("category", "Spawn");
+            // rudderProperty.AddProperty("transform_position", transform.position.ToString());
+            // rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
+            // rudderEvent.SetProperties(rudderProperty);
+            // CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
-            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-                {"category" , "Spawn" },
-                {"transform_position" , transform.position.ToString()},
-                {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
-            };
-            Amplitude.Instance.logEvent("EnemyManager_Spawn Direct", demoOptions);
+            // Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+            //     {"category" , "Spawn" },
+            //     {"transform_position" , transform.position.ToString()},
+            //     {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
+            // };
+            // Amplitude.Instance.logEvent("EnemyManager_Spawn Direct", demoOptions);
         }
     }
 }

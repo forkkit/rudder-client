@@ -36,23 +36,23 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
         Lowpass();
 
-        Debug.Log("Tracking Pause");
-        RudderEvent rudderEvent = new RudderEventBuilder()
-        .SetEventName("PauseManager_Pause")
-        .Build();
-        RudderProperty rudderProperty = new RudderProperty();
-        rudderProperty.AddProperty("category", "Pause");
-        rudderProperty.AddProperty("transform_position", transform.position.ToString());
-        rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
-        rudderEvent.SetProperties(rudderProperty);
-        CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+        // Debug.Log("Tracking Pause");
+        // RudderEvent rudderEvent = new RudderEventBuilder()
+        // .SetEventName("PauseManager_Pause")
+        // .Build();
+        // RudderProperty rudderProperty = new RudderProperty();
+        // rudderProperty.AddProperty("category", "Pause");
+        // rudderProperty.AddProperty("transform_position", transform.position.ToString());
+        // rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
+        // rudderEvent.SetProperties(rudderProperty);
+        // CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
-        Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-                    {"category" , "Pause" },
-                    {"transform_position" , transform.position.ToString()},
-                    {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
-                };
-        Amplitude.Instance.logEvent("PauseManager_Pause Direct", demoOptions);
+        // Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+        //             {"category" , "Pause" },
+        //             {"transform_position" , transform.position.ToString()},
+        //             {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
+        //         };
+        // Amplitude.Instance.logEvent("PauseManager_Pause Direct", demoOptions);
     }
 
     void Lowpass()

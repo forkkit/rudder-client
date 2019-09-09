@@ -80,23 +80,23 @@ namespace CompleteProject
                 Death();
             }
 
-            Debug.Log("Tracking Player TakeDamage");
-            RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetEventName("PlayerHealth_TakeDamage")
-            .Build();
-            RudderProperty rudderProperty = new RudderProperty();
-            rudderProperty.AddProperty("category", "TakeDamage");
-            rudderProperty.AddProperty("transform_position", transform.position.ToString());
-            rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
-            rudderEvent.SetProperties(rudderProperty);      
-            CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+            // Debug.Log("Tracking Player TakeDamage");
+            // RudderEvent rudderEvent = new RudderEventBuilder()
+            // .SetEventName("PlayerHealth_TakeDamage")
+            // .Build();
+            // RudderProperty rudderProperty = new RudderProperty();
+            // rudderProperty.AddProperty("category", "TakeDamage");
+            // rudderProperty.AddProperty("transform_position", transform.position.ToString());
+            // rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
+            // rudderEvent.SetProperties(rudderProperty);      
+            // CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
-            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-                {"category" , "TakeDamage" },
-                {"transform_position" , transform.position.ToString()},
-                {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
-            };
-            Amplitude.Instance.logEvent("PlayerHealth_TakeDamage Direct", demoOptions);
+            // Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+            //     {"category" , "TakeDamage" },
+            //     {"transform_position" , transform.position.ToString()},
+            //     {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
+            // };
+            // Amplitude.Instance.logEvent("PlayerHealth_TakeDamage Direct", demoOptions);
         }
 
 
@@ -119,23 +119,23 @@ namespace CompleteProject
             playerMovement.enabled = false;
             playerShooting.enabled = false;
 
-            Debug.Log("Tracking Player Death");
-            RudderEvent rudderEvent = new RudderEventBuilder()
-            .SetEventName("PlayerHealth_Death")
-            .Build();
-            RudderProperty rudderProperty = new RudderProperty();
-            rudderProperty.AddProperty("category", "Death");
-            rudderProperty.AddProperty("transform_position", transform.position.ToString());
-            rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
-            rudderEvent.SetProperties(rudderProperty);
-            CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
+            // Debug.Log("Tracking Player Death");
+            // RudderEvent rudderEvent = new RudderEventBuilder()
+            // .SetEventName("PlayerHealth_Death")
+            // .Build();
+            // RudderProperty rudderProperty = new RudderProperty();
+            // rudderProperty.AddProperty("category", "Death");
+            // rudderProperty.AddProperty("transform_position", transform.position.ToString());
+            // rudderProperty.AddProperty("rl_message_id", rudderEvent.rl_message.rl_message_id);
+            // rudderEvent.SetProperties(rudderProperty);
+            // CompleteProject.PlayerMovement.rudderInstance.Track(rudderEvent);
 
-            Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
-                {"category" , "Death" },
-                {"transform_position" , transform.position.ToString()},
-                {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
-            };
-            Amplitude.Instance.logEvent("PlayerHealth_Death Direct", demoOptions);
+            // Dictionary<string, object> demoOptions = new Dictionary<string, object>() {
+            //     {"category" , "Death" },
+            //     {"transform_position" , transform.position.ToString()},
+            //     {"rl_message_id" , rudderEvent.rl_message.rl_message_id}
+            // };
+            // Amplitude.Instance.logEvent("PlayerHealth_Death Direct", demoOptions);
         }
 
 
