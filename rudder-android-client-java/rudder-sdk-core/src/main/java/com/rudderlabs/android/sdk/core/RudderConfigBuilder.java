@@ -1,6 +1,7 @@
 package com.rudderlabs.android.sdk.core;
 
 import android.text.TextUtils;
+import android.view.contentcapture.ContentCaptureSession;
 import android.webkit.URLUtil;
 
 import java.util.ArrayList;
@@ -56,7 +57,21 @@ public class RudderConfigBuilder {
         return this;
     }
 
+    private int dbThresholdCount = Constants.DB_COUNT_THRESHOLD;
+
+    public RudderConfigBuilder withDbThresholdCount(int dbThresholdCount) {
+        this.dbThresholdCount = dbThresholdCount;
+        return this;
+    }
+
+    private int sleepTimeout = Constants.SLEEP_TIMEOUT;
+
+    public RudderConfigBuilder withSleepCount(int sleepCount) {
+        this.sleepTimeout = sleepCount;
+        return this;
+    }
+
     public RudderConfig build() throws RudderException {
-        return new RudderConfig(endPointUri, flushQueueSize, integrations, isDebug, isDebug ? RudderLogger.RudderLogLevel.DEBUG : logLevel);
+        return new RudderConfig(endPointUri, flushQueueSize, dbThresholdCount, sleepTimeout, integrations, isDebug, isDebug ? RudderLogger.RudderLogLevel.DEBUG : logLevel);
     }
 }

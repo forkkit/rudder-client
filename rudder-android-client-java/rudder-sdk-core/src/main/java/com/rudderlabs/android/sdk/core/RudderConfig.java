@@ -6,49 +6,19 @@ import android.webkit.URLUtil;
 import java.util.ArrayList;
 
 public class RudderConfig {
-    private String endPointUri = Constants.BASE_URL;
-    private int flushQueueSize = Constants.FLUSH_QUEUE_SIZE;
-    private ArrayList<RudderIntegrationFactory> integrations = new ArrayList<>();
-    private boolean isDebug = false;
-    private int logLevel = RudderLogger.RudderLogLevel.NONE;
+    private String endPointUri;
+    private int flushQueueSize;
+    private int dbCountThreshold;
+    private int sleepTimeOut;
+    private ArrayList<RudderIntegrationFactory> integrations;
+    private boolean isDebug;
+    private int logLevel;
 
     private RudderConfig() throws RudderException {
-        new RudderConfig(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, getDefaultIntegrations());
+        this(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, Constants.DB_COUNT_THRESHOLD, Constants.SLEEP_TIMEOUT, new ArrayList<RudderIntegrationFactory>(), false, RudderLogger.RudderLogLevel.ERROR);
     }
 
-    public RudderConfig(String endPointUri) throws RudderException {
-        new RudderConfig(endPointUri, Constants.FLUSH_QUEUE_SIZE, getDefaultIntegrations());
-    }
-
-    public RudderConfig(int flushQueueSize) throws RudderException {
-        new RudderConfig(Constants.BASE_URL, flushQueueSize, getDefaultIntegrations());
-    }
-
-    public RudderConfig(ArrayList<RudderIntegrationFactory> integrations) {
-        try {
-            new RudderConfig(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, integrations);
-        } catch (RudderException e) {
-            RudderLogger.logError(e.getCause());
-        }
-    }
-
-    public RudderConfig(String endPointUri, int flushQueueSize) throws RudderException {
-        new RudderConfig(endPointUri, flushQueueSize, getDefaultIntegrations());
-    }
-
-    public RudderConfig(String endPointUri, int flushQueueSize, boolean isDebug, int logLevel) throws RudderException {
-        new RudderConfig(endPointUri, flushQueueSize, getDefaultIntegrations(), isDebug, logLevel);
-    }
-
-    public RudderConfig(String endPointUri, int flushQueueSize, ArrayList<RudderIntegrationFactory> integrations) throws RudderException {
-        new RudderConfig(endPointUri, flushQueueSize, integrations, false, RudderLogger.RudderLogLevel.NONE);
-    }
-
-    public RudderConfig(String endPointUri, int flushQueueSize, ArrayList<RudderIntegrationFactory> integrations, boolean isDebug) throws RudderException {
-        new RudderConfig(endPointUri, flushQueueSize, integrations, isDebug, isDebug ? RudderLogger.RudderLogLevel.DEBUG : RudderLogger.RudderLogLevel.NONE);
-    }
-
-    public RudderConfig(String endPointUri, int flushQueueSize, ArrayList<RudderIntegrationFactory> integrations, boolean isDebug, int logLevel) throws RudderException {
+    RudderConfig(String endPointUri, int flushQueueSize, int dbCountThreshold, int sleepTimeOut, ArrayList<RudderIntegrationFactory> integrations, boolean isDebug, int logLevel) throws RudderException {
         RudderLogger.init(logLevel);
         if (TextUtils.isEmpty(endPointUri)) {
             throw new RudderException("endPointUri can not be null or empty");
@@ -64,11 +34,13 @@ public class RudderConfig {
         this.integrations = integrations;
         this.isDebug = isDebug;
         this.logLevel = logLevel;
+        this.dbCountThreshold = dbCountThreshold;
+        this.sleepTimeOut = sleepTimeOut;
     }
 
     static RudderConfig getDefaultConfig() {
         try {
-            return new RudderConfig(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE);
+            return new RudderConfig();
         } catch (RudderException e) {
             RudderLogger.logError(e.getCause());
             return null;
@@ -109,5 +81,17 @@ public class RudderConfig {
 
     public void setDebug(boolean debug) {
         isDebug = debug;
+    }
+
+    public int getDbCountThreshold() {
+        return dbCountThreshold;
+    }
+
+    public int getSleepTimeOut() {
+        return sleepTimeOut;
+    }
+
+    public int getLogLevel() {
+        return logLevel;
     }
 }

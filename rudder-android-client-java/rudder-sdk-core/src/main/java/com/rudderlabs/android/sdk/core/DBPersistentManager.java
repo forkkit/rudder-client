@@ -5,53 +5,102 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+/*
+ * Helper class for SQLite operations
+ * */
 class DBPersistentManager extends SQLiteOpenHelper {
-    private static final String DB_NAME = "rudder_persistence.db";
+    // SQLite database file name
+    private static final String DB_NAME = "rl_persistence.db";
+    // SQLite database version number
     private static final int DB_VERSION = 1;
     private static final String EVENTS_TABLE_NAME = "events";
-    static final String BATCH = "batch";
-    static final String BATCH_ID = "id";
+    private static final String MESSAGE = "message";
+    private static final String MESSAGE_ID = "id";
     private static final String UPDATED = "updated";
 
+    // create table initially if not exists
     private void createSchema(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS '" + EVENTS_TABLE_NAME + "' ( " +
-                "  '" + BATCH_ID + "' INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "  '" + BATCH + "' TEXT NOT NULL, " +
-                "  '" + UPDATED + "' INTEGER NOT NULL" +
-                ")");
-        RudderLogger.logInfo("DBPersistentManager:createSchema: Persistent DB created");
+        db.execSQL(String.format(Locale.US, "CREATE TABLE IF NOT EXISTS '%s' ('%s' INTEGER PRIMARY KEY AUTOINCREMENT, '%s' TEXT NOT NULL, '%s' INTEGER NOT NULL)", EVENTS_TABLE_NAME, MESSAGE_ID, MESSAGE, UPDATED));
     }
 
-    void saveBatch(String batch) {
+    // save individual messages to DB
+    void saveEvent(String messageJson) {
         ContentValues values = new ContentValues();
-        values.put(BATCH, batch);
+        values.put(MESSAGE, messageJson);
         values.put(UPDATED, System.currentTimeMillis());
         SQLiteDatabase database = getWritableDatabase();
         if (database.isOpen()) {
-            database.insert(EVENTS_TABLE_NAME, null, values);
-            RudderLogger.logInfo("DBPersistentManager:createSchema: batch saved");
+            database.execSQL(String.format(Locale.US, "INSERT INTO %s (%s, %s) VALUES (%s, %d)", EVENTS_TABLE_NAME, MESSAGE, UPDATED, messageJson, System.currentTimeMillis()));
+            database.close();
         } else {
-            RudderLogger.logWarn("DBPersistentManager:saveBatch: Database is not open");
+            RudderLogger.logError("DBPersistentManager: saveEvent: database is not writable");
         }
     }
 
-    void deleteBatch(int batchId) {
+    /*
+     * delete event with single messageId
+     * */
+    void deleteEvent(int messageId) {
+        List<Integer> messageIds = new ArrayList<>();
+        messageIds.add(messageId);
+        deleteEvents(messageIds);
+    }
+
+    /*
+     * remove selected events from persistence database storage
+     * */
+    void deleteEvents(List<Integer> messageIds) {
+        // get writable database
         SQLiteDatabase database = getWritableDatabase();
         if (database.isOpen()) {
-            database.execSQL("DELETE FROM " + EVENTS_TABLE_NAME + " WHERE " + BATCH_ID + "=" + batchId);
-            RudderLogger.logInfo("DBPersistentManager:deleteBatch: batch deleted with id" + batchId);
+            // format CSV string from messageIds list
+            StringBuilder builder = new StringBuilder();
+            for (int index = 0; index < messageIds.size(); index++) {
+                builder.append(messageIds.get(index));
+                builder.append(",");
+            }
+            // remove last "," character
+            builder.deleteCharAt(builder.length() - 1);
+            // remove events
+            database.execSQL(String.format(Locale.US, "DELETE FROM %s WHERE %s IN (%s)", EVENTS_TABLE_NAME, MESSAGE_ID, builder.toString()));
+            // close database
+            database.close();
         } else {
-            RudderLogger.logWarn("DBPersistentManager:deleteBatch: Database is not open");
+            RudderLogger.logError("DBPersistentManager: deleteEvents: database is not writable");
         }
     }
 
-    Cursor retrieveBatch() {
+    /*
+     * retrieve `count` number of messages from DB and store messageIds and messages separately
+     * */
+    void fetchEventsFromDB(ArrayList<Integer> messageIds, ArrayList<String> messages, int count) {
+        // clear lists if not empty
+        if (!messageIds.isEmpty()) messageIds.clear();
+        if (!messages.isEmpty()) messages.clear();
+
+        // get readable database instance
         SQLiteDatabase database = getReadableDatabase();
         if (database.isOpen()) {
-            return database.rawQuery("SELECT * FROM " + EVENTS_TABLE_NAME + " ORDER BY " + UPDATED + " ASC LIMIT 1", null);
+            Cursor cursor = database.rawQuery(String.format(Locale.US, "SELECT * FROM %s ORDER BY %s ASC LIMIT %d", EVENTS_TABLE_NAME, UPDATED, count), null);
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    messageIds.add(cursor.getInt(cursor.getColumnIndex(MESSAGE_ID)));
+                    messages.add(cursor.getString(cursor.getColumnIndex(MESSAGE)));
+                    cursor.moveToNext();
+                }
+            }
+            cursor.close();
+            database.close();
+        } else {
+            RudderLogger.logError("DBPersistentManager: fetchEventsFromDB: database is not readable");
         }
-        return null;
     }
 
     DBPersistentManager(Application application) {

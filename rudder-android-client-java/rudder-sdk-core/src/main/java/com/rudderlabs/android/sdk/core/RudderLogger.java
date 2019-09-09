@@ -4,7 +4,7 @@ import android.util.Log;
 
 public class RudderLogger {
     private static int logLevel = RudderLogLevel.INFO;
-    private static final String TAG = "RudderLabs";
+    private static final String TAG = "RudderSDK";
 
     static void init(int l) {
         if (l > RudderLogLevel.DEBUG) l = RudderLogLevel.DEBUG;
@@ -14,6 +14,12 @@ public class RudderLogger {
     public static void logError(Throwable throwable) {
         if (logLevel >= RudderLogLevel.ERROR) {
             Log.e(TAG, "Error: ", throwable);
+        }
+    }
+
+    public static void logError(String message) {
+        if (logLevel >= RudderLogLevel.ERROR) {
+            Log.e(TAG, "Error: " + message);
         }
     }
 
