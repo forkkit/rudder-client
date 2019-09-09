@@ -170,7 +170,6 @@ namespace com.rudderlabs.unity.library
                     {
                         // send events to server
                         string response = SendEventsToServer(payload);
-                        Debug.Log("EventRepository: SendEventsToServer: Response: " + response);
                         if (response != null)
                         {
                             // if server response is successful remove those events
@@ -351,15 +350,8 @@ namespace com.rudderlabs.unity.library
                         }
                     }
                     string messageIdsString = builder.ToString();
-                    Debug.Log("EventReposiroty: ClearEventsFromDB: messageIdsString: " + messageIdsString);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "DELETE FROM events WHERE id IN (" + messageIdsString + ");";
-                    // cmd.Parameters.Add(new SqliteParameter
-                    // {
-                    //     ParameterName = "MessageIds",
-                    //     Value = messageIdsString
-                    // });
-                    Debug.Log("EventReposiroty: ClearEventsFromDB: SQL: " + "DELETE FROM events WHERE id IN (" + messageIdsString + ");");
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -399,9 +391,9 @@ namespace com.rudderlabs.unity.library
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.Log("RudderSDK: Dump: Error" + e.Message);
+                Debug.Log("RudderSDK: Dump: Error" + ex.Message);
             }
         }
         // ssl check validator
