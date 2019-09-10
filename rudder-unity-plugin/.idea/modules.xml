@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/rudder-sdk-sample-kotlin/rudder-sdk-sample-kotlin.iml" filepath="$PROJECT_DIR$/rudder-sdk-sample-kotlin/rudder-sdk-sample-kotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rudder-sdk-unity-plugin-android/rudder-sdk-unity-plugin-android.iml" filepath="$PROJECT_DIR$/rudder-sdk-unity-plugin-android/rudder-sdk-unity-plugin-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rudder-unity-plugin.iml" filepath="$PROJECT_DIR$/rudder-unity-plugin.iml" />
+    </modules>
+  </component>
+</project>
