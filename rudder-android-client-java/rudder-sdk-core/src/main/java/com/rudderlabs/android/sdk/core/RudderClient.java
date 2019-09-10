@@ -3,46 +3,79 @@ package com.rudderlabs.android.sdk.core;
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
+
 import com.rudderlabs.android.sdk.core.ecommerce.ECommercePropertyBuilder;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/*
+ * Primary class to be used in client
+ * */
 public class RudderClient {
+    // singleton instance
     private static RudderClient instance;
+    // repository instance
     private static EventRepository repository;
+    // persisted application instance
     private static Application application;
+    // persisted config object for the client
     private static RudderConfig config;
-
+    // single thread executor for executing integration initialization
     private static ExecutorService integrationExecutor = Executors.newSingleThreadExecutor();
 
+    /*
+     * private constructor
+     * */
     private RudderClient() {
         // prevent constructor initialization
     }
 
+    /*
+     * API for getting instance of RudderClient with context and writeKey (bare minimum
+     * requirements)
+     * */
     public static RudderClient getInstance(Context context, String writeKey) throws RudderException {
         return getInstance(context, writeKey, RudderConfig.getDefaultConfig());
     }
 
-    public static RudderClient getInstance(Context context, String writeKey, RudderConfigBuilder builder) throws RudderException {
+    /*
+     * API for getting instance of RudderClient with config
+     * */
+    public static RudderClient getInstance(Context context, String writeKey,
+                                           RudderConfigBuilder builder) throws RudderException {
         return getInstance(context, writeKey, builder.build());
     }
 
-    public static RudderClient getInstance(Context context, String writeKey, RudderConfig config) throws RudderException {
+    /*
+     * API for getting instance of RudderClient with config
+     * */
+    public static RudderClient getInstance(Context context, String writeKey, RudderConfig config)
+            throws RudderException {
+        // check if instance is already initiated
         if (instance == null) {
+            // assert context is not null
             if (context == null) {
                 throw new RudderException("context can not be null");
             }
+            // assert writeKey is not null or empty
             if (TextUtils.isEmpty(writeKey)) {
                 throw new RudderException("WriteKey can not be null or empty");
             }
+            // assert config is not null
             if (config == null) {
                 throw new RudderException("config can not be null");
             }
+
+            // initiate RudderClient instance
             instance = new RudderClient();
+            // get application context from provided context
             application = (Application) context.getApplicationContext();
+            // initiate EventRepository class
             repository = new EventRepository(application, writeKey, config);
+            // persist provided config object
             RudderClient.config = config;
+
 
             initiateIntegrations(config);
         }
@@ -161,7 +194,10 @@ public class RudderClient {
     }
 
     public void identify(RudderTraits traits) {
-        RudderElement event = new RudderElementBuilder().setEventName(MessageType.IDENTIFY).setUserId(traits.getId()).build();
+        RudderElement event = new RudderElementBuilder()
+                .setEventName(MessageType.IDENTIFY)
+                .setUserId(traits.getId())
+                .build();
         event.identifyWithTraits(traits);
         event.setType(MessageType.IDENTIFY);
         identify(event, true);

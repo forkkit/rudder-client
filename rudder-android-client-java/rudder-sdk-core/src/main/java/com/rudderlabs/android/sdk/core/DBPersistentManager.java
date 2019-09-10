@@ -25,19 +25,26 @@ class DBPersistentManager extends SQLiteOpenHelper {
     private static final String MESSAGE_ID = "id";
     private static final String UPDATED = "updated";
 
-    // create table initially if not exists
+    /*
+     * create table initially if not exists
+     * */
     private void createSchema(SQLiteDatabase db) {
-        db.execSQL(String.format(Locale.US, "CREATE TABLE IF NOT EXISTS '%s' ('%s' INTEGER PRIMARY KEY AUTOINCREMENT, '%s' TEXT NOT NULL, '%s' INTEGER NOT NULL)", EVENTS_TABLE_NAME, MESSAGE_ID, MESSAGE, UPDATED));
+        db.execSQL(String.format(Locale.US, "CREATE TABLE IF NOT EXISTS '%s' ('%s' INTEGER " +
+                        "PRIMARY KEY AUTOINCREMENT, '%s' TEXT NOT NULL, '%s' INTEGER NOT NULL)",
+                EVENTS_TABLE_NAME, MESSAGE_ID, MESSAGE, UPDATED));
     }
 
-    // save individual messages to DB
+    /*
+     * save individual messages to DB
+     * */
     void saveEvent(String messageJson) {
         ContentValues values = new ContentValues();
         values.put(MESSAGE, messageJson);
         values.put(UPDATED, System.currentTimeMillis());
         SQLiteDatabase database = getWritableDatabase();
         if (database.isOpen()) {
-            database.execSQL(String.format(Locale.US, "INSERT INTO %s (%s, %s) VALUES (%s, %d)", EVENTS_TABLE_NAME, MESSAGE, UPDATED, messageJson, System.currentTimeMillis()));
+            database.execSQL(String.format(Locale.US, "INSERT INTO %s (%s, %s) VALUES (%s, %d)",
+                    EVENTS_TABLE_NAME, MESSAGE, UPDATED, messageJson, System.currentTimeMillis()));
             database.close();
         } else {
             RudderLogger.logError("DBPersistentManager: saveEvent: database is not writable");
@@ -69,7 +76,8 @@ class DBPersistentManager extends SQLiteOpenHelper {
             // remove last "," character
             builder.deleteCharAt(builder.length() - 1);
             // remove events
-            database.execSQL(String.format(Locale.US, "DELETE FROM %s WHERE %s IN (%s)", EVENTS_TABLE_NAME, MESSAGE_ID, builder.toString()));
+            database.execSQL(String.format(Locale.US, "DELETE FROM %s WHERE %s IN (%s)",
+                    EVENTS_TABLE_NAME, MESSAGE_ID, builder.toString()));
             // close database
             database.close();
         } else {
@@ -88,7 +96,8 @@ class DBPersistentManager extends SQLiteOpenHelper {
         // get readable database instance
         SQLiteDatabase database = getReadableDatabase();
         if (database.isOpen()) {
-            Cursor cursor = database.rawQuery(String.format(Locale.US, "SELECT * FROM %s ORDER BY %s ASC LIMIT %d", EVENTS_TABLE_NAME, UPDATED, count), null);
+            Cursor cursor = database.rawQuery(String.format(Locale.US, "SELECT * FROM %s ORDER BY" +
+                    " %s ASC LIMIT %d", EVENTS_TABLE_NAME, UPDATED, count), null);
             if (cursor.moveToFirst()) {
                 while (!cursor.isAfterLast()) {
                     messageIds.add(cursor.getInt(cursor.getColumnIndex(MESSAGE_ID)));
@@ -99,7 +108,8 @@ class DBPersistentManager extends SQLiteOpenHelper {
             cursor.close();
             database.close();
         } else {
-            RudderLogger.logError("DBPersistentManager: fetchEventsFromDB: database is not readable");
+            RudderLogger.logError("DBPersistentManager: fetchEventsFromDB: database is not " +
+                    "readable");
         }
     }
 

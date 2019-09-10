@@ -42,7 +42,8 @@ class EventRepository {
             @Override
             public void run() {
                 for (RudderIntegrationFactory integration : config.getIntegrations())
-                    element.addIntegrationProps(integration.key(), integration.enabled(), integration.getDestinationProps(element));
+                    element.addIntegrationProps(integration.key(), integration.enabled(),
+                            integration.getDestinationProps(element));
                 events.add(element);
 
                 if (events.size() == config.getFlushQueueSize()) {
@@ -64,7 +65,7 @@ class EventRepository {
             @Override
             public void run() {
                 try {
-                    dbManager.saveBatch(payload);
+                    dbManager.saveEvent(payload);
                     NetworkServiceManager.sendEventToServer(dbManager, config.getEndPointUri());
                 } catch (IOException e) {
                     RudderLogger.logError(e.getCause());
