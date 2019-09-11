@@ -7,6 +7,11 @@ import android.webkit.URLUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * builder for RudderConfig
+ *
+ * isDebug -> true => set the logLevel to DEBUG automatically else sets as defined by the user
+ * */
 public class RudderConfigBuilder {
     private String endPointUri = Constants.BASE_URL;
 
@@ -38,18 +43,6 @@ public class RudderConfigBuilder {
         return this;
     }
 
-    private ArrayList<RudderIntegrationFactory> integrations = new ArrayList<>();
-
-    public RudderConfigBuilder withIntegration(RudderIntegrationFactory integration) {
-        this.integrations.add(integration);
-        return this;
-    }
-
-    public RudderConfigBuilder withIntegrations(List<RudderIntegrationFactory> integration) {
-        this.integrations.addAll(integration);
-        return this;
-    }
-
     private int logLevel = RudderLogger.RudderLogLevel.NONE;
 
     public RudderConfigBuilder withLogLevel(int logLevel) {
@@ -72,6 +65,6 @@ public class RudderConfigBuilder {
     }
 
     public RudderConfig build() throws RudderException {
-        return new RudderConfig(endPointUri, flushQueueSize, dbThresholdCount, sleepTimeout, integrations, isDebug, isDebug ? RudderLogger.RudderLogLevel.DEBUG : logLevel);
+        return new RudderConfig(endPointUri, flushQueueSize, dbThresholdCount, sleepTimeout, isDebug ? RudderLogger.RudderLogLevel.DEBUG : logLevel);
     }
 }

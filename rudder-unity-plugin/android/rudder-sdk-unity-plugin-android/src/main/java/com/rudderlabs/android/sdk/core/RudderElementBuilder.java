@@ -2,6 +2,9 @@ package com.rudderlabs.android.sdk.core;
 
 import java.util.Map;
 
+/*
+ * builder for RudderElement (alias RudderEvent)
+ * */
 public class RudderElementBuilder {
     private String eventName = null;
 
@@ -32,6 +35,19 @@ public class RudderElementBuilder {
     public RudderElementBuilder setProperty(Map<String, Object> map) {
         property = new RudderProperty();
         property.setProperty(map);
+        return this;
+    }
+
+    private RudderUserProperty userProperty;
+
+    public RudderElementBuilder setUserProperty(RudderUserProperty userProperty) {
+        this.userProperty = userProperty;
+        return this;
+    }
+
+    public RudderElementBuilder setUserProperty(Map<String, Object> map) {
+        this.userProperty = new RudderUserProperty();
+        userProperty.setProperty(map);
         return this;
     }
 

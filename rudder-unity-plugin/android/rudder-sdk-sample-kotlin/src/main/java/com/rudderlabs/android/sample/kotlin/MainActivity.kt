@@ -13,9 +13,10 @@ class MainActivity : AppCompatActivity() {
 
         btn.setOnClickListener {
             MainApplication.rudderClient.track(
-                RudderElementBuilder()
-                    .setEventName("Simple Kotlin Track with '")
-                    .build()
+                "Simple Kotlin Track with '",
+                "test_user_id",
+                "{\"category\":\"PlayerShooting_Shoot\",\"label\":null,\"value\":null}",
+                "null"
             )
             count += 1
             textView.text = "Count: $count"

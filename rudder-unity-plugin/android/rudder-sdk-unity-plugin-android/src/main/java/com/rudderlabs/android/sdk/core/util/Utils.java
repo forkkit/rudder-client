@@ -3,6 +3,7 @@ package com.rudderlabs.android.sdk.core.util;
 import android.app.Application;
 import android.os.Build;
 import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -37,6 +38,12 @@ public class Utils {
 
     public static Map<String, Object> convertToMap(Object object) {
         Gson gson = new Gson();
-        return gson.fromJson(gson.toJson(object), new TypeToken<Map<String, Object>>() {}.getType());
+        return gson.fromJson(gson.toJson(object), new TypeToken<Map<String, Object>>() {
+        }.getType());
+    }
+
+    public static Map<String, Object> convertToMap(String json) {
+        return new Gson().fromJson(json, new TypeToken<Map<String, Object>>() {
+        }.getType());
     }
 }

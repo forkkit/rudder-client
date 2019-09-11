@@ -17,6 +17,8 @@ class RudderApp {
     @SerializedName("rl_version")
     private String version;
 
+    // internal constructor
+    // to be used while creating a cache of context
     RudderApp(Application application) {
         try {
             String packageName = application.getPackageName();
@@ -28,8 +30,8 @@ class RudderApp {
             this.name = packageInfo.applicationInfo.loadLabel(packageManager).toString();
             this.nameSpace = packageName;
             this.version = packageInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            RudderLogger.logError(e.getCause());
+        } catch (PackageManager.NameNotFoundException ex) {
+            RudderLogger.logError(ex.getCause());
         }
     }
 }

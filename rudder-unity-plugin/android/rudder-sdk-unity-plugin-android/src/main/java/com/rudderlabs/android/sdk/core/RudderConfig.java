@@ -5,20 +5,31 @@ import android.webkit.URLUtil;
 
 import java.util.ArrayList;
 
+/*
+ * Config class for RudderClient
+ * - endPointUri -> API endpoint for flushing events
+ * - flushQueueSize -> maximum number of events to be batched
+ * - dbCountThreshold -> maximum number of events to be persisted in local DB
+ * - sleepTimeOut -> timeout for automatic flushing since last successful flush
+ * - logLevel -> level of logging for debugging
+ *
+ * default values are set at Constants file
+ *
+ * */
 public class RudderConfig {
     private String endPointUri;
     private int flushQueueSize;
     private int dbCountThreshold;
     private int sleepTimeOut;
-    private ArrayList<RudderIntegrationFactory> integrations;
-    private boolean isDebug;
     private int logLevel;
 
-    private RudderConfig() throws RudderException {
-        this(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, Constants.DB_COUNT_THRESHOLD, Constants.SLEEP_TIMEOUT, new ArrayList<RudderIntegrationFactory>(), false, RudderLogger.RudderLogLevel.ERROR);
+    // internal constructor for creating instance with default values
+    RudderConfig() throws RudderException {
+        this(Constants.BASE_URL, Constants.FLUSH_QUEUE_SIZE, Constants.DB_COUNT_THRESHOLD, Constants.SLEEP_TIMEOUT, RudderLogger.RudderLogLevel.ERROR);
     }
 
-    RudderConfig(String endPointUri, int flushQueueSize, int dbCountThreshold, int sleepTimeOut, ArrayList<RudderIntegrationFactory> integrations, boolean isDebug, int logLevel) throws RudderException {
+    // internal constructor to be used along with RudderConfigBuilder
+    RudderConfig(String endPointUri, int flushQueueSize, int dbCountThreshold, int sleepTimeOut, int logLevel) throws RudderException {
         RudderLogger.init(logLevel);
         if (TextUtils.isEmpty(endPointUri)) {
             throw new RudderException("endPointUri can not be null or empty");
@@ -33,56 +44,20 @@ public class RudderConfig {
             throw new RudderException("flushQueueSize is out of range. Min: 1, Max: 100");
         }
         this.flushQueueSize = flushQueueSize;
-        this.integrations = integrations;
-        this.isDebug = isDebug;
         this.logLevel = logLevel;
         this.dbCountThreshold = dbCountThreshold;
         this.sleepTimeOut = sleepTimeOut;
     }
 
-    static RudderConfig getDefaultConfig() {
-        try {
-            return new RudderConfig();
-        } catch (RudderException e) {
-            RudderLogger.logError(e.getCause());
-            return null;
-        }
-    }
-
-    private ArrayList<RudderIntegrationFactory> getDefaultIntegrations() {
-        return new ArrayList<>();
-    }
-
+    /*
+    * getters
+    * */
     public String getEndPointUri() {
         return endPointUri;
     }
 
-    public void setEndPointUri(String endPointUri) {
-        this.endPointUri = endPointUri;
-    }
-
     public int getFlushQueueSize() {
         return flushQueueSize;
-    }
-
-    public void setFlushQueueSize(int flushQueueSize) {
-        this.flushQueueSize = flushQueueSize;
-    }
-
-    public ArrayList<RudderIntegrationFactory> getIntegrations() {
-        return integrations;
-    }
-
-    public void setIntegrations(ArrayList<RudderIntegrationFactory> integrations) {
-        this.integrations = integrations;
-    }
-
-    public boolean isDebug() {
-        return isDebug;
-    }
-
-    public void setDebug(boolean debug) {
-        isDebug = debug;
     }
 
     public int getDbCountThreshold() {

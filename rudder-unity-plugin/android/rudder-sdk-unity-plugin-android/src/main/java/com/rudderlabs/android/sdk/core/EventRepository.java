@@ -10,13 +10,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.StringReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 
+/*
+ * utility class for event processing
+ * */
 class EventRepository {
     private RudderConfig config;
     private String writeKey;
@@ -24,7 +24,7 @@ class EventRepository {
 
     /*
      * constructor to be called from RudderClient internally.
-     * -- task to be performed
+     * -- tasks to be performed
      * 1. set the values of writeKey, config
      * 2. initiate RudderElementCache
      * 3. initiate DBPersistentManager for SQLite operations
@@ -95,7 +95,7 @@ class EventRepository {
                                 // send payload to server if it is not null
                                 String response = flushEventsToServer(payload);
                                 // if success received from server
-                                if (response != null && response.equals("OK")) {
+                                if (response.equals("OK")) {
                                     // remove events from DB
                                     dbManager.clearEventsFromDB(messageIds);
                                     // reset sleep count to indicate successful flush
@@ -108,7 +108,8 @@ class EventRepository {
                         // retry entire logic in 1 second
                         Thread.sleep(1000);
                     } catch (Exception ex) {
-                        RudderLogger.logError(ex.getCause());
+                        ex.printStackTrace();
+//                        RudderLogger.logError(ex.getCause());
                     }
                 }
             }

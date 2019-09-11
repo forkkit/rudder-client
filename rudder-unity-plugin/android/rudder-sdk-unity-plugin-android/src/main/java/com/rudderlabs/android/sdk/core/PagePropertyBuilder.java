@@ -1,7 +1,10 @@
 package com.rudderlabs.android.sdk.core;
 
 import android.text.TextUtils;
-
+/*
+* Builder for event type "page"
+* - `url` is a mandatory field for page events
+* */
 public class PagePropertyBuilder extends RudderPropertyBuilder {
     private String title;
 

@@ -2,14 +2,17 @@ package com.rudderlabs.android.sdk.core;
 
 import android.app.Application;
 
-public class RudderElementCache {
+/*
+* RudderContext is populated once and cached through out the lifecycle
+* */
+class RudderElementCache {
     private static RudderContext cachedContext;
 
     private RudderElementCache() {
         // stop instantiating
     }
 
-    public static void initiate(Application application) {
+    static void initiate(Application application) {
         if (cachedContext == null) {
             cachedContext = new RudderContext(application);
         }

@@ -1,5 +1,7 @@
 package com.rudderlabs.android.sdk.core;
 
+import android.opengl.EGLObjectHandle;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Map;
@@ -46,6 +48,10 @@ public class RudderElement {
 
     void addIntegrationProps(String integrationKey, boolean isEnabled, Map props) {
         message.addIntegrationProps(integrationKey, isEnabled, props);
+    }
+
+    void setIntegrations(Map<String, Object> integrations) {
+        message.setIntegrations(integrations);
     }
 
     public RudderMessage getMessage() {

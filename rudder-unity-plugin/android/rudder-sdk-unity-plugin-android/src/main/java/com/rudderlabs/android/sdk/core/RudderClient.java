@@ -2,7 +2,11 @@ package com.rudderlabs.android.sdk.core;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Debug;
 import android.text.TextUtils;
+import android.util.Log;
+
+import com.rudderlabs.android.sdk.core.util.Utils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -17,8 +21,6 @@ public class RudderClient {
     private static EventRepository repository;
     // persisted application instance
     private static Application application;
-    // persisted config object for the client
-    private static RudderConfig config;
     // single thread executor for executing integration initialization
     private static ExecutorService integrationExecutor = Executors.newSingleThreadExecutor();
 
@@ -30,11 +32,77 @@ public class RudderClient {
     }
 
     /*
+     * API for getting instance for RudderClient with primitive types.
+     *
+     * ideally to be called from Unity plugin
+     * */
+    public static void initiateInstance(
+            Application application,
+            String writeKey,
+            String endPointUri,
+            int flushQueueSize,
+            int dbCountThreshold,
+            int sleepTimeout
+    ) {
+        try {
+            if (instance == null) {
+                instance = getInstance(
+                        application,
+                        writeKey,
+                        new RudderConfigBuilder()
+                                .withEndPointUri(endPointUri)
+                                .withFlushQueueSize(flushQueueSize)
+                                .withDbThresholdCount(dbCountThreshold)
+                                .withSleepCount(sleepTimeout)
+                                .withDebug(true)
+                                .build()
+                );
+            }
+        } catch (Exception e) {
+            RudderLogger.logError(e.getCause());
+        }
+    }
+
+    /*
+    * API to get the instance. It can return null if not initialized.
+    * to be called after `initiateInstance` is called
+    *
+    * ideally to be called for testing Unity plugin
+    * */
+    public static RudderClient getInstance() {
+        return instance;
+    }
+
+    /*
+    * API to log events with only basic objects instead of RudderObjects
+    *
+    * ideally to be called from Unity plugin
+    * */
+    public static void logEvent(
+            String type,
+            String eventName,
+            String userId,
+            String eventPropertiesJson,
+            String userPropertiesJson,
+            String integrationsJson
+    ) {
+        RudderElement element = new RudderElementBuilder()
+                .setEventName(eventName)
+                .setUserId(userId)
+                .setProperty(Utils.convertToMap(eventPropertiesJson))
+                .setUserProperty(Utils.convertToMap(userPropertiesJson))
+                .build();
+        element.setIntegrations(Utils.convertToMap(integrationsJson));
+        element.setType(type);
+        repository.dump(element);
+    }
+
+    /*
      * API for getting instance of RudderClient with context and writeKey (bare minimum
      * requirements)
      * */
     public static RudderClient getInstance(Context context, String writeKey) throws RudderException {
-        return getInstance(context, writeKey, RudderConfig.getDefaultConfig());
+        return getInstance(context, writeKey, new RudderConfig());
     }
 
     /*
@@ -71,120 +139,51 @@ public class RudderClient {
             application = (Application) context.getApplicationContext();
             // initiate EventRepository class
             repository = new EventRepository(application, writeKey, config);
-            // persist provided config object
-            RudderClient.config = config;
-
-
-            initiateIntegrations(config);
         }
         return instance;
     }
 
-    private static void initiateIntegrations(final RudderConfig config) {
-        integrationExecutor.submit(new Runnable() {
-            @Override
-            public void run() {
-                for (RudderIntegrationFactory integration : config.getIntegrations()) {
-                    integration.init(application, instance, config);
-                }
-            }
-        });
-    }
-
-    public void track(final RudderElement event, boolean withIntegration) {
-        event.setType(MessageType.TRACK);
-        repository.dump(event);
-        if (withIntegration) {
-            integrationExecutor.submit(new Runnable() {
-                @Override
-                public void run() {
-                    for (RudderIntegrationFactory integration : config.getIntegrations()) {
-                        integration.track(event);
-                    }
-                }
-            });
-        }
-    }
-
-//    public void track(ECommercePropertyBuilder builder) {
-//        try {
-//            RudderElement element = new RudderElementBuilder()
-//                    .setEventName(builder.event())
-//                    .setProperty(builder.build())
-//                    .build();
-//            track(element, true);
-//        } catch (RudderException e) {
-//            RudderLogger.logError(e.getCause());
-//        }
-//    }
-
-    public void track(RudderElement event) {
-        track(event, true);
-    }
-
+    /*
+     * method for `track` events
+     * */
     public void track(RudderElementBuilder builder) {
         track(builder.build());
     }
 
-    public void screen(final RudderElement event, boolean withIntegration) {
-        event.setType(MessageType.SCREEN);
+    public void track(RudderElement event) {
+        event.setType(MessageType.TRACK);
         repository.dump(event);
-        if (withIntegration) {
-            integrationExecutor.submit(new Runnable() {
-                @Override
-                public void run() {
-                    for (RudderIntegrationFactory integration : config.getIntegrations()) {
-                        integration.screen(event);
-                    }
-                }
-            });
-        }
     }
 
-    public void screen(RudderElement event) {
-        screen(event, true);
-    }
-
+    /*
+     * method for `screen` events
+     * */
     public void screen(RudderElementBuilder builder) {
         screen(builder.build());
     }
 
-    public void page(final RudderElement event, boolean withIntegration) {
-        event.setType(MessageType.PAGE);
-        repository.dump(event);
-        if (withIntegration) {
-            integrationExecutor.submit(new Runnable() {
-                @Override
-                public void run() {
-                    for (RudderIntegrationFactory integration : config.getIntegrations()) {
-                        integration.page(event);
-                    }
-                }
-            });
-        }
-    }
-
-    public void page(RudderElement event) {
-        event.setType(MessageType.PAGE);
+    public void screen(final RudderElement event) {
+        event.setType(MessageType.SCREEN);
         repository.dump(event);
     }
 
+    /*
+     * method for `page` events
+     * */
     public void page(RudderElementBuilder builder) {
         page(builder.build());
     }
 
-    public void identify(final RudderElement event, boolean withIntegration) {
+    public void page(final RudderElement event) {
+        event.setType(MessageType.PAGE);
         repository.dump(event);
-        if (withIntegration) {
-            integrationExecutor.submit(new Runnable() {
-                @Override
-                public void run() {
-                    for (RudderIntegrationFactory integration : config.getIntegrations()) {
-                        integration.identify(event);
-                    }
-                }
-            });
-        }
+    }
+
+    /*
+     * method for `identify` events
+     * */
+    public void identify(final RudderElement event) {
+        repository.dump(event);
     }
 
     public void identify(RudderTraits traits) {
@@ -194,7 +193,7 @@ public class RudderClient {
                 .build();
         event.identifyWithTraits(traits);
         event.setType(MessageType.IDENTIFY);
-        identify(event, true);
+        identify(event);
     }
 
     public void identify(RudderTraitsBuilder builder) {
