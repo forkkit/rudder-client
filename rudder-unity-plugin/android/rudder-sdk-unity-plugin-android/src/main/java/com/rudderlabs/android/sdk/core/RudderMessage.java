@@ -35,6 +35,7 @@ class RudderMessage {
 
     RudderMessage() {
         context = RudderElementCache.getCachedContext();
+        this.anonymousId = context.getDeviceId();
     }
 
     void setProperty(RudderProperty property) {

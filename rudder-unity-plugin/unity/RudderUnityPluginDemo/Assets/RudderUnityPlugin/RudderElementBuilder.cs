@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-class RudderElementBuilder
+public class RudderElementBuilder
 {
     private string eventName;
     public RudderElementBuilder WithEventName(string eventName)

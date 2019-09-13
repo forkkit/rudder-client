@@ -19,10 +19,6 @@ public class RudderClient {
     private static RudderClient instance;
     // repository instance
     private static EventRepository repository;
-    // persisted application instance
-    private static Application application;
-    // single thread executor for executing integration initialization
-    private static ExecutorService integrationExecutor = Executors.newSingleThreadExecutor();
 
     /*
      * private constructor
@@ -136,7 +132,7 @@ public class RudderClient {
             // initiate RudderClient instance
             instance = new RudderClient();
             // get application context from provided context
-            application = (Application) context.getApplicationContext();
+            Application application = (Application) context.getApplicationContext();
             // initiate EventRepository class
             repository = new EventRepository(application, writeKey, config);
         }

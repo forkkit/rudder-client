@@ -17,8 +17,9 @@ namespace CompleteProject
 #endif
 
         public static RudderClient rudderClient;
-        private static string RUDDER_WRITE_KEY = "test_write_key_unity";
-        private static string END_POINT_URL = "https://655ada3a.ngrok.io";
+        // private static string RUDDER_WRITE_KEY = "1P6q8fcXrkmekovCdk0a3gFq30X";
+        private static string RUDDER_WRITE_KEY = "1QH0xOiRBxiKht41YBe90rJVVXR";
+        private static string END_POINT_URL = "https://torpedo.rudderlabs.com";
 
         void Awake()
         {

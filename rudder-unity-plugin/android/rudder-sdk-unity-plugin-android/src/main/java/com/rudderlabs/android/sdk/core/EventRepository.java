@@ -69,6 +69,7 @@ class EventRepository {
 
                         // get current record count from db
                         int recordCount = dbManager.getDBRecordCount();
+//                        System.out.println("recordCount: " + recordCount);
                         // if record count exceeds threshold count, remove older events
                         if (recordCount > config.getDbCountThreshold()) {
                             // fetch extra old events
@@ -76,6 +77,7 @@ class EventRepository {
                                     recordCount - config.getDbCountThreshold());
                             // remove events
                             dbManager.clearEventsFromDB(messageIds);
+//                            System.out.println("clearing from DB");
                             // clear lists for reuse
                             messageIds.clear();
                             messages.clear();
@@ -91,9 +93,12 @@ class EventRepository {
                         if (messages.size() >= config.getFlushQueueSize() || (!messages.isEmpty() && sleepCount >= config.getSleepTimeOut())) {
                             // form payload JSON form the list of messages
                             String payload = getPayloadFromMessages(messages);
+//                            System.out.println("payload: " + payload);
                             if (payload != null) {
                                 // send payload to server if it is not null
                                 String response = flushEventsToServer(payload);
+                                System.out.println("response: " + response);
+                                System.out.println("eventcount: " + messages.size());
                                 // if success received from server
                                 if (response.equals("OK")) {
                                     // remove events from DB
@@ -108,7 +113,7 @@ class EventRepository {
                         // retry entire logic in 1 second
                         Thread.sleep(1000);
                     } catch (Exception ex) {
-                        ex.printStackTrace();
+//                        ex.printStackTrace();
 //                        RudderLogger.logError(ex.getCause());
                     }
                 }
@@ -147,7 +152,8 @@ class EventRepository {
             // finally return the entire payload
             return builder.toString();
         } catch (Exception ex) {
-            RudderLogger.logError(ex);
+//            RudderLogger.logError(ex);
+//            ex.printStackTrace();
         }
         return null;
     }
@@ -165,7 +171,7 @@ class EventRepository {
         HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
         // set connection object to return output
         httpConnection.setDoOutput(true);
-        // set content type for network request
+        //  set content type for network request
         httpConnection.setRequestProperty("Content-Type", "application/json");
         // set request method
         httpConnection.setRequestMethod("POST");

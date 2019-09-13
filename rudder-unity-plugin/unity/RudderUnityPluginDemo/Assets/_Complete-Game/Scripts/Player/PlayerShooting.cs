@@ -128,9 +128,14 @@ namespace CompleteProject
 
             RudderElement element = new RudderElementBuilder()
             .WithEventName("PlayerShooting_Shoot")
-            .WithUserId("test_user_id")
+            .WithUserId("test_user_id_arnab_android")
             .WithEventProperties(eventProperty)
             .Build();
+
+            element.integrations = new Dictionary<string, object>();
+            element.integrations.Add("All", false);
+            element.integrations.Add("AM", true);
+            element.integrations.Add("GA", true);
 
             PlayerMovement.rudderClient.Track(element);
         }

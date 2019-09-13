@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-class TrackPropertyBuilder
+public class TrackPropertyBuilder
 {
     private string category;
     public TrackPropertyBuilder SetCategory(string category)

@@ -1,6 +1,7 @@
 package com.rudderlabs.android.sdk.core;
 
 import android.app.Application;
+
 import com.google.gson.annotations.SerializedName;
 import com.rudderlabs.android.sdk.core.util.Utils;
 
@@ -25,6 +26,8 @@ class RudderContext {
     private RudderDeviceInfo deviceInfo;
     @SerializedName("rl_network")
     private RudderNetworkInfo networkInfo;
+    @SerializedName("rl_platform")
+    private String platform = "Android";
 
     private RudderContext() {
         // stop instantiating without application instance.
@@ -40,6 +43,8 @@ class RudderContext {
         this.userAgent = System.getProperty("http.agent");
         this.deviceInfo = new RudderDeviceInfo(deviceId);
         this.networkInfo = new RudderNetworkInfo(application);
+        this.osInfo = new RudderOSInfo();
+        this.libraryInfo = new RudderLibraryInfo();
     }
 
     void updateTraits(RudderTraits traits) {
@@ -48,5 +53,9 @@ class RudderContext {
 
     public RudderTraits getTraits() {
         return traits;
+    }
+
+    public String getDeviceId() {
+        return deviceInfo.getDeviceId();
     }
 }
