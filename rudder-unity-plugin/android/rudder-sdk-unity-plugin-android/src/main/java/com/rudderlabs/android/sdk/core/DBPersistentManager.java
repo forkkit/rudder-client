@@ -42,8 +42,7 @@ class DBPersistentManager extends SQLiteOpenHelper {
         SQLiteDatabase database = getWritableDatabase();
         if (database.isOpen()) {
             database.execSQL(String.format(Locale.US, "INSERT INTO %s (%s, %s) VALUES ('%s', %d)",
-                    EVENTS_TABLE_NAME, MESSAGE, UPDATED, messageJson.replaceAll("'","\\\\\'"), System.currentTimeMillis()));
-            database.close();
+                    EVENTS_TABLE_NAME, MESSAGE, UPDATED, messageJson.replaceAll("'", "\\\\\'"), System.currentTimeMillis()));
         } else {
             RudderLogger.logError("DBPersistentManager: saveEvent: database is not writable");
         }
@@ -76,8 +75,6 @@ class DBPersistentManager extends SQLiteOpenHelper {
             // remove events
             database.execSQL(String.format(Locale.US, "DELETE FROM %s WHERE %s IN (%s)",
                     EVENTS_TABLE_NAME, MESSAGE_ID, builder.toString()));
-            // close database
-            database.close();
         } else {
             RudderLogger.logError("DBPersistentManager: clearEventsFromDB: database is not " +
                     "writable");
@@ -105,7 +102,6 @@ class DBPersistentManager extends SQLiteOpenHelper {
                 }
             }
             cursor.close();
-            database.close();
         } else {
             RudderLogger.logError("DBPersistentManager: fetchEventsFromDB: database is not " +
                     "readable");
@@ -128,9 +124,8 @@ class DBPersistentManager extends SQLiteOpenHelper {
                     cursor.moveToNext();
                 }
             }
-            // release cursor and database instances
+            // release cursor
             cursor.close();
-            database.close();
         } else {
             RudderLogger.logError("DBPersistentManager: fetchEventsFromDB: database is not " +
                     "readable");
@@ -139,7 +134,16 @@ class DBPersistentManager extends SQLiteOpenHelper {
         return count;
     }
 
-    DBPersistentManager(Application application) {
+    private static DBPersistentManager instance;
+
+    static DBPersistentManager getInstance(Application application) {
+        if (instance == null) {
+            instance = new DBPersistentManager(application);
+        }
+        return instance;
+    }
+
+    private DBPersistentManager(Application application) {
         super(application, DB_NAME, null, DB_VERSION);
         getWritableDatabase();
     }

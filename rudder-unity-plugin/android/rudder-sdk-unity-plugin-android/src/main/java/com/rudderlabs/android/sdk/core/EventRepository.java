@@ -40,7 +40,7 @@ class EventRepository {
             RudderElementCache.initiate(_application);
 
             // 3. initiate DBPersistentManager for SQLite operations
-            this.dbManager = new DBPersistentManager(_application);
+            this.dbManager = DBPersistentManager.getInstance(_application);
 
             // 4. start processor thread
             Thread processorThread = new Thread(getProcessorRunnable());
