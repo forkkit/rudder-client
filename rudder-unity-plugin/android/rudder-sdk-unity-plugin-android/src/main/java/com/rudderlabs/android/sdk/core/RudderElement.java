@@ -26,6 +26,10 @@ public class RudderElement {
         setProperty(builder.build());
     }
 
+    public  void setUserProperty(RudderUserProperty userProperty) {
+        message.setUserProperties(userProperty);
+    }
+
     public void setUserId(String userId) {
         message.setUserId(userId);
     }

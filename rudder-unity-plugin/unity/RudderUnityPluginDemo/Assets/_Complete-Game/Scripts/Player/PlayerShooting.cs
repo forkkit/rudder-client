@@ -125,11 +125,20 @@ namespace CompleteProject
             Dictionary<string, object> eventProperty = new TrackPropertyBuilder()
             .SetCategory("PlayerShooting_Shoot")
             .Build();
+            eventProperty.Add("dummy_e_prop_1", "dummy_e_prop_1_value");
+            eventProperty.Add("dummy_e_prop_2", "dummy_e_prop_2_value");
+            eventProperty.Add("dummy_e_prop_3", "dummy_e_prop_3_value");
+            eventProperty.Add("score", ScoreManager.score);
+
+            Dictionary<string, object> userProperty = new Dictionary<string, object> ();
+            userProperty.Add("dummy_prop_1", "dummp_prop_1_value");
+            userProperty.Add("dummy_prop_2", "dummp_prop_2_value");
 
             RudderElement element = new RudderElementBuilder()
             .WithEventName("PlayerShooting_Shoot")
-            .WithUserId("test_user_id_arnab_android")
+            .WithUserId("test_user_id_sayan_android")
             .WithEventProperties(eventProperty)
+            .WithUserProperties(userProperty)
             .Build();
 
             element.integrations = new Dictionary<string, object>();

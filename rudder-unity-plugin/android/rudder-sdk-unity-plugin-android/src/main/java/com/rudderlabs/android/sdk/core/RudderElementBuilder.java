@@ -56,6 +56,7 @@ public class RudderElementBuilder {
         event.setUserId(userId);
         event.setEventName(eventName);
         event.setProperty(property);
+        event.setUserProperty(userProperty);
         return event;
     }
 }

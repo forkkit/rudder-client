@@ -6,6 +6,8 @@ import com.rudderlabs.android.sdk.core.util.Utils;
 import java.util.*;
 
 class RudderMessage {
+    @SerializedName("rl_message_id")
+    private String messageId = String.format(Locale.US, "%d-%s", System.currentTimeMillis(), UUID.randomUUID().toString());
     @SerializedName("rl_channel")
     private String channel = "android-sdk";
     @SerializedName("rl_context")
@@ -14,8 +16,6 @@ class RudderMessage {
     private String type;
     @SerializedName("rl_action")
     private String action;
-    @SerializedName("rl_message_id")
-    private String messageId = String.format(Locale.US, "%d-%s", System.currentTimeMillis(), UUID.randomUUID().toString());
     @SerializedName("rl_timestamp")
     private String timestamp = Utils.getTimeStamp();
     @SerializedName("rl_anonymous_id")

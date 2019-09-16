@@ -93,7 +93,6 @@ class EventRepository {
                         if (messages.size() >= config.getFlushQueueSize() || (!messages.isEmpty() && sleepCount >= config.getSleepTimeOut())) {
                             // form payload JSON form the list of messages
                             String payload = getPayloadFromMessages(messages);
-//                            System.out.println("payload: " + payload);
                             if (payload != null) {
                                 // send payload to server if it is not null
                                 String response = flushEventsToServer(payload);
