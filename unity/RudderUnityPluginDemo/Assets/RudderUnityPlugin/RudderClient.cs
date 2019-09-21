@@ -1,4 +1,4 @@
-#if UNITY_IOS
+#if UNITY_IPHONE
 using System.Runtime.InteropServices;
 #endif
 using UnityEngine;
@@ -11,7 +11,7 @@ public class RudderClient
     private static AndroidJavaClass androidClientClass;
 #endif
 
-#if UNITY_IOS
+#if UNITY_IPHONE
     [DllImport("__Internal")]
     private static extern void _initiateInstance(
         string _writeKey,
@@ -63,7 +63,7 @@ public class RudderClient
         }
 #endif
 
-#if UNITY_IOS
+#if UNITY_IPHONE
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
             _initiateInstance(
@@ -149,7 +149,7 @@ public class RudderClient
             );
         }
 #endif
-#if UNITY_IOS
+#if UNITY_IPHONE
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
             _logEvent(
@@ -180,7 +180,7 @@ public class RudderClient
             );
         }
 #endif
-#if UNITY_IOS
+#if UNITY_IPHONE
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
             _logEvent(
@@ -211,7 +211,7 @@ public class RudderClient
             );
         }
 #endif
-#if UNITY_IOS
+#if UNITY_IPHONE
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
             _logEvent(
@@ -242,7 +242,7 @@ public class RudderClient
             );
         }
 #endif
-#if UNITY_IOS
+#if UNITY_IPHONE
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
             _logEvent(

@@ -55,22 +55,21 @@
   <ItemGroup>
      <Compile Include="Assets\_Complete-Game\MobileInput\Scripts\Editor\CrossPlatformInputInitialize.cs" />
      <Compile Include="Assets\Editor\AdjustEditor.cs" />
-     <Compile Include="Assets\RudderUnityPlugin\Plugins\iOS\Editor\SwiftPostProcess.cs.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Hub/Editor/2018.4.8f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -312,35 +311,35 @@
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>/Applications/Unity/Hub/Editor/2018.4.8f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Advertisements.Editor">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Advertisements">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.ads@2.3.1/Editor/UnityEditor.Advertisements.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Analytics.Tracker">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Analytics.Editor">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Purchasing">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
- </Reference>
- <Reference Include="Win81Interface">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Assets/Adjust/Windows/Stubs/Win81Interface.dll</HintPath>
- </Reference>
  <Reference Include="WinWsInterface">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Assets/Adjust/Windows/Stubs/WinWsInterface.dll</HintPath>
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Assets/Adjust/Windows/Stubs/WinWsInterface.dll</HintPath>
  </Reference>
  <Reference Include="Win10Interface">
- <HintPath>/Users/arnab/workspace2/rudder-client/rudder-unity-plugin/unity/RudderUnityPluginDemo/Assets/Adjust/Windows/Stubs/Win10Interface.dll</HintPath>
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Assets/Adjust/Windows/Stubs/Win10Interface.dll</HintPath>
+ </Reference>
+ <Reference Include="Win81Interface">
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Assets/Adjust/Windows/Stubs/Win81Interface.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Advertisements.Editor">
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Advertisements">
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.ads@2.3.1/Editor/UnityEditor.Advertisements.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Analytics.Tracker">
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Analytics.Editor">
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Analytics.StandardEvents">
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Purchasing">
+ <HintPath>/Users/arnab/workspace2/rudder-client/unity/RudderUnityPluginDemo/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Hub/Editor/2018.4.8f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -379,6 +378,8 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{F87C0811-1D9A-AE9D-8272-36FAF6227B79}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
+      <Project>{8E61B75C-9F46-A5F7-B45B-A5E8801F6151}</Project>      <Name>Assembly-CSharp-Editor-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
