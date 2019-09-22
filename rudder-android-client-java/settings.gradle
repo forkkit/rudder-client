@@ -1,1 +1,0 @@
-include ':rudder-sdk-core', ':rudder-sdk-sample-kotlin', ':rudder-sdk-sample-java', ':rudder-sdk-extension-adjust', ':rudder-sdk-extension-appsflyer', ':rudder-sdk-extension-fb', ':rudder-sdk-extension-mixpanel'
