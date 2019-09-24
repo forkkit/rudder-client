@@ -3,6 +3,7 @@ package com.rudderlabs.android.sample.kotlin
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.rudderlabs.android.sdk.core.RudderElementBuilder
+import com.rudderlabs.android.sdk.core.TrackPropertyBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -13,10 +14,14 @@ class MainActivity : AppCompatActivity() {
 
         btn.setOnClickListener {
             MainApplication.rudderClient.track(
-                "Simple Kotlin Track with '",
-                "test_user_id",
-                "{\"category\":\"PlayerShooting_Shoot\",\"label\":null,\"value\":null}",
-                "null"
+                RudderElementBuilder()
+                    .setEventName("test_event")
+                    .setProperty(
+                        TrackPropertyBuilder()
+                            .setCategory("test_category")
+                            .build()
+                    )
+                    .setUserId("test_user_id")
             )
             count += 1
             textView.text = "Count: $count"

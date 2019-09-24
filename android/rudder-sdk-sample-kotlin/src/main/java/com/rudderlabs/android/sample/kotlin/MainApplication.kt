@@ -6,7 +6,7 @@ import com.rudderlabs.android.sdk.core.RudderClient
 class MainApplication : Application() {
     companion object {
         private const val WRITE_KEY = "test_write_key"
-        private const val END_POINT_URI = "https://655ada3a.ngrok.io"
+        private const val END_POINT_URI = "https://6bc08432.ngrok.io/hello"
         lateinit var rudderClient: RudderClient
     }
 
