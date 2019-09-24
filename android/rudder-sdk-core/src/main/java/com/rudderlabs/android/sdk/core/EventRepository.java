@@ -97,7 +97,7 @@ class EventRepository {
                                 System.out.println("response: " + response);
                                 System.out.println("eventcount: " + messages.size());
                                 // if success received from server
-                                if (response.equals("OK")) {
+                                if (response != null && response.equalsIgnoreCase("OK")) {
                                     // remove events from DB
                                     dbManager.clearEventsFromDB(messageIds);
                                     // reset sleep count to indicate successful flush
@@ -110,7 +110,8 @@ class EventRepository {
                         // retry entire logic in 1 second
                         Thread.sleep(1000);
                     } catch (Exception ex) {
-                        RudderLogger.logError(ex.getCause());
+                        RudderLogger.logError(ex);
+                        ex.printStackTrace();
                     }
                 }
             }
@@ -158,7 +159,7 @@ class EventRepository {
      * */
     private String flushEventsToServer(String payload) throws IOException {
         // get endPointUrl form config object
-        String endPointUri = config.getEndPointUri() + "hello";
+        String endPointUri = config.getEndPointUri() /*+ "hello"*/;
 
         // create url object
         URL url = new URL(endPointUri);
@@ -180,16 +181,20 @@ class EventRepository {
         // create connection
         httpConnection.connect();
         // get input stream from connection to get output from the server
-        BufferedInputStream bis = new BufferedInputStream(httpConnection.getInputStream());
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        int res = bis.read();
-        // read response from the server
-        while (res != -1) {
-            baos.write((byte) res);
-            res = bis.read();
+        if (httpConnection.getResponseCode() == 200) {
+            BufferedInputStream bis = new BufferedInputStream(httpConnection.getInputStream());
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int res = bis.read();
+            // read response from the server
+            while (res != -1) {
+                baos.write((byte) res);
+                res = bis.read();
+            }
+            // finally return response when reading from server is completed
+            return baos.toString();
+        } else {
+            return null;
         }
-        // finally return response when reading from server is completed
-        return baos.toString();
     }
 
     /*
