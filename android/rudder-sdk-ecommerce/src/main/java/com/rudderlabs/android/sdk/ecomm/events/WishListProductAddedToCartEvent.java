@@ -17,6 +17,11 @@ public class WishListProductAddedToCartEvent extends ECommercePropertyBuilder {
         return this;
     }
 
+    public WishListProductAddedToCartEvent withWishListBuilder(ECommerceWishList.Builder builder) {
+        this.wishList = builder.build();
+        return this;
+    }
+
     private ECommerceProduct product;
 
     public WishListProductAddedToCartEvent withProduct(ECommerceProduct product) {
@@ -26,13 +31,6 @@ public class WishListProductAddedToCartEvent extends ECommercePropertyBuilder {
 
     public WishListProductAddedToCartEvent withProductBuilder(ECommerceProduct.Builder builder) {
         this.product = builder.build();
-        return this;
-    }
-
-    private String cartId;
-
-    public WishListProductAddedToCartEvent withCartId(String cartId) {
-        this.cartId = cartId;
         return this;
     }
 
@@ -61,10 +59,8 @@ public class WishListProductAddedToCartEvent extends ECommercePropertyBuilder {
         property.setProperty(ECommerceParamNames.WISHLIST_NAME, this.wishList.getWishListName());
         if (this.product == null) throw new RudderException("Product can not be null");
         property.setProperty(this.product);
-        if (this.cart == null && this.cartId == null) throw new RudderException("Cart can't null");
-        if (this.cartId != null) property.setProperty(ECommerceParamNames.CART_ID, this.cartId);
-        if (this.cart != null)
-            property.setProperty(ECommerceParamNames.CART_ID, this.cart.getCartId());
+        if (this.cart == null) throw new RudderException("Cart can't null");
+        property.setProperty(ECommerceParamNames.CART_ID, this.cart.getCartId());
         return property;
     }
 }

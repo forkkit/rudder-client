@@ -8,7 +8,7 @@ import com.rudderlabs.android.sdk.ecomm.RudderECommerceClient
 class MainApplication : Application() {
     companion object {
         private const val WRITE_KEY = "test_write_key"
-        private const val END_POINT_URI = "https://81841de4.ngrok.io/"
+        private const val END_POINT_URI = "https://cc3f1100.ngrok.io"
         lateinit var rudderEcommClient: RudderECommerceClient
     }
 

@@ -16,6 +16,11 @@ public class ProductRemovedFromWishListEvent extends ECommercePropertyBuilder {
         return this;
     }
 
+    public ProductRemovedFromWishListEvent withWishListBuilder(ECommerceWishList.Builder builder) {
+        this.wishList = builder.build();
+        return this;
+    }
+
     private ECommerceProduct product;
 
     public ProductRemovedFromWishListEvent withProduct(ECommerceProduct product) {

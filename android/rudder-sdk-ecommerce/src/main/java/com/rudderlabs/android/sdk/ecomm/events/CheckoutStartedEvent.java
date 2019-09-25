@@ -10,10 +10,6 @@ import com.rudderlabs.android.sdk.ecomm.ECommercePropertyBuilder;
 public class CheckoutStartedEvent extends ECommercePropertyBuilder {
     private ECommerceOrder order;
 
-    public CheckoutStartedEvent(String orderId) {
-        this.order = new ECommerceOrder(orderId);
-    }
-
     public CheckoutStartedEvent withOrder(ECommerceOrder order) {
         this.order = order;
         return this;
@@ -21,7 +17,7 @@ public class CheckoutStartedEvent extends ECommercePropertyBuilder {
 
     private ECommerceCheckout checkout;
 
-    public CheckoutStartedEvent withCheckoutId(ECommerceCheckout checkout) {
+    public CheckoutStartedEvent withCheckout(ECommerceCheckout checkout) {
         this.checkout = checkout;
         return this;
     }

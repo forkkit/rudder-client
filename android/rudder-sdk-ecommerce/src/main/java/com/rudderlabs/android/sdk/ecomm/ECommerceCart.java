@@ -3,6 +3,7 @@ package com.rudderlabs.android.sdk.ecomm;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ECommerceCart {
     @SerializedName("cart_id")
@@ -46,10 +47,14 @@ public class ECommerceCart {
         private ArrayList<ECommerceProduct> products;
 
         public Builder withProducts(ArrayList<ECommerceProduct> products) {
-            if (this.products == null) {
-                this.products = new ArrayList<>();
-            }
+            if (this.products == null) this.products = new ArrayList<>();
             this.products.addAll(products);
+            return this;
+        }
+
+        public Builder withProducts(ECommerceProduct... products) {
+            if (this.products == null) this.products = new ArrayList<>();
+            Collections.addAll(this.products, products);
             return this;
         }
 
