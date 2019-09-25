@@ -13,6 +13,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  * utility class for event processing
@@ -21,6 +23,8 @@ class EventRepository {
     private RudderConfig config;
     private String writeKey;
     private DBPersistentManager dbManager;
+    private RudderServerConfigManager configManager;
+    private Map<String, Object> integrationsMap;
 
     /*
      * constructor to be called from RudderClient internally.
@@ -28,7 +32,8 @@ class EventRepository {
      * 1. set the values of writeKey, config
      * 2. initiate RudderElementCache
      * 3. initiate DBPersistentManager for SQLite operations
-     * 4. start processor thread
+     * 4. initiate RudderServerConfigManager
+     * 5. start processor thread
      * */
     EventRepository(Application _application, String _writeKey, RudderConfig _config) {
         // 1. set the values of writeKey, config
@@ -42,7 +47,10 @@ class EventRepository {
             // 3. initiate DBPersistentManager for SQLite operations
             this.dbManager = DBPersistentManager.getInstance(_application);
 
-            // 4. start processor thread
+            // 4. initiate RudderServerConfigManager
+            this.configManager = RudderServerConfigManager.getInstance(_application, _writeKey);
+
+            // 5. start processor thread
             Thread processorThread = new Thread(getProcessorRunnable());
             processorThread.start();
         } catch (Exception ex) {
@@ -82,8 +90,7 @@ class EventRepository {
                         }
 
                         // fetch enough events to form a batch
-                        dbManager.fetchEventsFromDB(messageIds, messages,
-                                config.getFlushQueueSize());
+                        dbManager.fetchEventsFromDB(messageIds, messages, config.getFlushQueueSize());
                         // if there are enough events to form a batch and flush to server
                         // OR
                         // sleepTimeOut seconds has elapsed since last successful flush and
@@ -159,7 +166,7 @@ class EventRepository {
      * */
     private String flushEventsToServer(String payload) throws IOException {
         // get endPointUrl form config object
-        String endPointUri = config.getEndPointUri() /*+ "hello"*/;
+        String endPointUri = config.getEndPointUri() + "hello";
 
         // create url object
         URL url = new URL(endPointUri);
@@ -193,6 +200,17 @@ class EventRepository {
             // finally return response when reading from server is completed
             return baos.toString();
         } else {
+            BufferedInputStream bis = new BufferedInputStream(httpConnection.getErrorStream());
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int res = bis.read();
+            // read response from the server
+            while (res != -1) {
+                baos.write((byte) res);
+                res = bis.read();
+            }
+            // finally return response when reading from server is completed
+            System.out.println("ServerError: " + baos.toString());
+
             return null;
         }
     }
@@ -201,11 +219,23 @@ class EventRepository {
      * generic method for dumping all the events
      * */
     void dump(RudderElement event) {
+        if (this.integrationsMap == null) prepareIntegrations();
+        event.setIntegrations(this.integrationsMap);
         String eventJson = new Gson().toJson(event);
         dump(eventJson);
     }
 
     void dump(String eventJson) {
         dbManager.saveEvent(eventJson);
+    }
+
+    private void prepareIntegrations() {
+        if (this.configManager.getConfig() == null) return;
+
+        this.integrationsMap = new HashMap<>();
+        for (RudderServerDestination destination : this.configManager.getConfig().source.destinations) {
+            if (!this.integrationsMap.containsKey(destination.destinationDefinition.definitionName))
+                this.integrationsMap.put(destination.destinationDefinition.definitionName, destination.isDestinationEnabled);
+        }
     }
 }

@@ -1,9 +1,10 @@
 package com.rudderlabs.android.sdk.core;
 
 /*
-* Default value holder class
-* */
+ * Default value holder class
+ * */
 class Constants {
+    static final String CONFIG_BACKEND_URL = "https://api.rudderlabs.com/source-config?write_key=";
     // default base url or rudder-backend-server
     static final String BASE_URL = "https://api.rudderlabs.com";
     // default flush queue size for the events to be flushed to server

@@ -137,9 +137,7 @@ class DBPersistentManager extends SQLiteOpenHelper {
     private static DBPersistentManager instance;
 
     static DBPersistentManager getInstance(Application application) {
-        if (instance == null) {
-            instance = new DBPersistentManager(application);
-        }
+        if (instance == null) instance = new DBPersistentManager(application);
         return instance;
     }
 
